@@ -356,3 +356,15 @@ Fuentes consultadas: [CCRAS: introducción a los conceptos de cinco elementos, d
 **Verificación:** `npm run validate:content` confirmó textos y rutas locales válidos para 108 fichas, 15 secuencias y 32 posturas; `npm run typecheck` y `npm run lint` finalizaron correctamente. Una comprobación específica confirmó que todos los `relatedIds` apuntan a fichas existentes y todos los `sequenceIds` a secuencias existentes. No se ejecutó la suite de pruebas.
 
 **Pendiente:** revisión por una persona conocedora de Ayurveda y de las tradiciones regionales representadas, especialmente para contextualizar las correspondencias de alimentos y estaciones. El cuestionario es intencionalmente breve y educativo; no pretende identificar una constitución tradicional completa.
+
+## Schedule: planificador de práctica (2026-11-07)
+
+Se conservó el horario fijo de muestra del YTT y se añadió en la misma pantalla un planificador de práctica. Hay cinco planes semanales bilingües —Principiante, Equilibrio, Energía, Relajación y Flexibilidad— con siete días cada uno, prácticas vinculadas por ID y días explícitos de recuperación. Las semanas combinan secuencias existentes con técnicas de Pranayama y meditación; los días de recuperación permiten omitir todo o abrir una meditación opcional.
+
+Se añadieron 12 rutinas sugeridas: tres momentos del día (mañana, mediodía y noche) por cuatro ventanas disponibles (10, 20, 45 y 60 minutos). Cada tarjeta enlaza a secuencias, técnicas o meditaciones existentes y suma sus temporizadores para mostrar el tiempo de práctica guiada dentro de la ventana. El margen restante se reserva para preparar el espacio, transiciones o descanso; no se requiere llenar todo el tiempo.
+
+**Decisiones de integración:** los datos de planes y rutinas viven en `src/content/schedule/plans.ts`; los enlaces apuntan a IDs de secuencias o fichas existentes. La selección interactiva se mantiene en el estado de la pantalla y no se guarda al recargar. El repositorio no tenía personalización ni almacenamiento de Schedule; no se añadió backend ni se alteró el estado persistente local. El horario escolar original y su selección por día permanecen debajo del planificador.
+
+**Verificación:** `npm run typecheck`, `npm run lint` y `npm run validate:content` finalizaron correctamente. Una comprobación específica validó cinco planes, 35 días, 12 combinaciones de momento/ventana, todos los IDs y que cada suma de temporizadores esté dentro de su ventana. No se ejecutó la suite de pruebas.
+
+**Pendiente:** revisión docente opcional de la carga semanal de las propuestas de Energía y Flexibilidad. Las ventanas son límites de tiempo, no una recomendación de practicar diariamente; cada persona puede reducir la frecuencia, duración o intensidad.

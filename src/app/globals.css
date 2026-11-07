@@ -1298,6 +1298,64 @@ select {
 .schedule-item > svg {
   margin-left: auto;
 }
+.planner-week-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 36px;
+}
+.planner-day-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.planner-day-card h3,
+.schedule-routine-card h3,
+.schedule-plan-summary h3 {
+  font-family: Georgia, serif;
+  font-size: 21px;
+  font-weight: 400;
+  margin: 8px 0;
+}
+.planner-duration {
+  margin-top: 6px;
+}
+.schedule-plan-summary .badge {
+  display: inline-flex;
+  margin-top: 8px;
+}
+.schedule-practice-links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+.schedule-practice-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--primary);
+}
+.schedule-practice-copy {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+.schedule-practice-copy strong {
+  font-size: 11px;
+  font-weight: 500;
+}
+.schedule-practice-link .row {
+  flex-shrink: 0;
+}
+.schedule-routine-card {
+  margin: 22px 0 36px;
+}
+.schedule-routine-card > .muted {
+  font-size: 12px;
+}
 /* Detail */
 .back-link {
   margin-bottom: 24px;
@@ -2962,5 +3020,21 @@ select {
   *:after {
     animation: none !important;
     transition: none !important;
+  }
+}
+@media (max-width: 760px) {
+  .planner-week-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .planner-week-grid {
+    grid-template-columns: 1fr;
+  }
+  .schedule-practice-link {
+    gap: 6px;
+  }
+  .schedule-practice-link .row {
+    font-size: 9px;
   }
 }
