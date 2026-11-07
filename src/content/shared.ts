@@ -1,5 +1,11 @@
 import { l } from "@/lib/utils";
-import type { ContentBase, DetailGroup, Field, Localized } from "@/lib/models";
+import type {
+  ContentBase,
+  DetailGroup,
+  Field,
+  Localized,
+  LocalizedInstructionSteps,
+} from "@/lib/models";
 export const gentle = l(
   "Respira con naturalidad, sin retenciones ni esfuerzo.",
   "Breathe naturally, without holds or strain.",
@@ -19,6 +25,15 @@ export function field(
   group: DetailGroup = "technique",
 ): Field {
   return { label: l(labelEs, labelEn), text, group };
+}
+export function splitInstructionSteps(
+  instructions: Localized,
+): LocalizedInstructionSteps {
+  function split(text: string) {
+    const steps = text.match(/[^.!?]+[.!?]?/g)?.map((step) => step.trim()) ?? [];
+    return steps.filter(Boolean);
+  }
+  return { es: split(instructions.es), en: split(instructions.en) };
 }
 export function base(
   id: string,

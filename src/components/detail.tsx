@@ -105,7 +105,15 @@ export function Detail({
                   .map((f, i) => (
                     <section className="detail-field" key={i}>
                       <h3>{f.label[state.language]}</h3>
-                      <p>{f.text[state.language]}</p>
+                      {"steps" in f ? (
+                        <ol>
+                          {f.steps[state.language].map((step, index) => (
+                            <li key={index}>{step}</li>
+                          ))}
+                        </ol>
+                      ) : (
+                        <p>{f.text[state.language]}</p>
+                      )}
                     </section>
                   ))}
                 {!fields.some((f) => f.group === value) && (

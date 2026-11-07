@@ -1,6 +1,6 @@
 import type { Asana } from "@/lib/models";
 import { l } from "@/lib/utils";
-import { base, safety, seed } from "../shared";
+import { base, safety, seed, splitInstructionSteps } from "../shared";
 function pose(
   id: string,
   sanskrit: string,
@@ -11,6 +11,7 @@ function pose(
   instructionsEn: string,
   categories = [category],
 ): Asana {
+  const instructions = l(instructionsEs, instructionsEn);
   return {
     ...base(
       id,
@@ -24,6 +25,7 @@ function pose(
     ),
     kind: "asana",
     sanskrit,
+    instructionSteps: splitInstructionSteps(instructions),
     categories,
     hold: l(
       "Mantén entre 3 y 5 respiraciones cómodas. En posturas de dos lados, repite ambos lados. Ajusta el tiempo al esfuerzo y descansa cuando lo necesites.",
@@ -31,7 +33,7 @@ function pose(
     ),
     image: `/images/${id}.webp`,
     thumbnail: `/images/${id}-thumb.webp`,
-    instructions: l(instructionsEs, instructionsEn),
+    instructions,
     drishti: l(
       "Mirada suave hacia un punto cómodo.",
       "A soft gaze toward a comfortable point.",

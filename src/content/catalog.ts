@@ -47,7 +47,7 @@ export type SearchEntry = {
   id: string;
   name: Localized;
   summary: Localized;
-  sanskrit?: string;
+  sanskrit?: string | null;
   section: string;
   category: string;
   level: string;

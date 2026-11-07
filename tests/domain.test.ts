@@ -6,6 +6,7 @@ import { sequences } from "../src/content/sequences";
 import { sections } from "../src/content/sections";
 import { quizQuestions } from "../src/content/study";
 import { defaultState, parseState } from "../src/lib/storage";
+import { validateSequenceDuration } from "../src/lib/sequence-validation";
 import { normalize } from "../src/lib/utils";
 test("the 11 sections remain separate", () => {
   assert.equal(sections.length, 11);
@@ -18,6 +19,18 @@ test("canonical content IDs, links and image assets resolve", () => {
     assert.ok(existsSync(`public${item.image}`), item.image);
     assert.ok(existsSync(`public${item.thumbnail}`), item.thumbnail);
     assert.ok(sections.some((s) => s.id === sectionFor(item)));
+    if (
+      item.kind === "asana" ||
+      item.kind === "yin" ||
+      item.kind === "aerial"
+    ) {
+      assert.ok(item.sanskrit === null || typeof item.sanskrit === "string");
+      assert.ok(item.instructionSteps.es.length > 0, item.id);
+      assert.ok(item.instructionSteps.en.length > 0, item.id);
+      assert.ok(item.commonMistakes.es, item.id);
+      assert.ok(item.modifications.es, item.id);
+      assert.ok(item.contraindications.es, item.id);
+    }
     for (const id of item.relatedIds) assert.ok(byId[id], id);
     if (item.kind === "asana")
       for (const id of [
@@ -33,6 +46,7 @@ test("sequences reference existing canonical content", () => {
     assert.ok(seq.steps.length > 0, seq.id);
     assert.ok(existsSync(`public${seq.image}`), seq.image);
     assert.equal(seq.steps.reduce((total, step) => total + step.duration, 0), seq.duration, seq.id);
+    assert.equal(validateSequenceDuration(seq).valid, true, seq.id);
     for (const step of seq.steps) {
       assert.ok(byId[step.contentId], `${seq.id}: ${step.contentId}`);
       assert.ok(step.duration > 0);
@@ -71,6 +85,13 @@ test("local data round-trips without losing notes or classes", () => {
     sequences: [sequences[0]],
   };
   assert.deepEqual(parseState(JSON.stringify(state)), state);
+});
+test("legacy saved classes migrate their total to the ordered step sum", () => {
+  const legacy = { ...sequences[0], duration: 1 };
+  const restored = parseState(
+    JSON.stringify({ ...defaultState, sequences: [legacy] }),
+  );
+  assert.equal(restored.sequences[0].duration, sequences[0].duration);
 });
 test("malformed backups and invalid nested records are rejected", () => {
   assert.throws(() => parseState("{}"));

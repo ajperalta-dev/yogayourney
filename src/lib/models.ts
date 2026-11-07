@@ -1,5 +1,6 @@
 export type Language = "es" | "en";
 export type Localized = { es: string; en: string };
+export type LocalizedInstructionSteps = { es: string[]; en: string[] };
 export type SectionId =
   | "schedule"
   | "ashtanga"
@@ -14,7 +15,13 @@ export type SectionId =
   | "ayurveda";
 export type DetailGroup =
   "technique" | "anatomy" | "benefits" | "teaching" | "safety";
-export type Field = { label: Localized; text: Localized; group: DetailGroup };
+export type Field =
+  | { label: Localized; text: Localized; group: DetailGroup }
+  | {
+      label: Localized;
+      steps: LocalizedInstructionSteps;
+      group: DetailGroup;
+    };
 export interface ContentBase {
   id: string;
   name: Localized;
@@ -32,7 +39,17 @@ export interface ContentBase {
   safety: Localized;
   studyOnly?: boolean;
 }
-export interface Asana extends ContentBase {
+export interface PoseBase extends Omit<ContentBase, "sanskrit"> {
+  /** Null is explicit for supported poses without a traditional Sanskrit name. */
+  sanskrit: string | null;
+  instructionSteps: LocalizedInstructionSteps;
+  commonMistakes: Localized;
+  modifications: Localized;
+  contraindications: Localized;
+  /** Optional preferred breath count; duration remains the timer value in seconds. */
+  breaths?: number;
+}
+export interface Asana extends PoseBase {
   kind: "asana";
   categories: string[];
   instructions: Localized;
@@ -40,15 +57,12 @@ export interface Asana extends ContentBase {
   drishti: Localized;
   anatomyIds: string[];
   benefits: Localized;
-  contraindications: Localized;
-  modifications: Localized;
-  commonMistakes: Localized;
   teachingCues: Localized;
   preparatoryPoseIds: string[];
   counterposeIds: string[];
   notes: Localized;
 }
-export interface YinPose extends ContentBase {
+export interface YinPose extends PoseBase {
   kind: "yin";
   targetArea: Localized;
   meridians: Localized;
@@ -57,11 +71,9 @@ export interface YinPose extends ContentBase {
   exit: Localized;
   rebound: Localized;
   benefits: Localized;
-  contraindications: Localized;
-  modifications: Localized;
   props: Localized;
 }
-export interface AerialPose extends ContentBase {
+export interface AerialPose extends PoseBase {
   kind: "aerial";
   hammockSetup: Localized;
   height: Localized;
@@ -72,11 +84,8 @@ export interface AerialPose extends ContentBase {
   exit: Localized;
   benefits: Localized;
   muscles: Localized;
-  contraindications: Localized;
   precautions: Localized;
-  commonMistakes: Localized;
   spotterRequired: boolean;
-  modifications: Localized;
   progressions: Localized;
   regressions: Localized;
   teachingCues: Localized;
@@ -156,8 +165,12 @@ export type ClassStage =
   | "meditation";
 export type SequenceStep = {
   key: string;
+  /** Stable reference to the existing pose/content record; retained for saved data compatibility. */
   contentId: string;
+  /** Timer duration in seconds; every step needs this for total-duration validation. */
   duration: number;
+  /** Optional count of breath cycles used as a practice cue. */
+  breaths?: number;
   stage: ClassStage;
 };
 export interface Sequence {
@@ -166,9 +179,11 @@ export interface Sequence {
   description: Localized;
   style: "ashtanga" | "hatha" | "yin" | "aerial";
   level: "beginner" | "intermediate" | "advanced";
+  /** Total duration in seconds; must equal the sum of all step durations. */
   duration: number;
   objective: Localized;
   image: string;
+  /** Ordered pose/content references that make up the sequence. */
   steps: SequenceStep[];
   demo: boolean;
 }

@@ -1,6 +1,10 @@
 import type { YinPose } from "@/lib/models";
 import { l } from "@/lib/utils";
-import { base, safety } from "../shared";
+import { base, safety, splitInstructionSteps } from "../shared";
+const butterflyEntry = l(
+  "Siéntate sobre una manta, une las plantas y apoya los muslos.",
+  "Sit on a blanket, join the soles and support the thighs.",
+);
 export const yin: YinPose[] = [
   {
     ...base(
@@ -14,6 +18,7 @@ export const yin: YinPose[] = [
       ),
     ),
     kind: "yin",
+    sanskrit: "Baddha Koṇāsana",
     duration: 120,
     image: "/images/baddha-konasana.webp",
     thumbnail: "/images/baddha-konasana-thumb.webp",
@@ -26,10 +31,8 @@ export const yin: YinPose[] = [
       "En algunas escuelas Yin se asocia a hígado y riñón. Es un marco tradicional, no una estructura anatómica demostrada.",
       "Some Yin schools associate this pose with liver and kidney meridians. This is a traditional framework, not established anatomy.",
     ),
-    entry: l(
-      "Siéntate sobre una manta, une las plantas y apoya los muslos.",
-      "Sit on a blanket, join the soles and support the thighs.",
-    ),
+    entry: butterflyEntry,
+    instructionSteps: splitInstructionSteps(butterflyEntry),
     hold: l(
       "Permanece en un rango suave; no busques dolor ni un estiramiento intenso.",
       "Stay in a gentle range; do not seek pain or intense stretching.",
@@ -45,6 +48,10 @@ export const yin: YinPose[] = [
     benefits: l(
       "Oportunidad para observar sensaciones y quietud.",
       "An opportunity to observe sensations and stillness.",
+    ),
+    commonMistakes: l(
+      "Empujar las rodillas hacia el suelo o redondear la espalda para buscar más profundidad.",
+      "Pressing the knees toward the floor or rounding the back to seek more depth.",
     ),
     contraindications: safety,
     modifications: l(
@@ -77,6 +84,10 @@ const quietPoses = [
       "Acorta la zancada y mantén el torso más alto. Si molesta la rodilla, usa un asiento en lugar de arrodillarte.",
       "Shorten the stance and keep the torso higher. If kneeling hurts, choose a seated rest.",
     ),
+    commonMistakes: l(
+      "Hundirse de golpe en la pelvis, forzar la rodilla trasera o contener la respiración.",
+      "Dropping suddenly into the hips, straining the back knee or holding the breath.",
+    ),
   },
   {
     id: "sphinx",
@@ -94,6 +105,10 @@ const quietPoses = [
     modification: l(
       "Aleja los codos para reducir la extensión. Sal si aparece presión en la zona lumbar.",
       "Move the elbows forward to reduce extension. Come out if you feel pressure in the lower back.",
+    ),
+    commonMistakes: l(
+      "Empujar con fuerza los antebrazos o comprimir la zona lumbar para elevar más el pecho.",
+      "Pressing hard through the forearms or compressing the lower back to lift the chest higher.",
     ),
   },
   {
@@ -116,6 +131,10 @@ const quietPoses = [
       "Usa un cojín más alto o descansa de lado si la flexión de rodillas resulta incómoda.",
       "Use a higher cushion or rest on one side if bending the knees is uncomfortable.",
     ),
+    commonMistakes: l(
+      "Forzar la pelvis hacia los talones o dejar la cabeza sin apoyo cuando el cuello lo necesita.",
+      "Forcing the hips toward the heels or leaving the head unsupported when the neck needs support.",
+    ),
   },
   {
     id: "reclined-twist",
@@ -137,15 +156,29 @@ const quietPoses = [
       "Eleva el cojín o deja ambos pies en el suelo y reduce el giro.",
       "Raise the cushion or keep both feet on the floor and reduce the rotation.",
     ),
+    commonMistakes: l(
+      "Empujar las rodillas hacia el suelo o girar el cuello más allá de un rango cómodo.",
+      "Pressing the knees toward the floor or turning the neck beyond a comfortable range.",
+    ),
   },
 ];
 
 yin.push(
   ...quietPoses.map(
-    ({ id, name, sanskrit, area, entry, exit, modification }): YinPose => ({
+    ({
+      id,
+      name,
+      sanskrit,
+      area,
+      entry,
+      exit,
+      modification,
+      commonMistakes,
+    }): YinPose => ({
       ...base(id, name.es, name.en, "Supported", area),
       kind: "yin",
       sanskrit,
+      instructionSteps: splitInstructionSteps(entry),
       image: `/images/poses/${id}.webp`,
       thumbnail: `/images/poses/${id}-thumb.webp`,
       duration: 120,
@@ -168,6 +201,7 @@ yin.push(
         "Explorar el apoyo y observar las sensaciones con calma.",
         "Explore support and notice sensations at an unhurried pace.",
       ),
+      commonMistakes,
       contraindications: safety,
       modifications: modification,
       props: l(

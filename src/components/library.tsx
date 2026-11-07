@@ -193,7 +193,7 @@ export function SequenceCard({ sequence: s }: { sequence: Sequence }) {
       <h3>{s.name[state.language]}</h3>
       <p className="small muted">{s.description[state.language]}</p>
       <div className="row between">
-        <Duration seconds={s.steps.reduce((sum, p) => sum + p.duration, 0)} />
+        <Duration seconds={s.duration} />
         <span className="small muted">
           {s.steps.length} {t("pasos", "steps")}
         </span>

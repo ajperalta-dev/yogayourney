@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import type { ContentItem, Sequence } from "@/lib/models";
+import { validateSequenceDuration } from "@/lib/sequence-validation";
 import { useLocal } from "./providers";
 import { Button } from "./ui/button";
 import {
@@ -29,8 +30,19 @@ export function SequencePlayer({
   const itemsById = new Map(items.map((item) => [item.id, item]));
   const step = sequence.steps[position];
   const item = step && itemsById.get(step.contentId);
+  const durationValidation = validateSequenceDuration(sequence);
   const restricted = items.some((i) => i.studyOnly);
   const effectiveStudy = mode === "study" || restricted;
+  if (!durationValidation.valid)
+    return (
+      <EmptyState
+        title={t("La duración de la secuencia no coincide", "Sequence duration does not match")}
+        description={t(
+          `Duración declarada: ${durationValidation.declaredSeconds} s. Suma de pasos: ${durationValidation.calculatedSeconds} s.`,
+          `Declared duration: ${durationValidation.declaredSeconds} s. Step total: ${durationValidation.calculatedSeconds} s.`,
+        )}
+      />
+    );
   if (!item || sequence.steps.some((step) => !itemsById.has(step.contentId)))
     return (
       <EmptyState
@@ -45,6 +57,10 @@ export function SequencePlayer({
       </EmptyState>
     );
   const lang = state.language;
+  const poseInstructions =
+    item.kind === "asana" || item.kind === "yin" || item.kind === "aerial"
+      ? item.instructionSteps[lang]
+      : null;
   const section =
     item.kind === "asana"
       ? "hatha"
@@ -72,7 +88,7 @@ export function SequencePlayer({
           id: crypto.randomUUID(),
           sequenceId: sequence.id,
           completedAt: new Date().toISOString(),
-          seconds: sequence.steps.reduce((sum, s) => sum + s.duration, 0),
+          seconds: sequence.duration,
         },
       ],
     }));
@@ -154,10 +170,26 @@ export function SequencePlayer({
             />
             <h2>{item.name[lang]}</h2>
             {item.sanskrit && <p className="sanskrit">{item.sanskrit}</p>}
-            <p>{instructions[lang]}</p>
-            {item.kind === "asana" && <p className="small muted">{item.hold[lang]}</p>}
+            {poseInstructions ? (
+              <ol>
+                {poseInstructions.map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
+              </ol>
+            ) : (
+              <p>{instructions[lang]}</p>
+            )}
+            {(item.kind === "asana" || item.kind === "yin") && (
+              <p className="small muted">{item.hold[lang]}</p>
+            )}
             <div className="breath-note">
               {item.breathing[lang]}
+              {step.breaths && (
+                <p>
+                  {t("Permanencia sugerida:", "Suggested hold:")} {step.breaths}{" "}
+                  {t("respiraciones", "breaths")}
+                </p>
+              )}
               {item.kind === "asana" && (
                 <p>
                   <strong>Drishti:</strong> {item.drishti[lang]}

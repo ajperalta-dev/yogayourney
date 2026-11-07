@@ -1,9 +1,13 @@
 import type { AerialPose } from "@/lib/models";
 import { l } from "@/lib/utils";
-import { base } from "../shared";
+import { base, splitInstructionSteps } from "../shared";
 const caution = l(
   "Solo con instructor de yoga aéreo y equipo instalado y revisado por profesionales. La app no verifica anclajes, carga ni montaje. Inversiones, wraps, transiciones, drops y movimientos avanzados requieren supervisión; no se guían aquí para práctica autónoma.",
   "Only with an aerial yoga instructor and professionally installed and inspected equipment. This app cannot verify anchors, load or rigging. Inversions, wraps, transitions, drops and advanced movements require supervision; they are not guided here for independent practice.",
+);
+const supportedSeatEntry = l(
+  "La entrada se enseña presencialmente; no se incluyen instrucciones de montaje o suspensión.",
+  "Entry is taught in person; rigging and suspension instructions are not included.",
 );
 export const aerial: AerialPose[] = [
   {
@@ -18,6 +22,8 @@ export const aerial: AerialPose[] = [
       ),
     ),
     kind: "aerial",
+    sanskrit: null,
+    instructionSteps: splitInstructionSteps(supportedSeatEntry),
     image: "/images/poses/supported-seat.webp",
     thumbnail: "/images/poses/supported-seat-thumb.webp",
     studyOnly: true,
@@ -38,10 +44,7 @@ export const aerial: AerialPose[] = [
       "En el suelo, junto a la hamaca, con el instructor.",
       "On the ground beside the hammock with the instructor.",
     ),
-    entry: l(
-      "La entrada se enseña presencialmente; no se incluyen instrucciones de montaje o suspensión.",
-      "Entry is taught in person; rigging and suspension instructions are not included.",
-    ),
+    entry: supportedSeatEntry,
     finalPosition: l(
       "Asiento apoyado y estable, supervisado.",
       "A stable supported seat under supervision.",

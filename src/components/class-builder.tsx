@@ -19,6 +19,7 @@ import type {
   SequenceStep,
 } from "@/lib/models";
 import { l, normalize } from "@/lib/utils";
+import { validateSequenceDuration } from "@/lib/sequence-validation";
 import { useLocal } from "./providers";
 import { Button } from "./ui/button";
 import {
@@ -111,6 +112,15 @@ function ClassBuilderForm({
       steps,
       demo: false,
     };
+    if (!validateSequenceDuration(sequence).valid) {
+      setStatus(
+        t(
+          "La duración total no coincide con la suma de los pasos.",
+          "The total duration does not match the sum of the steps.",
+        ),
+      );
+      return;
+    }
     update((s) => ({
       ...s,
       sequences: [...s.sequences.filter((seq) => seq.id !== id), sequence],
@@ -422,7 +432,7 @@ export function SavedSequences() {
               <span className="eyebrow">{s.style}</span>
               <h3>{s.name[state.language]}</h3>
               <Duration
-                seconds={s.steps.reduce((sum, p) => sum + p.duration, 0)}
+                seconds={s.duration}
               />
               <div className="row wrap">
                 <Button asChild>

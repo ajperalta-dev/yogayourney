@@ -1,5 +1,6 @@
 import type { ContentItem, Field, Localized } from "./models";
 import { field } from "@/content/shared";
+import { l } from "@/lib/utils";
 const labels: Record<string, [string, string, Field["group"]]> = {
   instructions: ["Instrucciones", "Instructions", "technique"],
   breathing: ["Respiración", "Breathing", "technique"],
@@ -47,8 +48,12 @@ const labels: Record<string, [string, string, Field["group"]]> = {
 };
 export function detailFields(item: ContentItem): Field[] {
   const result: Field[] = [...item.fields];
+  const isPose =
+    item.kind === "asana" || item.kind === "yin" || item.kind === "aerial";
   for (const [key, value] of Object.entries(item)) {
     if (
+      key !== "instructionSteps" &&
+      !(isPose && (key === "instructions" || key === "entry")) &&
       labels[key] &&
       value &&
       typeof value === "object" &&
@@ -58,6 +63,17 @@ export function detailFields(item: ContentItem): Field[] {
       const [es, en, group] = labels[key];
       result.push(field(es, en, value as Localized, group));
     }
+  }
+  if (
+    item.kind === "asana" ||
+    item.kind === "yin" ||
+    item.kind === "aerial"
+  ) {
+    result.push({
+      label: l("Instrucciones paso a paso", "Step-by-step instructions"),
+      steps: item.instructionSteps,
+      group: "technique",
+    });
   }
   return result;
 }

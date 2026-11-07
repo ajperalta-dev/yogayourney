@@ -1,4 +1,5 @@
 import type { PersonalState, Sequence } from "./models";
+import { validateSequenceDuration } from "./sequence-validation";
 export const STORAGE_KEY = "yoga-journey:v1";
 export const defaultState: PersonalState = {
   version: 1,
@@ -26,6 +27,29 @@ const stages = [
   "savasana",
   "meditation",
 ];
+function migrateSequenceDuration(value: unknown): unknown {
+  if (!record(value) || !Array.isArray(value.steps)) return value;
+  const durations = value.steps.map((step) =>
+    record(step) ? step.duration : undefined,
+  );
+  if (
+    !durations.length ||
+    !durations.every(
+      (duration) =>
+        typeof duration === "number" &&
+        Number.isSafeInteger(duration) &&
+        duration > 0,
+    )
+  )
+    return value;
+  const duration = durations.reduce<number>(
+    (total, stepDuration) => total + (stepDuration as number),
+    0,
+  );
+  if (!Number.isSafeInteger(duration)) return value;
+  if (value.duration === duration) return value;
+  return { ...value, duration };
+}
 function sequence(value: unknown): value is Sequence {
   if (
     !record(value) ||
@@ -37,6 +61,12 @@ function sequence(value: unknown): value is Sequence {
     typeof value.description.es !== "string" ||
     typeof value.description.en !== "string" ||
     !["ashtanga", "hatha", "yin", "aerial"].includes(String(value.style)) ||
+    !["beginner", "intermediate", "advanced"].includes(String(value.level)) ||
+    typeof value.duration !== "number" ||
+    !record(value.objective) ||
+    typeof value.objective.es !== "string" ||
+    typeof value.objective.en !== "string" ||
+    typeof value.image !== "string" ||
     !Array.isArray(value.steps) ||
     typeof value.demo !== "boolean"
   )
@@ -53,13 +83,22 @@ function sequence(value: unknown): value is Sequence {
         Number.isInteger(s.duration) &&
         s.duration >= 5 &&
         s.duration <= 3600 &&
+        (s.breaths === undefined ||
+          (typeof s.breaths === "number" &&
+            Number.isInteger(s.breaths) &&
+            s.breaths > 0)) &&
         stages.includes(String(s.stage)),
-    )
+    ) && validateSequenceDuration(value as unknown as Sequence).valid
   );
 }
 export function parseState(raw: string): PersonalState {
   if (raw.length > 5_000_000) throw new Error("Backup too large");
   const v: unknown = JSON.parse(raw);
+  const sequences = record(v) && Array.isArray(v.sequences)
+    ? v.sequences.map(migrateSequenceDuration)
+    : record(v)
+      ? v.sequences
+      : undefined;
   if (
     !record(v) ||
     v.version !== 1 ||
@@ -73,7 +112,7 @@ export function parseState(raw: string): PersonalState {
     !Array.isArray(v.sessions) ||
     !Array.isArray(v.quizzes) ||
     !record(v.cards) ||
-    !Array.isArray(v.sequences)
+    !Array.isArray(sequences)
   )
     throw new Error("Invalid backup");
   if (
@@ -91,7 +130,7 @@ export function parseState(raw: string): PersonalState {
         typeof c.known === "boolean" &&
         typeof c.reviewedAt === "string",
     ) ||
-    !v.sequences.every(sequence)
+    !sequences.every(sequence)
   )
     throw new Error("Invalid data");
   if (
@@ -119,5 +158,5 @@ export function parseState(raw: string): PersonalState {
     )
   )
     throw new Error("Invalid progress");
-  return v as unknown as PersonalState;
+  return { ...v, sequences } as unknown as PersonalState;
 }

@@ -1,7 +1,7 @@
 # Auditoría y plan de Yoga Journey
 
 **Fecha:** 2026-11-07
-**Alcance de esta fase:** auditoría de solo lectura del repositorio. No se modificaron código, contenido ni assets; este archivo es el único cambio solicitado.
+**Alcance de la fase inicial:** auditoría de solo lectura del repositorio. En esa fase no se modificaron código, contenido ni assets; solo se documentó el inventario.
 
 ## Inventario de secciones y categorías
 
@@ -80,18 +80,43 @@ Las sumas reportadas coinciden con la duración declarada en las ocho secuencias
 
 ## Plan ordenado de trabajo
 
-1. **Ashtanga:** revisar progresión y fases de las cinco secuencias existentes, definir objetivos descriptivos por secuencia y comprobar sus tiempos y alternativas sin presentarlas como series tradicionales completas.
-2. **Hatha:** revisar la progresión de `hatha-foundations`, aclarar el objetivo propio y verificar que calentamiento, posturas principales, enfriamiento y Savasana estén bien representados.
-3. **Yin:** completar el nombre sánscrito cuando corresponda, decidir cómo representar errores comunes en el esquema actual y revisar permanencias, rebotes y precauciones de `yin-stillness`.
-4. **Aerial:** mantener el carácter supervisado, explicitar duración/alcance de cada paso y tratar el nombre sánscrito como “no aplica” cuando la postura sea una configuración de estudio, en lugar de inventarlo.
+1. **Ashtanga (pendiente):** revisar progresión y fases de las cinco secuencias existentes, definir objetivos descriptivos por secuencia y comprobar sus tiempos y alternativas sin presentarlas como series tradicionales completas.
+2. **Hatha (pendiente):** revisar la progresión de `hatha-foundations`, aclarar el objetivo propio y verificar que calentamiento, posturas principales, enfriamiento y Savasana estén bien representados.
+3. **Yin (parcial):** el esquema ahora incluye errores comunes y nombre sánscrito para Mariposa; quedan por revisar permanencias, rebotes y precauciones de `yin-stillness`.
+4. **Aerial (parcial):** el esquema ahora permite `sanskrit: null` para el asiento de estudio y conserva las precauciones; queda revisar la duración y el alcance de cada paso supervisado.
 5. **Pranayama, Mantras, Anatomía, Kriyas, Meditación y Ayurveda:** ampliar las colecciones que hoy tienen una sola ficha, según el alcance ya previsto, sin crear secciones nuevas.
 6. **Horario y herramientas de estudio:** revisar cobertura y textos de las cinco clases, seis tarjetas y cinco preguntas; localizar en español los nombres de categoría usados como filtros si el diseño actual permite hacerlo.
 7. **Imágenes e integración:** reemplazar arte provisional conforme a `IMAGES_TODO.md`, mostrar la imagen de secuencia en la UI existente, añadir alt descriptivo y fallback local manteniendo los componentes y estilos actuales.
-8. **Verificación de la siguiente fase:** validar rutas y datos de cada ficha, revisar imágenes referenciadas y ejecutar build, lint y pruebas existentes después de implementar contenido.
+8. **Verificación de contenido (pendiente):** validar rutas y datos de cada ficha, revisar imágenes referenciadas y repetir build, lint y pruebas existentes después de implementar contenido.
 
-## Decisiones y límites de la auditoría
+## Decisiones y límites de la auditoría inicial
 
-- No se añadieron ni eliminaron secciones. El único archivo editado en esta fase es `PROGRESS.md`.
+- En la auditoría inicial no se añadieron ni eliminaron secciones ni se modificó código.
 - Los nombres de secciones, categorías y modelos se mantienen tal como existen hoy; el catálogo usa campos localizados para español e inglés.
 - Se conservará el carácter de “adaptación breve” de Surya Namaskar y “repaso supervisado” de Aerial.
 - No se ejecutaron build, lint ni pruebas: esta fase solicitó auditoría y plan, sin cambios de código.
+
+## Esquema de secuencias y posturas
+
+**Actualización:** se mantuvieron los campos existentes de secuencia porque ya cubrían nombre, nivel, duración total, objetivo, descripción, imagen y lista ordenada. `Sequence.duration` y `SequenceStep.duration` se expresan en segundos. `Sequence.steps` conserva su orden y usa `contentId` como referencia estable a la ficha de postura o práctica.
+
+| Entidad | Esquema final |
+| --- | --- |
+| Secuencia (`Sequence`) | `id`; `name` localizado (`es`/`en`); `level`; `duration` total en segundos; `objective`; `description`; `image`; `steps[]` ordenados; `style` y `demo` existentes. |
+| Paso (`SequenceStep`) | `key`; `contentId` (se conserva para compatibilidad); `duration` del temporizador en segundos; `stage`; `breaths` opcional como indicación de ciclos respiratorios. La duración continúa siendo obligatoria para poder sumar el total aunque se muestre una cuenta de respiraciones. |
+| Postura (`PoseBase`) | Campos heredados de `ContentBase`: `id`, `name.es`, `duration` en segundos, `breathing`, `image` y `safety`; más `sanskrit` (cadena o `null` cuando no existe un nombre tradicional aplicable), `instructionSteps` localizados como listas, `commonMistakes`, `modifications`, `contraindications` y `breaths` opcional. Asana, Yin y Aerial conservan sus campos propios. |
+
+### Compatibilidad y migración
+
+- No se renombraron `Sequence.steps`, `contentId` ni `duration`, ni se cambió la versión `yoga-journey:v1` del almacenamiento local. `breaths` es opcional, por lo que las clases guardadas anteriormente siguen teniendo la misma forma válida.
+- El parser migra una clase guardada cuyo total falte o difiera de la suma de sus pasos: recalcula `duration` antes de validar y devolver el estado. Los demás datos y el orden de los pasos se preservan.
+- Las fichas estáticas previas conservan `instructions` en Asana y `entry` en Yin/Aerial. `splitInstructionSteps` deriva listas localizadas a partir de sus frases existentes, sin descartar el texto original; el detalle y el reproductor presentan la lista como pasos.
+- Se completó el esquema común para Yin con errores habituales y nombre sánscrito en Mariposa (`Baddha Koṇāsana`). En Aerial, Asiento con apoyo usa `sanskrit: null` para declarar que la configuración no tiene un nombre sánscrito tradicional, sin inventarlo.
+
+### Validación e integración
+
+- `src/lib/sequence-validation.ts` exporta `validateSequenceDuration`, que devuelve duración declarada, suma calculada y estado de coincidencia; rechaza pasos vacíos, tiempos no enteros o totales que no coinciden.
+- La validación se usa al guardar clases propias, al leer el estado persistido y antes de reproducir una secuencia. Las tarjetas muestran `Sequence.duration` como valor canónico.
+- El detalle de postura y el reproductor muestran `instructionSteps` como lista ordenada. Los pasos admiten una cuenta opcional de respiraciones además del temporizador en segundos.
+- Se actualizaron pruebas existentes para comprobar el helper y la migración de una clase guardada con el total desactualizado.
+- Verificación de esta actualización: `npm run typecheck`, `npm test` (9 pruebas), `npm run lint` y `npm run build` finalizaron correctamente.
