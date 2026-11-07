@@ -81,9 +81,9 @@ Las sumas reportadas coinciden con la duración declarada en las ocho secuencias
 ## Plan ordenado de trabajo
 
 1. **Ashtanga (contenido completo, imagen pendiente):** las cinco secuencias tienen fases y tiempos propios, objetivos concretos y referencias verificadas a la biblioteca.
-2. **Hatha (pendiente):** revisar la progresión de `hatha-foundations`, aclarar el objetivo propio y verificar que calentamiento, posturas principales, enfriamiento y Savasana estén bien representados.
-3. **Yin (parcial):** las cinco fichas tienen permanencia y precauciones propias. Queda revisar la progresión, los intervalos y los rebotes dentro de `yin-stillness`.
-4. **Aerial (parcial):** la ficha de Asiento con apoyo distingue el repaso en silla de la práctica supervisada. Queda revisar el intervalo y el alcance de cada paso de la secuencia.
+2. **Hatha (contenido completo, imagen pendiente):** `hatha-foundations` tiene objetivo propio, fases explícitas y tiempos por ambos lados para las posturas unilaterales.
+3. **Yin (contenido completo, imagen pendiente):** `yin-stillness` ordena la práctica desde la llegada y la apertura suave hasta las posturas de suelo, los rebotes y Savasana; sus intervalos contemplan ambos lados.
+4. **Aerial (contenido completo, imagen pendiente):** `aerial-foundations` mantiene el repaso en suelo, modo de estudio y límites de seguridad para la práctica supervisada.
 5. **Pranayama, Mantras, Anatomía, Kriyas, Meditación y Ayurveda:** ampliar las colecciones que hoy tienen una sola ficha, según el alcance ya previsto, sin crear secciones nuevas.
 6. **Horario y herramientas de estudio:** revisar cobertura y textos de las cinco clases, seis tarjetas y cinco preguntas; localizar en español los nombres de categoría usados como filtros si el diseño actual permite hacerlo.
 7. **Imágenes e integración:** reemplazar arte provisional conforme a `IMAGES_TODO.md`, mostrar la imagen de secuencia en la UI existente, añadir alt descriptivo y fallback local manteniendo los componentes y estilos actuales.
@@ -185,3 +185,17 @@ La primera tanda sigue el orden del plan. Cada secuencia conserva su nombre, niv
 Surya A usa Cobra baja y admite apoyar las rodillas en Plancha. Surya B reserva un paso para ambos lados de Guerrero I y usa los intervalos de descenso para incluir una pausa cuando haga falta. Fundamentos de pie da tiempo para cambiar de lado. La selección de la serie primaria enlaza posturas de pie y sentadas, y Cierre empieza con una preparación suave en el suelo. Las cinco propuestas son adaptaciones para la app. [Saludo al sol A, AshtangaYoga.info](https://www.ashtangayoga.info/ashtanga-yoga/surya-namaskara-a-sun-salutation/), [Series de práctica de Ashtanga](https://www.ashtangayoga.info/ashtanga-yoga/traditional-practice-series/).
 
 Se comprobó que cada suma coincide con el total declarado, que las cuatro fases aparecen en orden y que todos los IDs resuelven a fichas existentes. Pasaron TypeScript, lint, las 10 pruebas y el build estático.
+
+## Secuencias de Hatha, Yin Yoga y Aerial Yoga
+
+Se completaron las tres secuencias de estas secciones, conservando nombres, niveles, duraciones, estilos e IDs existentes. Las descripciones y objetivos ahora son específicos de cada práctica y los pasos asignan las fases de forma explícita. No se agregaron posturas a la biblioteca porque todas las referencias ya existían.
+
+| Sección | Secuencia | Llegada | Calentamiento | Posturas principales | Enfriamiento | Savasana | Total | Estado |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| Hatha | Volver a las bases (`hatha-foundations`) | 30 s | 90 s | 240 s | 75 s | 60 s | 495 s (8 min 15 s) | contenido completo, imagen pendiente |
+| Yin Yoga | Un espacio de quietud (`yin-stillness`) | 150 s | 240 s | 540 s | 510 s | 240 s | 1.680 s (28 min) | contenido completo, imagen pendiente |
+| Aerial Yoga | Aerial · repaso supervisado (`aerial-foundations`) | 90 s | 90 s | 120 s | 60 s | 90 s | 450 s (7 min 30 s) | contenido completo, imagen pendiente |
+
+Hatha reparte 80 segundos por postura de pie para practicar ambos lados dentro del mismo intervalo. Yin incluye los dos lados en los intervalos de Dragón bajo y Torsión tumbada; el tiempo del paso incluye entrada, salida y descanso, no exige sostener la postura durante todo el temporizador. Aerial se conserva como repaso en silla y en el suelo, no como secuencia para cargar peso en una hamaca; la ficha `studyOnly` mantiene desactivado el modo de práctica autónoma.
+
+Se verificaron las tres sumas (495, 1.680 y 450 segundos), el orden de las fases y la resolución de las referencias de postura. Las imágenes de secuencia existentes siguen siendo provisionales y están pendientes de reemplazo según `IMAGES_TODO.md`.
