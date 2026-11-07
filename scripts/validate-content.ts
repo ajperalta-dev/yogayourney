@@ -306,6 +306,29 @@ for (const sequence of sequences) {
       );
     }
   }
+  if (sequence.style === "yin") {
+    if (sequence.duration < 15 * 60 || sequence.duration > 75 * 60) {
+      errors.push(`secuencia ${sequence.id}: la duración Yin debe estar entre 15 y 75 minutos`);
+    }
+    const finalStep = sequence.steps.at(-1);
+    if (finalStep?.stage !== "savasana" || finalStep.contentId !== "savasana") {
+      errors.push(`secuencia ${sequence.id}: debe cerrar con Savasana`);
+    }
+    for (const [index, step] of sequence.steps.entries()) {
+      if (step.contentId === "savasana" && step.stage !== "savasana" && (step.duration < 30 || step.duration > 60)) {
+        errors.push(`secuencia ${sequence.id}, paso ${index + 1}: la pausa de integración debe durar 30–60 segundos`);
+      }
+      if (index > 0 && index < sequence.steps.length - 1 && step.contentId !== "savasana" && step.stage !== "savasana" && step.stage !== "centering") {
+        const next = sequence.steps[index + 1];
+        if (next.contentId !== "savasana" || (next.stage !== "savasana" && (next.duration < 30 || next.duration > 60))) {
+          errors.push(`secuencia ${sequence.id}, paso ${index + 1}: falta una pausa neutra antes de la siguiente postura`);
+        }
+      }
+    }
+  }
+}
+if (sequences.filter((sequence) => sequence.style === "yin").length < 8) {
+  errors.push("Yin Yoga: se requieren al menos ocho secuencias completas");
 }
 
 for (const entry of schedule) {

@@ -31,6 +31,11 @@
     "sphinx": {"es":"Persona en Esfinge, boca abajo con el pecho elevado y los antebrazos apoyados","en":"Person in Sphinx lying prone with the chest lifted and forearms grounded"},
     "supported-child": {"es":"Persona en Niño con apoyo, con el torso y la frente descansando sobre un cojín","en":"Person in Supported Child’s Pose with torso and forehead resting on a bolster"},
     "reclined-twist": {"es":"Persona en torsión tumbada, con las rodillas dobladas hacia un lado sobre un cojín","en":"Person in a reclined twist with both bent knees supported to one side on a bolster"},
+    "caterpillar": {"es":"Persona sentada en Oruga con el torso apoyado sobre un bolster y las rodillas suaves","en":"Person in Caterpillar with the torso supported on a bolster and knees relaxed"},
+    "shoelace": {"es":"Persona sentada en Cordones con las piernas cruzadas y la pelvis elevada sobre un cojín","en":"Person in Shoelace with crossed legs and pelvis raised on a cushion"},
+    "banana-pose": {"es":"Persona tumbada boca arriba en Plátano con el cuerpo curvado suavemente hacia un lado","en":"Person lying on the back in Banana pose with the body gently curved to one side"},
+    "melting-heart": {"es":"Persona en Corazón que se derrite con el pecho apoyado y las caderas sobre las rodillas","en":"Person in Melting Heart with the chest supported and hips over the knees"},
+    "saddle": {"es":"Persona en Silla de montar reclinada sobre un bolster con las rodillas acolchadas","en":"Person in a supported reclining Saddle with knees padded"},
     "supported-seat": {"es":"Persona sentada en una silla firme con los pies en el suelo y las manos sobre los muslos","en":"Person sitting on a sturdy chair with feet grounded and hands resting on the thighs"}
   },
   "covers": {
@@ -47,6 +52,11 @@
     "hatha-whole-body": "utthita-trikonasana",
     "yin-grounding": "dragon",
     "yin-long-rest": "supported-child",
+    "yin-15-minute-reset": "butterfly",
+    "yin-hips-45": "shoelace",
+    "yin-legs-55": "caterpillar",
+    "yin-spine-60": "melting-heart",
+    "yin-evening-75": "banana-pose",
     "aerial-intermediate-study": "supported-seat",
     "aerial-advanced-study": "supported-seat"
   }

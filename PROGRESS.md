@@ -388,3 +388,13 @@ Se integró el logo proporcionado en la marca del menú lateral y se sustituyero
 **Decisión:** se conservó el nombre textual “yogajourney” junto al símbolo para mantener la marca legible y accesible, y el símbolo recibe texto alternativo vacío al ser decorativo junto al nombre.
 
 **Verificación:** `npm run build` y `npm run lint` finalizaron correctamente tras integrar el logo.
+
+## Yin Yoga: secuencias y biblioteca ampliadas (2026-11-07)
+
+El diagnóstico inicial encontró 3 secuencias Yin y 5 posturas propias. Se añadieron 5 posturas (Oruga/Caterpillar, Cordones/Shoelace, Plátano/Banana, Corazón que se derrite/Melting Heart y Silla de montar/Saddle) con indicaciones bilingües de entrada, respiración, permanencia, salida, variaciones, precauciones, props y meridianos como referencia tradicional, no anatómica. Se generaron ilustraciones locales y sus descripciones alternativas en ES/EN.
+
+La sección cuenta ahora con **8 secuencias Yin**: pausa inicial (15 min), quietud (28 min), enraizar (30 min), descanso prolongado (40 min), caderas (45 min), piernas (55 min), columna y hombros (60 min) y relajación nocturna de cuerpo completo (75 min). Cada una incorpora pausas neutras cronometradas de 30 segundos entre posturas y termina en Savasana; se mantuvieron dentro del tiempo declarado para no exceder las ventanas ya usadas por Schedule.
+
+**Verificación:** `npm run validate:content` confirmó 8 secuencias Yin, referencias e imágenes válidas, pausas de 30–60 segundos, Savasana final y sumas exactas. `npm run lint` y `npm run build` finalizaron correctamente.
+
+**Pendiente:** revisión opcional por profesorado cualificado de las alternativas anatómicas, especialmente Silla de montar y Dragón, y de las asociaciones tradicionales de meridianos.
