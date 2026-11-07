@@ -368,3 +368,15 @@ Se añadieron 12 rutinas sugeridas: tres momentos del día (mañana, mediodía y
 **Verificación:** `npm run typecheck`, `npm run lint` y `npm run validate:content` finalizaron correctamente. Una comprobación específica validó cinco planes, 35 días, 12 combinaciones de momento/ventana, todos los IDs y que cada suma de temporizadores esté dentro de su ventana. No se ejecutó la suite de pruebas.
 
 **Pendiente:** revisión docente opcional de la carga semanal de las propuestas de Energía y Flexibilidad. Las ventanas son límites de tiempo, no una recomendación de practicar diariamente; cada persona puede reducir la frecuencia, duración o intensidad.
+
+## Verificación final de contenido y aplicación (2026-11-07)
+
+Se amplió `scripts/validate-content.ts` como chequeo automático reutilizable. Ahora recorre las 11 secciones, el catálogo, las secuencias, los horarios, los cinco planes semanales, las 12 rutinas por momento y ventana, los planes de meditación de 7 y 30 días, las tarjetas y las preguntas del quiz. Detecta campos localizados vacíos, placeholders, IDs duplicados o mal formados, referencias inexistentes o de tipo incorrecto, temporizadores fuera de la ventana, sumas de duración de secuencias incorrectas, y rutas de imagen rotas o sin descripción. También revisa campos obligatorios por tipo de ficha, la duración y el ritmo de respiración.
+
+La revisión de Pranayama, Kriyas y Ayurveda confirmó contenido localizado en español e inglés, terminología consistente y avisos visibles en sus pantallas. Se añadió un aviso destacado al inicio de Pranayama: las técnicas rápidas y las retenciones requieren aprendizaje con instructor cualificado, con señales para detenerse y condiciones que ameritan consulta. Kriyas mantiene su advertencia general y las precauciones de cada ficha; Ayurveda mantiene su aviso educativo contra usar el contenido para prevenir, diagnosticar o tratar enfermedades. Se revisaron las transliteraciones usadas en esas secciones, entre ellas Nāḍī Śodhana, Kapālabhāti, Trāṭaka y Śaṅkhaprakṣālana.
+
+**Resultado:** el chequeo no encontró campos vacíos ni placeholders en los datos revisados, vínculos rotos, duraciones inconsistentes o imágenes locales inexistentes. El catálogo comprende **108 fichas, 32 posturas y 15 secuencias**, además de 2 planes de meditación, 6 tarjetas y 5 preguntas.
+
+**Verificación ejecutada:** `npm run build`, `npm run lint`, `npm test` (10 pruebas aprobadas), `npm run typecheck` y `npm run validate:content` finalizaron correctamente. El build prerenderizó las rutas existentes. No se añadieron dependencias ni se cambiaron nombres, arquitectura o diseño; el aviso de Pranayama utiliza el componente de seguridad ya existente.
+
+**Pendiente:** la exactitud docente de las secuencias y la información de seguridad y tradiciones sigue siendo apropiada para una revisión por profesorado cualificado; el contenido educativo no sustituye consejo médico individual.

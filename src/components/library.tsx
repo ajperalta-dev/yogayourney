@@ -74,6 +74,14 @@ export function Library({
           </span>
         }
       />
+      {section === "pranayama" && (
+        <SafetyAlert>
+          {t(
+            "Empieza con una respiración cómoda y sin esfuerzo. Las técnicas rápidas y las retenciones deben aprenderse con una persona instructora cualificada; no las practiques a solas siguiendo esta guía. Detente si aparece mareo, falta de aire, dolor o ansiedad. Consulta antes con un profesional sanitario si estás embarazada o tienes hipertensión, una condición cardíaca o respiratoria, vértigo u otra preocupación médica.",
+            "Begin with comfortable, unforced breathing. Fast techniques and breath retention should be learned with a qualified instructor; do not practice them alone from this guide. Stop if you feel dizzy, short of breath, pain, or anxiety. Consult a healthcare professional first if you are pregnant or have hypertension, a heart or respiratory condition, vertigo, or another medical concern.",
+          )}
+        </SafetyAlert>
+      )}
       {section === "kriyas" && (
         <SafetyAlert>
           {t(
