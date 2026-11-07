@@ -31,6 +31,8 @@ const labels: Record<string, [string, string, Field["group"]]> = {
   preparation: ["Preparación", "Preparation", "technique"],
   translation: ["Traducción", "Translation", "technique"],
   meaning: ["Significado", "Meaning", "benefits"],
+  recommendedPosture: ["Postura recomendada", "Recommended posture", "technique"],
+  bestTime: ["Momento recomendado", "Suggested timing", "teaching"],
   context: ["Contexto", "Context", "teaching"],
   movements: ["Movimientos", "Movements", "anatomy"],
   description: ["Descripción", "Description", "technique"],
@@ -53,6 +55,7 @@ export function detailFields(item: ContentItem): Field[] {
   for (const [key, value] of Object.entries(item)) {
     if (
       key !== "instructionSteps" &&
+      !(item.kind === "pranayama" && key === "instructions") &&
       !(isPose && (key === "instructions" || key === "entry")) &&
       labels[key] &&
       value &&
@@ -73,6 +76,29 @@ export function detailFields(item: ContentItem): Field[] {
       label: l("Instrucciones paso a paso", "Step-by-step instructions"),
       steps: item.instructionSteps,
       group: "technique",
+    });
+  }
+  if (item.kind === "pranayama") {
+    result.push({
+      label: l("Instrucciones paso a paso", "Step-by-step instructions"),
+      steps: item.instructionSteps,
+      group: "technique",
+    });
+    result.push({
+      label: l("Práctica sugerida por nivel", "Suggested practice by level"),
+      steps: {
+        es: [
+          `Principiante: ${item.practiceByLevel.beginner.es}`,
+          `Intermedio: ${item.practiceByLevel.intermediate.es}`,
+          `Avanzado: ${item.practiceByLevel.advanced.es}`,
+        ],
+        en: [
+          `Beginner: ${item.practiceByLevel.beginner.en}`,
+          `Intermediate: ${item.practiceByLevel.intermediate.en}`,
+          `Advanced: ${item.practiceByLevel.advanced.en}`,
+        ],
+      },
+      group: "teaching",
     });
   }
   return result;

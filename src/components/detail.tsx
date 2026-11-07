@@ -104,7 +104,25 @@ export function Detail({
             </span>
             <Duration seconds={item.duration} />
             <span>{t("Ficha de estudio", "Study entry")}</span>
+            {item.kind === "pranayama" && (
+              <span>
+                {item.level === "beginner"
+                  ? t("Principiante", "Beginner")
+                  : item.level === "intermediate"
+                    ? t("Intermedio", "Intermediate")
+                    : t("Avanzado", "Advanced")}
+              </span>
+            )}
           </div>
+          {item.kind === "pranayama" && item.requiresInstructor && (
+            <p className="safety">
+              <ShieldCheck />
+              {t(
+                "Aviso: la respiración intensa o con retención debe aprenderse con un instructor cualificado. No sigas una retención usando solo esta guía.",
+                "Notice: forceful breathing or breath retention should be learned with a qualified instructor. Do not follow a retention using this guide alone.",
+              )}
+            </p>
+          )}
           <Tabs defaultValue="technique">
             <TabsList
               aria-label={t("Información de la ficha", "Entry information")}
@@ -190,7 +208,10 @@ export function Detail({
           {item.kind === "pranayama" && (
             <div className="panel">
               <h3>{t("Encuentra tu respiración", "Find your breath")}</h3>
-              <BreathingGuide {...item.rhythm} />
+              <BreathingGuide
+                {...item.rhythm}
+                instructorLed={item.requiresInstructor}
+              />
             </div>
           )}
           {["yin", "meditation", "pranayama"].includes(item.kind) && (

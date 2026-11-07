@@ -92,10 +92,22 @@ export interface AerialPose extends PoseBase {
 }
 export interface PranayamaTechnique extends ContentBase {
   kind: "pranayama";
+  meaning: Localized;
   objective: Localized;
   preparation: Localized;
   instructions: Localized;
-  rhythm: { inhale: number; exhale: number };
+  instructionSteps: LocalizedInstructionSteps;
+  /** Counts are relative, comfortable cues rather than seconds. */
+  rhythm: { inhale: number; hold?: number; exhale: number };
+  recommendedPosture: Localized;
+  commonMistakes: Localized;
+  bestTime: Localized;
+  practiceByLevel: {
+    beginner: Localized;
+    intermediate: Localized;
+    advanced: Localized;
+  };
+  requiresInstructor: boolean;
   benefits: Localized;
   contraindications: Localized;
   notes: Localized;

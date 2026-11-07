@@ -63,6 +63,10 @@ export const sections: {
     id: "pranayama",
     name: l("Pranayama", "Pranayama"),
     description: l("El arte de respirar", "The art of breathing"),
+    introduction: l(
+      "Prāṇa suele traducirse en la tradición yóguica como aliento o energía vital; prāṇāyāma es la regulación consciente de la respiración. Esta biblioteca empieza con observación, respiración completa y exhalación suave, continúa con Ujjayi, respiración alterna y zumbido, y deja las técnicas rápidas y las retenciones para el aprendizaje con instructor. Los conteos son referencias flexibles, nunca una meta: respirá sin esfuerzo y volvé al ritmo natural si aparece falta de aire, mareo, ansiedad o malestar. Las prácticas respiratorias pueden acompañar el bienestar, pero no reemplazan atención médica.",
+      "In yogic tradition, prāṇa is often translated as breath or vital energy; prāṇāyāma is the conscious regulation of breathing. This library begins with observation, full breathing, and a soft extended exhale, continues with Ujjayi, alternate-nostril breathing, and humming, and reserves fast techniques and breath retention for instruction with a teacher. Counts are flexible cues, never a target: breathe without strain and return to a natural rhythm if you feel short of breath, dizzy, anxious, or unwell. Breathing practices may support well-being but do not replace medical care.",
+    ),
     icon: "wind",
     color: "sage",
   },

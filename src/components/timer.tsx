@@ -100,9 +100,13 @@ export function Timer({
 export function BreathingGuide({
   inhale,
   exhale,
+  hold = 0,
+  instructorLed = false,
 }: {
   inhale: number;
   exhale: number;
+  hold?: number;
+  instructorLed?: boolean;
 }) {
   const { t } = useLocal();
   const [active, setActive] = useState(false);
@@ -116,45 +120,67 @@ export function BreathingGuide({
     );
     return () => clearInterval(id);
   }, [active]);
-  const phase = elapsed % (inhale + exhale);
-  const breathingIn = phase < inhale;
+  const cycle = inhale + hold + exhale;
+  const phase = elapsed % cycle;
+  const currentPhase =
+    phase < inhale ? "inhale" : phase < inhale + hold ? "hold" : "exhale";
+  const phaseDuration =
+    currentPhase === "inhale"
+      ? inhale
+      : currentPhase === "hold"
+        ? hold
+        : exhale;
+  const phaseStart =
+    currentPhase === "inhale" ? 0 : currentPhase === "hold" ? inhale : inhale + hold;
+  const phaseRemaining = phaseDuration - (phase - phaseStart);
+  const ratio = `${inhale} : ${hold} : ${exhale}`;
   return (
     <div className="breathing-guide">
       <div
-        className={`breath-orb ${active && breathingIn ? "inhale" : ""}`}
-        style={{ transitionDuration: `${breathingIn ? inhale : exhale}s` }}
+        className={`breath-orb ${active && currentPhase === "inhale" ? "inhale" : ""}`}
+        style={{ transitionDuration: `${phaseDuration}s` }}
       >
         <span>
-          {active
-            ? breathingIn
-              ? t("Inspira", "Breathe in")
-              : t("Espira", "Breathe out")
-            : t("Respira", "Breathe")}
+          {instructorLed
+            ? t("Solo con instructor", "With a teacher only")
+            : active
+              ? currentPhase === "inhale"
+                ? t("Inspira", "Breathe in")
+                : currentPhase === "hold"
+                  ? t("Retén suavemente", "Hold gently")
+                  : t("Espira", "Breathe out")
+              : t("Respira", "Breathe")}
           <strong>
-            {active
-              ? breathingIn
-                ? inhale - phase
-                : inhale + exhale - phase
-              : "4 : 4"}
+            {active && !instructorLed ? Math.ceil(phaseRemaining) : ratio}
           </strong>
         </span>
       </div>
-      <Button
-        variant="outline"
-        onClick={() => {
-          started.current = Date.now();
-          setElapsed(0);
-          setActive(!active);
-        }}
-      >
-        {active
-          ? t("Detener guía", "Stop guide")
-          : t("Iniciar guía visual", "Start visual guide")}
-      </Button>
+      {!instructorLed && (
+        <Button
+          variant="outline"
+          onClick={() => {
+            if (active) {
+              setActive(false);
+              return;
+            }
+            started.current = Date.now();
+            setElapsed(0);
+            setActive(true);
+          }}
+        >
+          {active
+            ? t("Detener guía", "Stop guide")
+            : t("Iniciar guía visual", "Start visual guide")}
+        </Button>
+      )}
       <p className="small muted">
         {t(
-          "Sin retenciones. Sigue tu propio ritmo si lo prefieres.",
-          "No breath holds. Follow your own rhythm if you prefer.",
+          instructorLed
+            ? "No uses el conteo en solitario; el temporizador general es solo para registrar la práctica con tu instructor."
+            : "Cada conteo dura aproximadamente un segundo en esta guía. Adaptá el ritmo o detenela si deja de ser cómodo; no hay retenciones.",
+          instructorLed
+            ? "Do not use the count on your own; the general timer is only for tracking practice with your teacher."
+            : "Each count lasts about one second in this guide. Adjust the pace or stop if it becomes uncomfortable; no breath holds are used.",
         )}
       </p>
     </div>
