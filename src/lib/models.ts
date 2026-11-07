@@ -150,10 +150,13 @@ export interface MeditationPractice extends ContentBase {
   objective: Localized;
   preparation: Localized;
   instructions: Localized;
+  instructionSteps: LocalizedInstructionSteps;
   posture: Localized;
   benefits: Localized;
   difficulties: Localized;
   tips: Localized;
+  /** Optional read-aloud guidance; the regular meditation timer uses duration. */
+  guidedScript?: Localized;
 }
 export interface AyurvedaTopic extends ContentBase {
   kind: "ayurveda";

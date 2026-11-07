@@ -12,6 +12,7 @@ import {
   aerialCategories,
 } from "@/content/sections";
 import { normalize } from "@/lib/utils";
+import { meditationPlans } from "@/content/meditation/plans";
 import { useLocal } from "./providers";
 import {
   ContentCard,
@@ -76,6 +77,7 @@ export function Library({
           <p className="muted">{config.introduction[state.language]}</p>
         </div>
       )}
+      {section === "meditation" && <MeditationPlans />}
       {section === "learn" ? (
         <div className="section-grid large">
           {sections.map((s) => (
@@ -187,6 +189,55 @@ export function Library({
         </>
       )}
     </>
+  );
+}
+function MeditationPlans() {
+  const { t, state } = useLocal();
+  return (
+    <section aria-labelledby="meditation-plans-heading">
+      <h2 id="meditation-plans-heading" className="spaced-heading">
+        {t("Planes progresivos", "Progressive plans")}
+      </h2>
+      <div className="meditation-plans">
+        {meditationPlans.map((plan) => (
+          <details className="panel meditation-plan" key={plan.id}>
+            <summary>
+              <span>
+                <strong>{plan.name[state.language]}</strong>
+                <span className="small muted">
+                  {plan.description[state.language]}
+                </span>
+              </span>
+              <span className="badge">
+                {plan.days.length} {t("días", "days")}
+              </span>
+            </summary>
+            <ol className="meditation-plan-days">
+              {plan.days.map((day) => (
+                <li key={day.day}>
+                  <div className="row between">
+                    <strong>
+                      {t("Día", "Day")} {day.day} · {day.focus[state.language]}
+                    </strong>
+                    <span className="small muted">
+                      {day.minutes} {t("min", "min")}
+                    </span>
+                  </div>
+                  <p className="small muted">{day.reflection[state.language]}</p>
+                  <Link
+                    className="text-link"
+                    href={`/meditation/${day.practiceId}/`}
+                  >
+                    {t("Abrir práctica", "Open practice")}
+                    <ArrowRight size={14} />
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </details>
+        ))}
+      </div>
+    </section>
   );
 }
 export function SequenceCard({ sequence: s }: { sequence: Sequence }) {

@@ -107,7 +107,7 @@ export function Detail({
             </span>
             <Duration seconds={item.duration} />
             <span>{t("Ficha de estudio", "Study entry")}</span>
-            {item.kind === "pranayama" && (
+            {(item.kind === "pranayama" || item.kind === "meditation") && (
               <span>
                 {item.level === "beginner"
                   ? t("Principiante", "Beginner")

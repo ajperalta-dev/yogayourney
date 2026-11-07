@@ -3,7 +3,7 @@
 **Fecha:** 2026-11-07
 **Alcance de la fase inicial:** auditoría de solo lectura del repositorio. En esa fase no se modificaron código, contenido ni assets; solo se documentó el inventario.
 
-**Nota sobre conteos:** el inventario y las cifras de las primeras secciones de este documento son una fotografía de la auditoría inicial; las ampliaciones posteriores se registran al final. El último estado, después de completar Mantras, es de 73 fichas, 15 secuencias y 32 posturas.
+**Nota sobre conteos:** el inventario y las cifras de las primeras secciones de este documento son una fotografía de la auditoría inicial; las ampliaciones posteriores se registran al final. El estado tras completar Mantras era de 73 fichas; la actualización de Meditación registrada al final eleva el catálogo a 84 fichas, 15 secuencias y 32 posturas.
 
 ## Inventario de secciones y categorías
 
@@ -86,7 +86,7 @@ Las sumas reportadas coinciden con la duración declarada en las ocho secuencias
 2. **Hatha (contenido completo, imagen pendiente):** `hatha-foundations` tiene objetivo propio, fases explícitas y tiempos por ambos lados para las posturas unilaterales.
 3. **Yin (contenido completo, imagen pendiente):** `yin-stillness` ordena la práctica desde la llegada y la apertura suave hasta las posturas de suelo, los rebotes y Savasana; sus intervalos contemplan ambos lados.
 4. **Aerial (contenido completo, imagen pendiente):** `aerial-foundations` mantiene el repaso en suelo, modo de estudio y límites de seguridad para la práctica supervisada.
-5. **Pranayama, Mantras, Anatomía, Kriyas, Meditación y Ayurveda:** ampliar las colecciones que hoy tienen una sola ficha, según el alcance ya previsto, sin crear secciones nuevas.
+5. **Pranayama, Mantras y Meditación:** contenido completado; **Anatomía, Kriyas y Ayurveda** siguen pendientes de ampliación según el alcance previsto, sin crear secciones nuevas.
 6. **Horario y herramientas de estudio:** revisar cobertura y textos de las cinco clases, seis tarjetas y cinco preguntas; localizar en español los nombres de categoría usados como filtros si el diseño actual permite hacerlo.
 7. **Imágenes (portadas provisionales completas; arte final pendiente):** las 32 fichas de postura y las ocho secuencias ya apuntan a SVG locales específicos según `IMAGES_TODO.md`. Las tarjetas de secuencia muestran su portada responsive con alt y fallback; queda reemplazar el arte provisional y completar alt/fallback en las tarjetas generales de contenido.
 8. **Verificación de contenido (pendiente):** validar rutas y datos de cada ficha, revisar imágenes referenciadas y repetir build, lint y pruebas existentes después de implementar contenido.
@@ -294,3 +294,21 @@ Fuentes consultadas para texto y contexto: [Ṛgveda 3.62.10 y variantes de Gāy
 El catálogo queda en **73 fichas, 15 mantras, 32 posturas y 15 secuencias**. La validación detectó y ayudó a corregir una frase de seguridad que parecía un placeholder por coincidencia de palabras; después de la corrección, la validación de contenido, typecheck, lint, las 10 pruebas y el build quedaron aprobados.
 
 **Pendiente:** una persona experta en sánscrito y representantes o docentes de las tradiciones pertinentes pueden revisar variantes regionales, acentos védicos y prácticas de conteo. El repertorio evita presentar la repetición como promesa terapéutica o como sustituto de la práctica religiosa contextual.
+
+## Biblioteca de Meditation (2026-11-07)
+
+Se amplió Meditation de una a **12 fichas**: nueve técnicas —`breath-awareness`, `body-scan`, `trataka`, `loving-kindness`, `yoga-nidra`, `mantra-meditation`, `walking-meditation`, `visualization` y `thought-observation`— y tres guiones listos para leer —`guided-5-minutes`, `guided-10-minutes` y `guided-20-minutes`. Cada técnica tiene objetivo, nivel, duración sugerida, instrucciones numeradas, postura, beneficios posibles expresados sin promesas, dificultades frecuentes con soluciones y precauciones. Se conservó el ID y el lugar del registro original de atención a la respiración.
+
+La introducción bilingüe explica qué es meditar, la atención como ancla, postura y formas de empezar. Los guiones incluyen pausas expresas y opciones para cambiar de ancla o detenerse. Reutilizan el temporizador de detalle ya disponible para fichas de meditación, con duraciones de 5, 10 y 20 minutos. La lectura y las pausas hacen que el tiempo real sea aproximado; se indica al usuario que adapte el ritmo sin apurarse.
+
+El modelo `MeditationPractice` conserva los campos existentes y añade `instructionSteps` para las instrucciones ordenadas y `guidedScript` opcional para los guiones. `detail-fields.ts` los presenta en las pestañas de técnica existentes, y el detalle muestra nivel y duración junto con el temporizador.
+
+Se agregaron dos planes progresivos en `src/content/meditation/plans.ts`: un recorrido de 7 días y otro de 30 días. Se muestran como paneles desplegables dentro de la biblioteca existente; cada día enlaza a una práctica y su duración declarada coincide con el temporizador de esa ficha. No se añadieron rutas ni secciones. Las categorías agrupan las técnicas con los filtros existentes.
+
+**Decisiones y seguridad:** la atención a la respiración no se impone como ancla; se ofrecen sonidos, pies y apoyos como alternativas. Trāṭaka se presenta como concentración visual, sin atribuirle efectos oculares; se prohíbe mirar al sol, se permite parpadear y se recomienda parar ante molestias. Bondad amorosa no requiere dirigir frases a alguien con quien la persona no se sienta segura. Yoga Nidrā se describe como una práctica guiada de descanso, no como tratamiento. La introducción y las fichas permiten abrir los ojos, moverse o detenerse si aparece malestar y aclaran que meditar no sustituye apoyo clínico.
+
+Referencias de criterio editorial y seguridad: [NCCIH: Meditation and Mindfulness — Effectiveness and Safety](https://www.nccih.nih.gov/health/meditation-and-mindfulness-effectiveness-and-safety), que describe varias anclas posibles y señala que la investigación sobre efectos adversos es limitada; [The Origin and Clinical Relevance of Yoga Nidra](https://pmc.ncbi.nlm.nih.gov/articles/PMC9033521/), consultado para la estructura tradicional de preparación, intención, recorrido corporal, respiración, visualización y cierre; [estudio de Trāṭaka en PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC8718544/), consultado como referencia descriptiva de la práctica de mirada fija, no como respaldo de promesas de salud visual.
+
+El catálogo queda en **84 fichas**, incluidas 12 de Meditation, 11 de Pranayama y 15 de Mantras; conserva 32 posturas y 15 secuencias. Pasaron `npm run validate:content`, comprobación de TypeScript, lint y build. También se comprobó que los 37 días enlazan a fichas existentes y que todos sus tiempos coinciden con el temporizador de práctica.
+
+**Pendiente:** revisión por una persona docente de meditación para validar el tono de los guiones y sus pausas en lectura real, y revisión de accesibilidad para personas a quienes la quietud, la atención interna o el cierre de ojos no les resulte adecuado. No se agregaron dependencias ni se modificaron las otras diez secciones.

@@ -50,6 +50,7 @@ const labels: Record<string, [string, string, Field["group"]]> = {
   tradition: ["Tradición", "Tradition", "teaching"],
   reflection: ["Reflexión", "Reflection", "teaching"],
   safety: ["Seguridad", "Safety", "safety"],
+  guidedScript: ["Guion guiado", "Guided script", "technique"],
 };
 export function detailFields(item: ContentItem): Field[] {
   const result: Field[] = [...item.fields];
@@ -59,6 +60,8 @@ export function detailFields(item: ContentItem): Field[] {
     if (
       key !== "instructionSteps" &&
       !(item.kind === "pranayama" && key === "instructions") &&
+      !(item.kind === "meditation" && key === "instructions") &&
+      !(item.kind === "meditation" && key === "guidedScript") &&
       !(isPose && (key === "instructions" || key === "entry")) &&
       labels[key] &&
       value &&
@@ -103,6 +106,21 @@ export function detailFields(item: ContentItem): Field[] {
       },
       group: "teaching",
     });
+  }
+  if (item.kind === "meditation") {
+    result.push({
+      label: l("Instrucciones paso a paso", "Step-by-step instructions"),
+      steps: item.instructionSteps,
+      group: "technique",
+    });
+    result.push(
+      field("Cómo practicar", "How to practice", item.instructions, "technique"),
+    );
+    if (item.guidedScript) {
+      result.push(
+        field("Guion guiado", "Guided script", item.guidedScript, "technique"),
+      );
+    }
   }
   return result;
 }

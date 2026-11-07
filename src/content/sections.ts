@@ -99,6 +99,10 @@ export const sections: {
     id: "meditation",
     name: l("Meditación", "Meditation"),
     description: l("Vuelve al presente", "Return to the present"),
+    introduction: l(
+      "La meditación reúne prácticas de atención y contemplación: puedes descansar la atención en la respiración, el cuerpo, un sonido, una imagen o el movimiento, y volver al ancla elegida cada vez que la mente se distraiga. No se trata de dejar la mente en blanco ni de conseguir una sensación especial. Puede ofrecer un espacio para observar la experiencia con más claridad; los efectos varían y no sustituye apoyo médico o psicológico. Busca una postura estable y cómoda: silla con los pies apoyados, cojín que eleve la pelvis, o tumbado si lo necesitas. Deja las manos descansando, suaviza la mirada o cierra los ojos si eso se siente seguro. Empieza con 3–5 minutos, usa un temporizador amable y termina moviendo el cuerpo despacio. Si aparece ansiedad, dolor o desconexión, abre los ojos, siente los pies, cambia a un ancla externa o detente; no es necesario perseverar.",
+      "Meditation brings together practices of attention and contemplation: you can rest attention on the breath, body, a sound, an image, or movement, and return to your chosen anchor whenever the mind wanders. The aim is not to empty the mind or produce a special feeling. It can offer space to observe experience more clearly; effects vary, and meditation does not replace medical or psychological support. Choose a steady, comfortable posture: a chair with feet supported, a cushion that raises the pelvis, or lying down if needed. Let the hands rest, soften the gaze, or close the eyes if that feels safe. Begin with 3–5 minutes, use a gentle timer, and finish by moving slowly. If anxiety, pain, or disconnection arises, open the eyes, feel the feet, switch to an external anchor, or stop; you do not need to push through.",
+    ),
     icon: "flower",
     color: "lavender",
   },
