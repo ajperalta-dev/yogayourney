@@ -1,4 +1,11 @@
-import type { ContentItem, SectionId } from "@/lib/models";
+import type {
+  AerialPose,
+  Asana,
+  ContentItem,
+  Localized,
+  SectionId,
+  YinPose,
+} from "@/lib/models";
 import { asanas } from "./asanas";
 import { yin } from "./yin";
 import { aerial } from "./aerial";
@@ -10,11 +17,13 @@ import { meditation } from "./meditation";
 import { ayurveda } from "./ayurveda";
 import { sequences } from "./sequences";
 import { sections } from "./sections";
-import type { Localized } from "@/lib/models";
+type Pose = Asana | YinPose | AerialPose;
+export const poses: Pose[] = [...asanas, ...yin, ...aerial];
+export const posesById: Partial<Record<string, Pose>> = Object.fromEntries(
+  poses.map((pose) => [pose.id, pose]),
+);
 export const catalog: ContentItem[] = [
-  ...asanas,
-  ...yin,
-  ...aerial,
+  ...poses,
   ...pranayama,
   ...mantras,
   ...anatomy,

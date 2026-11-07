@@ -52,7 +52,7 @@ Los tipos están en `src/lib/models.ts`:
 
 El estado personal se guarda en `localStorage` bajo `yoga-journey:v1`, con validación y valores iniciales en `src/lib/storage.ts` y `src/components/providers.tsx`. El horario, las tarjetas y las preguntas también se definen como arreglos TypeScript; hay 5 entradas de horario, 6 tarjetas y 5 preguntas de quiz.
 
-## Estado de secuencias
+## Estado de secuencias en la auditoría inicial
 
 **Criterio de esta auditoría:** “Completa” indica que la ficha de secuencia tiene sus metadatos requeridos, cada paso resuelve a una ficha de asana con datos de práctica, y la suma de pasos coincide con la duración declarada. No significa validación docente ni arte final. “Incompleta” indica una brecha respecto del detalle solicitado para cada postura. No hay secuencias definidas vacías.
 
@@ -82,8 +82,8 @@ Las sumas reportadas coinciden con la duración declarada en las ocho secuencias
 
 1. **Ashtanga (pendiente):** revisar progresión y fases de las cinco secuencias existentes, definir objetivos descriptivos por secuencia y comprobar sus tiempos y alternativas sin presentarlas como series tradicionales completas.
 2. **Hatha (pendiente):** revisar la progresión de `hatha-foundations`, aclarar el objetivo propio y verificar que calentamiento, posturas principales, enfriamiento y Savasana estén bien representados.
-3. **Yin (parcial):** el esquema ahora incluye errores comunes y nombre sánscrito para Mariposa; quedan por revisar permanencias, rebotes y precauciones de `yin-stillness`.
-4. **Aerial (parcial):** el esquema ahora permite `sanskrit: null` para el asiento de estudio y conserva las precauciones; queda revisar la duración y el alcance de cada paso supervisado.
+3. **Yin (parcial):** las cinco fichas tienen permanencia y precauciones propias. Queda revisar la progresión, los intervalos y los rebotes dentro de `yin-stillness`.
+4. **Aerial (parcial):** la ficha de Asiento con apoyo distingue el repaso en silla de la práctica supervisada. Queda revisar el intervalo y el alcance de cada paso de la secuencia.
 5. **Pranayama, Mantras, Anatomía, Kriyas, Meditación y Ayurveda:** ampliar las colecciones que hoy tienen una sola ficha, según el alcance ya previsto, sin crear secciones nuevas.
 6. **Horario y herramientas de estudio:** revisar cobertura y textos de las cinco clases, seis tarjetas y cinco preguntas; localizar en español los nombres de categoría usados como filtros si el diseño actual permite hacerlo.
 7. **Imágenes e integración:** reemplazar arte provisional conforme a `IMAGES_TODO.md`, mostrar la imagen de secuencia en la UI existente, añadir alt descriptivo y fallback local manteniendo los componentes y estilos actuales.
@@ -120,3 +120,52 @@ Las sumas reportadas coinciden con la duración declarada en las ocho secuencias
 - El detalle de postura y el reproductor muestran `instructionSteps` como lista ordenada. Los pasos admiten una cuenta opcional de respiraciones además del temporizador en segundos.
 - Se actualizaron pruebas existentes para comprobar el helper y la migración de una clase guardada con el total desactualizado.
 - Verificación de esta actualización: `npm run typecheck`, `npm test` (9 pruebas), `npm run lint` y `npm run build` finalizaron correctamente.
+
+## Biblioteca central de posturas
+
+Se completaron las 32 fichas existentes. Las ocho secuencias usan 31 posturas distintas y Cobra baja queda disponible como variante de Bastón de cuatro apoyos y Perro boca arriba. El índice `posesById` de `src/content/catalog.ts` resuelve los pasos por `contentId` y el catálogo general reutiliza esas mismas fichas.
+
+Cada ficha tiene instrucciones ordenadas, tiempo orientativo, respiración, errores comunes, adaptación y precauciones específicas. Los tiempos de la tabla se refieren a la ficha individual. El intervalo del paso en una secuencia puede incluir la entrada, la salida, el cambio de lado o una pausa.
+
+Mariposa con apoyo se distingue de Ángulo unido por el pliegue pasivo sobre un cojín, los talones más alejados y la permanencia Yin. Las dos variantes mantienen sus IDs y sus fichas. Plancha conserva el ID histórico `phalahakasana` para que las secuencias guardadas sigan resolviendo su referencia. Asiento con apoyo usa `sanskrit: null` y su minuto corresponde al repaso en suelo con silla.
+
+El campo `image` quedó preparado con las rutas de recursos que ya existían. La incorporación de nuevas imágenes sigue prevista para la etapa de arte.
+
+| Sección | Postura completada | ID | Tiempo de ficha |
+| --- | --- | --- | ---: |
+| Ashtanga / Hatha | Montaña | `tadasana` | 25 s |
+| Ashtanga / Hatha | Triángulo extendido | `utthita-trikonasana` | 40 s |
+| Ashtanga / Hatha | Flexión con agarre de dedos | `padangusthasana` | 25 s |
+| Ashtanga / Hatha | Manos bajo los pies | `pada-hastasana` | 20 s |
+| Ashtanga / Hatha | Ángulo unido | `baddha-konasana` | 35 s |
+| Ashtanga / Hatha | Cobra baja | `bhujangasana` | 20 s (variante) |
+| Ashtanga / Hatha | Asiento cómodo | `sukhasana` | 45 s |
+| Ashtanga / Hatha | Descanso consciente | `savasana` | 90 s |
+| Ashtanga / Hatha | Brazos elevados | `urdhva-hastasana` | 15 s |
+| Ashtanga / Hatha | Flexión de pie | `uttanasana` | 25 s |
+| Ashtanga / Hatha | Media flexión de pie | `ardha-uttanasana` | 15 s |
+| Ashtanga / Hatha | Plancha | `phalahakasana` | 20 s |
+| Ashtanga / Hatha | Bastón de cuatro apoyos | `chaturanga-dandasana` | 15 s |
+| Ashtanga / Hatha | Perro boca arriba | `urdhva-mukha-svanasana` | 15 s |
+| Ashtanga / Hatha | Perro boca abajo | `adho-mukha-svanasana` | 25 s |
+| Ashtanga / Hatha | Silla | `utkatasana` | 20 s |
+| Ashtanga / Hatha | Guerrero I | `virabhadrasana-i` | 35 s |
+| Ashtanga / Hatha | Guerrero II | `virabhadrasana-ii` | 40 s |
+| Ashtanga / Hatha | Ángulo lateral extendido | `utthita-parsvakonasana` | 40 s |
+| Ashtanga / Hatha | Flexión de pie con piernas separadas | `prasarita-padottanasana` | 30 s |
+| Ashtanga / Hatha | Pirámide | `parsvottanasana` | 35 s |
+| Ashtanga / Hatha | Bastón sentado | `dandasana` | 30 s |
+| Ashtanga / Hatha | Flexión sentada | `paschimottanasana` | 35 s |
+| Ashtanga / Hatha | Media torsión sentada | `ardha-matsyendrasana` | 35 s |
+| Ashtanga / Hatha | Puente | `setu-bandha-sarvangasana` | 25 s |
+| Ashtanga / Hatha | Piernas en la pared | `viparita-karani` | 60 s |
+| Yin | Mariposa con apoyo | `butterfly` | 120 s |
+| Yin | Dragón bajo | `dragon` | 90 s |
+| Yin | Esfinge | `sphinx` | 60 s |
+| Yin | Niño con apoyo | `supported-child` | 90 s |
+| Yin | Torsión tumbada | `reclined-twist` | 90 s |
+| Aerial | Asiento con apoyo | `supported-seat` | 60 s |
+
+La verificación cubrió IDs únicos en kebab-case, fichas con campos completos en ambos idiomas y referencias válidas en las ocho secuencias. Pasaron las 10 pruebas, TypeScript, lint y el build estático de 112 páginas.
+
+Referencias editoriales para la técnica y las precauciones de la biblioteca. [Common Yoga Protocol, Ministry of Ayush](https://yoga.ayush.gov.in/public/assets/front/pdf/CYPEnglishLeaflet.pdf), [Yoga: Effectiveness and Safety, NCCIH](https://www.nccih.nih.gov/health/yoga-effectiveness-and-safety), [Surya Namaskara A, AshtangaYoga.info](https://www.ashtangayoga.info/ashtanga-yoga/surya-namaskara-a-sun-salutation/item/urdhva-mukha-shvanasana/?cHash=7ce3fc3ac2f5713cf241628956799281), [Three Beginning Flows, Yin Yoga](https://yinyoga.com/yinsights/three-beginning-flows/).

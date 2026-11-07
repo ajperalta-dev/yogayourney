@@ -6,8 +6,8 @@ const caution = l(
   "Only with an aerial yoga instructor and professionally installed and inspected equipment. This app cannot verify anchors, load or rigging. Inversions, wraps, transitions, drops and advanced movements require supervision; they are not guided here for independent practice.",
 );
 const supportedSeatEntry = l(
-  "La entrada se enseña presencialmente; no se incluyen instrucciones de montaje o suspensión.",
-  "Entry is taught in person; rigging and suspension instructions are not included.",
+  "Para repasar el apoyo en el suelo, sentate en una silla firme con ambos pies apoyados. Repartí el peso entre ambos lados de la pelvis y aflojá los hombros. Practicá la entrada a la hamaca únicamente con tu instructor.",
+  "To review support on the ground, sit on a sturdy chair with both feet down. Share the weight between both sides of the pelvis and relax the shoulders. Practice entering the hammock only with your instructor.",
 );
 export const aerial: AerialPose[] = [
   {
@@ -23,7 +23,12 @@ export const aerial: AerialPose[] = [
     ),
     kind: "aerial",
     sanskrit: null,
+    duration: 60,
     instructionSteps: splitInstructionSteps(supportedSeatEntry),
+    breathing: l(
+      "Durante el minuto de repaso en el suelo, mantené una respiración cómoda y continua.",
+      "During the one-minute ground-based review, keep breathing comfortably and continuously.",
+    ),
     image: "/images/poses/supported-seat.webp",
     thumbnail: "/images/poses/supported-seat-thumb.webp",
     studyOnly: true,
@@ -64,11 +69,14 @@ export const aerial: AerialPose[] = [
     contraindications: caution,
     precautions: caution,
     commonMistakes: l(
-      "Asumir que cualquier tela o anclaje es apto.",
-      "Assuming any fabric or anchor is suitable.",
+      "Confundir el repaso en el suelo con una autorización para cargar peso en una hamaca sin supervisión.",
+      "Mistaking the ground-based review for permission to put weight in a hammock without supervision.",
     ),
     spotterRequired: true,
-    modifications: l("Estudio en el suelo.", "Ground-based study."),
+    modifications: l(
+      "Elegí una silla con respaldo y apoyá las manos en los muslos. Acortá el repaso si perdés comodidad.",
+      "Choose a chair with a backrest and rest your hands on your thighs. Shorten the review if you become uncomfortable.",
+    ),
     progressions: l(
       "Solo por indicación del instructor.",
       "Only as directed by the instructor.",

@@ -1,7 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
-import { catalog, byId, searchIndex, sectionFor } from "../src/content/catalog";
+import {
+  catalog,
+  byId,
+  poses,
+  posesById,
+  searchIndex,
+  sectionFor,
+} from "../src/content/catalog";
 import { sequences } from "../src/content/sequences";
 import { sections } from "../src/content/sections";
 import { quizQuestions } from "../src/content/study";
@@ -19,18 +26,6 @@ test("canonical content IDs, links and image assets resolve", () => {
     assert.ok(existsSync(`public${item.image}`), item.image);
     assert.ok(existsSync(`public${item.thumbnail}`), item.thumbnail);
     assert.ok(sections.some((s) => s.id === sectionFor(item)));
-    if (
-      item.kind === "asana" ||
-      item.kind === "yin" ||
-      item.kind === "aerial"
-    ) {
-      assert.ok(item.sanskrit === null || typeof item.sanskrit === "string");
-      assert.ok(item.instructionSteps.es.length > 0, item.id);
-      assert.ok(item.instructionSteps.en.length > 0, item.id);
-      assert.ok(item.commonMistakes.es, item.id);
-      assert.ok(item.modifications.es, item.id);
-      assert.ok(item.contraindications.es, item.id);
-    }
     for (const id of item.relatedIds) assert.ok(byId[id], id);
     if (item.kind === "asana")
       for (const id of [
@@ -41,6 +36,30 @@ test("canonical content IDs, links and image assets resolve", () => {
         assert.ok(byId[id], id);
   }
 });
+test("the pose library has one complete record per stable ID", () => {
+  assert.equal(Object.keys(posesById).length, poses.length);
+  for (const pose of poses) {
+    assert.match(pose.id, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+    assert.equal(byId[pose.id], pose);
+    assert.ok(
+      pose.sanskrit?.trim() || (pose.sanskrit === null && pose.studyOnly),
+      pose.id,
+    );
+    assert.ok(Number.isSafeInteger(pose.duration) && pose.duration > 0, pose.id);
+    for (const language of ["es", "en"] as const) {
+      assert.ok(pose.instructionSteps[language].length >= 2, pose.id);
+      for (const field of [
+        pose.name,
+        pose.breathing,
+        pose.commonMistakes,
+        pose.modifications,
+        pose.contraindications,
+      ]) {
+        assert.ok(field[language].trim(), pose.id);
+      }
+    }
+  }
+});
 test("sequences reference existing canonical content", () => {
   for (const seq of sequences) {
     assert.ok(seq.steps.length > 0, seq.id);
@@ -48,7 +67,7 @@ test("sequences reference existing canonical content", () => {
     assert.equal(seq.steps.reduce((total, step) => total + step.duration, 0), seq.duration, seq.id);
     assert.equal(validateSequenceDuration(seq).valid, true, seq.id);
     for (const step of seq.steps) {
-      assert.ok(byId[step.contentId], `${seq.id}: ${step.contentId}`);
+      assert.ok(posesById[step.contentId], `${seq.id}: ${step.contentId}`);
       assert.ok(step.duration > 0);
     }
   }
