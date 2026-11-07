@@ -86,7 +86,7 @@ Las sumas reportadas coinciden con la duración declarada en las ocho secuencias
 4. **Aerial (contenido completo, imagen pendiente):** `aerial-foundations` mantiene el repaso en suelo, modo de estudio y límites de seguridad para la práctica supervisada.
 5. **Pranayama, Mantras, Anatomía, Kriyas, Meditación y Ayurveda:** ampliar las colecciones que hoy tienen una sola ficha, según el alcance ya previsto, sin crear secciones nuevas.
 6. **Horario y herramientas de estudio:** revisar cobertura y textos de las cinco clases, seis tarjetas y cinco preguntas; localizar en español los nombres de categoría usados como filtros si el diseño actual permite hacerlo.
-7. **Imágenes e integración (posturas completas; secuencias pendiente):** las 32 fichas de postura ya apuntan a SVG locales provisionales según `IMAGES_TODO.md`. Queda reemplazar el arte de secuencias, mostrar la imagen de secuencia en la UI existente y completar alt descriptivo y fallback local manteniendo los componentes y estilos actuales.
+7. **Imágenes (portadas provisionales completas; arte final pendiente):** las 32 fichas de postura y las ocho secuencias ya apuntan a SVG locales específicos según `IMAGES_TODO.md`. Las tarjetas de secuencia muestran su portada responsive con alt y fallback; queda reemplazar el arte provisional y completar alt/fallback en las tarjetas generales de contenido.
 8. **Verificación de contenido (pendiente):** validar rutas y datos de cada ficha, revisar imágenes referenciadas y repetir build, lint y pruebas existentes después de implementar contenido.
 
 ## Decisiones y límites de la auditoría inicial
@@ -209,6 +209,25 @@ Se completaron las imágenes provisionales de las 32 posturas de la biblioteca e
 | 1 | 16 de 32 | completo | `tadasana` → `utkatasana` |
 | 2 | 16 de 32 | completo | `virabhadrasana-i` → `supported-seat` |
 
-**Punto de continuación:** las 32 imágenes de postura están cubiertas; no queda un lote de posturas pendiente. Queda reemplazar las 32 ilustraciones provisionales por arte final. `IMAGES_TODO.md` contiene las rutas exactas de posturas y secuencias que conviene reemplazar. Los ocho SVG de secuencia continúan pendientes.
+**Punto de continuación:** las 32 imágenes de postura están cubiertas; no queda un lote de posturas pendiente. Queda reemplazar las 32 ilustraciones provisionales por arte final. `IMAGES_TODO.md` contiene las rutas exactas de posturas y secuencias que conviene reemplazar. Las ocho portadas de secuencia se completaron en una tanda posterior y siguen siendo provisionales.
 
 La comprobación automática encontró los 32 SVG, confirmó que cada campo `image` coincide con el ID y que no hay rutas inexistentes. Pasaron TypeScript, lint y las 10 pruebas. El build estático no pudo reemplazar `.next` porque hay un servidor de desarrollo activo usando esa carpeta (Windows devolvió `EPERM` al intentar quitar un segmento); queda repetir el build cuando ese servidor se detenga.
+
+## Portadas de secuencias
+
+Se crearon portadas SVG específicas para las ocho secuencias existentes: cinco de Ashtanga, Hatha · Volver a las bases, Yin · Un espacio de quietud y Aerial · repaso supervisado. Cada portada combina tres figuras de posturas vinculadas a esa práctica, con la paleta de la aplicación. Los campos `Sequence.image` apuntan a `/images/sequences/<id>.svg`; no se usaron recursos externos.
+
+| Sección | Secuencia | Archivo | Estado |
+| --- | --- | --- | --- |
+| Ashtanga | Surya Namaskar A · adaptación breve | `public/images/sequences/surya-a.svg` | portada provisional completa |
+| Ashtanga | Surya Namaskar B · adaptación breve | `public/images/sequences/surya-b.svg` | portada provisional completa |
+| Ashtanga | Fundamentos de pie · Standing | `public/images/sequences/standing.svg` | portada provisional completa |
+| Ashtanga | Fundamentos de la serie primaria | `public/images/sequences/primary-series.svg` | portada provisional completa |
+| Ashtanga | Cierre · suelo y descanso | `public/images/sequences/finishing.svg` | portada provisional completa |
+| Hatha | Volver a las bases | `public/images/sequences/hatha-foundations.svg` | portada provisional completa |
+| Yin Yoga | Un espacio de quietud | `public/images/sequences/yin-stillness.svg` | portada provisional completa |
+| Aerial Yoga | Aerial · repaso supervisado | `public/images/sequences/aerial-foundations.svg` | portada provisional completa |
+
+`SequenceCard` ahora renderiza la portada con tamaño responsive y texto alternativo localizado; si la carga falla, muestra un símbolo de estudio accesible. Las ocho rutas exactas están en `IMAGES_TODO.md` para reemplazar estas composiciones esquemáticas por arte final. `scripts/create-assets.mjs` genera las composiciones y sus derivados WebP, evitando que la generación vuelva a sustituirlas por una ilustración genérica.
+
+La generación de assets finalizó; la comprobación de rutas encontró ocho portadas válidas. Pasaron TypeScript, lint y las 10 pruebas. El build permanece pendiente porque el servidor de desarrollo activo mantiene bloqueado el directorio `.next`, según la incidencia registrada en la sección anterior.

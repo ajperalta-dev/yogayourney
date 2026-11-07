@@ -17,7 +17,7 @@ function sequence(
 ): Sequence {
   return {
     ...details,
-    image: `/images/sequences/${details.id}.webp`,
+    image: `/images/sequences/${details.id}.svg`,
     demo: false,
     steps: poses.map((pose, index) => ({
       ...pose,

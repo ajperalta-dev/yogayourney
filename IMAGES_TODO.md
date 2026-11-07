@@ -43,6 +43,8 @@ Actualizar estos archivos fuente con fotografías o ilustraciones finales. Los n
 
 ## Secuencias
 
+Las ocho secuencias tienen ya una portada SVG propia, creada con figuras de las posturas que las componen. Son ilustraciones provisionales; reemplazar cada una por una composición final manteniendo la ruta exacta y la paleta. `npm run assets` regenera sus derivados WebP.
+
 | Archivo esperado | Contenido final |
 | --- | --- |
 | `public/images/sequences/surya-a.svg` | Vista de una transición adaptada de Surya A |

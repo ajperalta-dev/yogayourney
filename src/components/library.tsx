@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Search, ArrowRight, Play, BookOpen } from "lucide-react";
 import type { SearchEntry } from "@/content/catalog";
@@ -184,8 +185,31 @@ export function Library({
 }
 export function SequenceCard({ sequence: s }: { sequence: Sequence }) {
   const { state, t } = useLocal();
+  const [imageFailed, setImageFailed] = useState(false);
   return (
     <article className="sequence-card">
+      <div className="sequence-card-image">
+        {imageFailed ? (
+          <div
+            className="sequence-card-image-fallback"
+            role="img"
+            aria-label={t("Portada no disponible", "Cover unavailable")}
+          >
+            <BookOpen size={30} />
+          </div>
+        ) : (
+          <Image
+            src={s.image || "/images/study.svg"}
+            alt={t(
+              `Portada ilustrativa de ${s.name.es}`,
+              `Illustrative cover for ${s.name.en}`,
+            )}
+            fill
+            sizes="(max-width: 800px) 90vw, (max-width: 1100px) 40vw, 30vw"
+            onError={() => setImageFailed(true)}
+          />
+        )}
+      </div>
       <div className="row between">
         <span className="eyebrow">{s.style.toUpperCase()}</span>
         <FavoriteButton id={s.id} />

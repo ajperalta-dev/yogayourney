@@ -20,7 +20,7 @@ function ashtangaSequence(
   return {
     ...details,
     style: "ashtanga",
-    image: `/images/sequences/${details.id}.webp`,
+    image: `/images/sequences/${details.id}.svg`,
     demo: false,
     steps: [
       ...phase("warm-up", warmUp),

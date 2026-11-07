@@ -60,8 +60,11 @@ const figures = {
     legs: "M285 266L200 261M285 266L202 282",
   },
 };
+function figureMarkup(f) {
+  return `${f.overlay ?? ""}<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="${f.legs}" stroke="#56765a" stroke-width="17"/><path d="${f.body}" stroke="#bf9471" stroke-width="26"/><path d="${f.arms}" stroke="#ab8d6d" stroke-width="11"/></g><circle cx="${f.head[0]}" cy="${f.head[1]}" r="18" fill="#ab8d6d"/><path d="M${f.head[0] - 17} ${f.head[1] - 6}q0-23 20-16 14 4 15 16-12-12-35 0" fill="#3d5641"/>`;
+}
 function svgFigure(id, f) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380" role="img"><title>Ilustración orientativa: ${id}</title><desc>Figura esquemática de yoga en paleta verde salvia y arena.</desc><rect width="600" height="380" fill="#edf0e5"/><circle cx="300" cy="183" r="128" fill="#e3e9d8"/><circle cx="300" cy="183" r="145" fill="none" stroke="#d9e1cd"/><path d="M120 310h360" stroke="#becdb0" stroke-width="2"/><ellipse cx="300" cy="313" rx="105" ry="7" fill="#cedac1"/>${f.overlay ?? ""}<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="${f.legs}" stroke="#56765a" stroke-width="17"/><path d="${f.body}" stroke="#bf9471" stroke-width="26"/><path d="${f.arms}" stroke="#ab8d6d" stroke-width="11"/></g><circle cx="${f.head[0]}" cy="${f.head[1]}" r="18" fill="#ab8d6d"/><path d="M${f.head[0] - 17} ${f.head[1] - 6}q0-23 20-16 14 4 15 16-12-12-35 0" fill="#3d5641"/><g fill="#98ac86" opacity=".6"><circle cx="130" cy="100" r="3"/><circle cx="473" cy="246" r="4"/><path d="M453 115h16m-8-8v16" stroke="#98ac86" stroke-width="1"/></g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380" role="img"><title>Ilustración orientativa: ${id}</title><desc>Figura esquemática de yoga en paleta verde salvia y arena.</desc><rect width="600" height="380" fill="#edf0e5"/><circle cx="300" cy="183" r="128" fill="#e3e9d8"/><circle cx="300" cy="183" r="145" fill="none" stroke="#d9e1cd"/><path d="M120 310h360" stroke="#becdb0" stroke-width="2"/><ellipse cx="300" cy="313" rx="105" ry="7" fill="#cedac1"/>${figureMarkup(f)}<g fill="#98ac86" opacity=".6"><circle cx="130" cy="100" r="3"/><circle cx="473" cy="246" r="4"/><path d="M453 115h16m-8-8v16" stroke="#98ac86" stroke-width="1"/></g></svg>`;
 }
 await fs.writeFile(
   "public/images/study.svg",
@@ -146,12 +149,60 @@ const poseFigures = {
 };
 for (const [id, figure] of Object.entries(poseFigures))
   await fs.writeFile(`public/images/poses/${id}.svg`, svgFigure(id, figure));
-const studyIllustration = await fs.readFile("public/images/study.svg");
-for (const id of [
-  "surya-a", "surya-b", "standing", "primary-series", "finishing",
-  "hatha-foundations", "yin-stillness", "aerial-foundations",
-])
-  await fs.writeFile(`public/images/sequences/${id}.svg`, studyIllustration);
+const sequenceCovers = {
+  "surya-a": {
+    title: "Saludo al sol A",
+    poses: ["urdhva-hastasana", "uttanasana", "adho-mukha-svanasana"],
+    accent: "#e3e9d8",
+  },
+  "surya-b": {
+    title: "Saludo al sol B",
+    poses: ["utkatasana", "virabhadrasana-i", "adho-mukha-svanasana"],
+    accent: "#e8e5d3",
+  },
+  standing: {
+    title: "Fundamentos de pie",
+    poses: ["virabhadrasana-ii", "utthita-trikonasana", "utthita-parsvakonasana"],
+    accent: "#e1e9db",
+  },
+  "primary-series": {
+    title: "Fundamentos de la serie primaria",
+    poses: ["uttanasana", "virabhadrasana-i", "paschimottanasana"],
+    accent: "#e6e9d8",
+  },
+  finishing: {
+    title: "Cierre y descanso",
+    poses: ["baddha-konasana", "viparita-karani", "savasana"],
+    accent: "#e9e6d8",
+  },
+  "hatha-foundations": {
+    title: "Volver a las bases",
+    poses: ["tadasana", "utthita-trikonasana", "setu-bandha-sarvangasana"],
+    accent: "#f3e4d9",
+  },
+  "yin-stillness": {
+    title: "Un espacio de quietud",
+    poses: ["butterfly", "sphinx", "reclined-twist"],
+    accent: "#e7e2ef",
+  },
+  "aerial-foundations": {
+    title: "Repaso supervisado de Aerial",
+    poses: ["tadasana", "supported-seat", "sukhasana"],
+    accent: "#e0ebef",
+  },
+};
+function svgSequenceCover(id, { title, poses, accent }) {
+  const figuresMarkup = poses
+    .map((poseId, index) => {
+      const x = 50 + index * 340;
+      const center = x + 155;
+      return `<circle cx="${center}" cy="270" r="128" fill="${accent}"/><circle cx="${center}" cy="270" r="141" fill="none" stroke="#d9e1cd" stroke-width="2"/><svg x="${x}" y="150" width="310" height="196" viewBox="0 0 600 380">${figureMarkup(poseFigures[poseId])}</svg>`;
+    })
+    .join("");
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="510" viewBox="0 0 1100 510" role="img"><title>Portada ilustrativa: ${title}</title><desc>Tres figuras esquemáticas muestran posturas de la secuencia ${title}, en tonos salvia, arena y verde.</desc><defs><linearGradient id="cover-bg" x2="1" y2="1"><stop stop-color="#f2f1e8"/><stop offset="1" stop-color="#e4eadc"/></linearGradient></defs><rect width="1100" height="510" rx="28" fill="url(#cover-bg)"/><circle cx="940" cy="90" r="55" fill="#f2e9c9" opacity=".9"/><path d="M80 404c195 28 335-26 490 0s278-25 450 0" fill="none" stroke="#b8c9ae" stroke-width="3" stroke-linecap="round"/><ellipse cx="550" cy="416" rx="420" ry="14" fill="#cad7c2" opacity=".55"/>${figuresMarkup}<g fill="#829777" opacity=".7"><circle cx="110" cy="95" r="4"/><circle cx="990" cy="220" r="5"/><path d="M174 112h20m-10-10v20M905 118h18m-9-9v18" stroke="#829777" stroke-width="2" stroke-linecap="round"/></g></svg>`;
+}
+for (const [id, cover] of Object.entries(sequenceCovers))
+  await fs.writeFile(`public/images/sequences/${id}.svg`, svgSequenceCover(id, cover));
 // Precomputed responsive WebP files keep next/image compatible with static hosting.
 for (const file of await fs.readdir("public/images", { recursive: true })) {
   if (!file.endsWith(".svg")) continue;
