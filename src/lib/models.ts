@@ -138,7 +138,9 @@ export interface Kriya extends ContentBase {
   objective: Localized;
   materials: Localized;
   preparation: Localized;
-  steps: Localized;
+  /** Legacy study text remains supported while new entries use structured steps. */
+  steps?: Localized;
+  instructionSteps?: LocalizedInstructionSteps;
   frequency: Localized;
   benefits: Localized;
   risks: Localized;

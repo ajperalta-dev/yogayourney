@@ -21,6 +21,7 @@ import {
   EmptyState,
   Duration,
   FavoriteButton,
+  SafetyAlert,
 } from "./common";
 import { Button } from "./ui/button";
 export function Library({
@@ -72,6 +73,14 @@ export function Library({
           </span>
         }
       />
+      {section === "kriyas" && (
+        <SafetyAlert>
+          {t(
+            "Son prácticas tradicionales, no un ‘detox’ médico. Aprende cualquier kriya con una persona instructora cualificada; esta biblioteca no enseña a realizarlas en solitario. No sustituyen consejo médico. Consulta antes si estás embarazada o, en prácticas abdominales/intensas, durante la menstruación; también ante hipertensión, enfermedad cardíaca o respiratoria, hernia, úlcera, cirugía reciente, enfermedad digestiva u otra condición relevante. Detente ante dolor, mareo, falta de aire, sangrado, náuseas o visión incómoda.",
+            "These are traditional practices, not a medical ‘detox.’ Learn every kriya with a qualified instructor; this library is not a guide for doing them alone. They do not replace medical advice. Seek individual guidance before practice if pregnant or, for abdominal/forceful techniques, during menstruation; also with hypertension, heart or respiratory disease, hernia, ulcer, recent surgery, digestive illness, or another relevant condition. Stop for pain, dizziness, shortness of breath, bleeding, nausea, or eye discomfort.",
+          )}
+        </SafetyAlert>
+      )}
       {config?.introduction && section !== "learn" && (
         <div className="panel">
           <p className="muted">{config.introduction[state.language]}</p>

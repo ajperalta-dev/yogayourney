@@ -59,6 +59,7 @@ export function detailFields(item: ContentItem): Field[] {
   for (const [key, value] of Object.entries(item)) {
     if (
       key !== "instructionSteps" &&
+      !(item.kind === "kriya" && key === "steps" && item.instructionSteps) &&
       !(item.kind === "pranayama" && key === "instructions") &&
       !(item.kind === "meditation" && key === "instructions") &&
       !(item.kind === "meditation" && key === "guidedScript") &&
@@ -121,6 +122,13 @@ export function detailFields(item: ContentItem): Field[] {
         field("Guion guiado", "Guided script", item.guidedScript, "technique"),
       );
     }
+  }
+  if (item.kind === "kriya" && item.instructionSteps) {
+    result.push({
+      label: l("Instrucciones paso a paso", "Step-by-step instructions"),
+      steps: item.instructionSteps,
+      group: "technique",
+    });
   }
   return result;
 }

@@ -105,9 +105,11 @@ export function Detail({
             <span>
               <BookOpen size={15} /> {t("Modo estudio", "Study mode")}
             </span>
-            <Duration seconds={item.duration} />
+            {item.kind !== "kriya" && <Duration seconds={item.duration} />}
             <span>{t("Ficha de estudio", "Study entry")}</span>
-            {(item.kind === "pranayama" || item.kind === "meditation") && (
+            {(item.kind === "pranayama" ||
+              item.kind === "meditation" ||
+              item.kind === "kriya") && (
               <span>
                 {item.level === "beginner"
                   ? t("Principiante", "Beginner")
@@ -116,7 +118,15 @@ export function Detail({
                     : t("Avanzado", "Advanced")}
               </span>
             )}
+            {item.kind === "kriya" && item.level === "advanced" && (
+              <span className="badge">{t("Solo con instructor", "Instructor only")}</span>
+            )}
           </div>
+          {item.kind === "kriya" && (
+            <div className="kriya-safety-notice">
+              <SafetyAlert>{item.safety[state.language]}</SafetyAlert>
+            </div>
+          )}
           {item.kind === "pranayama" && item.requiresInstructor && (
             <p className="safety">
               <ShieldCheck />
@@ -209,7 +219,9 @@ export function Detail({
           <NotesEditor id={item.id} />
         </div>
         <aside className="detail-aside">
-          <SafetyAlert>{item.safety[state.language]}</SafetyAlert>
+          {item.kind !== "kriya" && (
+            <SafetyAlert>{item.safety[state.language]}</SafetyAlert>
+          )}
           {item.kind === "pranayama" && (
             <div className="panel">
               <h3>{t("Encuentra tu respiración", "Find your breath")}</h3>

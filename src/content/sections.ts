@@ -92,6 +92,10 @@ export const sections: {
     id: "kriyas",
     name: l("Detox / Kriyas", "Detox / Kriyas"),
     description: l("Tradición y seguridad", "Tradition and safety"),
+    introduction: l(
+      "En algunas tradiciones de Haṭha Yoga, los ṣaṭkarmas son seis acciones de purificación que preparan la práctica y se enseñan según la persona y la escuela; no se consideran obligatorios para todo el mundo. Textos como Haṭha Yoga Pradīpikā los sitúan dentro de un marco tradicional de disciplina corporal, no de una promesa moderna de eliminar toxinas. ‘Detox’ es aquí un nombre de sección, no una afirmación médica. Esta biblioteca distingue el contexto histórico de lo que puede recomendarse con seguridad: las técnicas invasivas, intensas o de presión abdominal no son para aprender a solas, y algunos métodos solo se presentan como lectura. Una práctica suave de higiene tampoco limpia el organismo ni trata enfermedades. Si te interesa una kriya, conversa primero con una persona instructora cualificada y con tu profesional sanitario cuando tengas una condición médica.",
+      "In some Haṭha Yoga traditions, the ṣaṭkarmas are six cleansing actions taught according to the person and school; they are not considered compulsory for everyone. Texts such as the Haṭha Yoga Pradīpikā place them within a traditional framework of bodily discipline, not a modern promise to remove toxins. ‘Detox’ is the section name, not a medical claim. This library separates historical context from what can be responsibly recommended: invasive, forceful, or abdominal-pressure techniques are not for self-teaching, and some methods are included for study only. Gentle hygiene does not cleanse the body or treat disease either. If you are interested in a kriya, first speak with a qualified instructor and with your healthcare professional when you have a medical condition.",
+    ),
     icon: "drop",
     color: "sand",
   },
