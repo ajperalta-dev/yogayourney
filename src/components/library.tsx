@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Search, ArrowRight, Play, BookOpen } from "lucide-react";
 import type { SearchEntry } from "@/content/catalog";
+import { illustrationAlt } from "@/content/illustration-alt";
 import type { Sequence, SectionId } from "@/lib/models";
 import {
   sections,
@@ -66,7 +67,7 @@ export function Library({
         }
         action={
           <span className="badge">
-            {t("Contenido de ejemplo", "Sample content")}
+            {t("Biblioteca educativa", "Study library")}
           </span>
         }
       />
@@ -200,11 +201,12 @@ export function SequenceCard({ sequence: s }: { sequence: Sequence }) {
         ) : (
           <Image
             src={s.image || "/images/study.svg"}
-            alt={t(
+            alt={illustrationAlt(s.image || "/images/study.svg")?.[state.language] ?? t(
               `Portada ilustrativa de ${s.name.es}`,
               `Illustrative cover for ${s.name.en}`,
             )}
             fill
+            loading="lazy"
             sizes="(max-width: 800px) 90vw, (max-width: 1100px) 40vw, 30vw"
             onError={() => setImageFailed(true)}
           />
@@ -216,8 +218,18 @@ export function SequenceCard({ sequence: s }: { sequence: Sequence }) {
       </div>
       <h3>{s.name[state.language]}</h3>
       <p className="small muted">{s.description[state.language]}</p>
-      <div className="row between">
+      <p className="small sequence-card-objective">
+        <strong>{t("Objetivo:", "Goal:")}</strong> {s.objective[state.language]}
+      </p>
+      <div className="row between sequence-card-meta">
         <Duration seconds={s.duration} />
+        <span className="small muted">
+          {s.level === "beginner"
+            ? t("Principiante", "Beginner")
+            : s.level === "intermediate"
+              ? t("Intermedio", "Intermediate")
+              : t("Avanzado", "Advanced")}
+        </span>
         <span className="small muted">
           {s.steps.length} {t("pasos", "steps")}
         </span>

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "node scripts/serve.mjs",
     "assets": "node scripts/create-assets.mjs",
+    "validate:content": "tsx scripts/validate-content.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts"

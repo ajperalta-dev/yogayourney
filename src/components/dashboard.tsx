@@ -20,6 +20,7 @@ import { Button } from "./ui/button";
 import { SectionIcon, ProgressBar, EmptyState } from "./common";
 import { sections } from "@/content/sections";
 import { schedule } from "@/content/schedule";
+import illustrations from "@/content/illustrations.json";
 import type { SearchEntry } from "@/content/catalog";
 export function Dashboard({
   index,
@@ -76,7 +77,7 @@ export function Dashboard({
         <section className="hero-card">
           <Image
             src="/images/journey.webp"
-            alt=""
+            alt={illustrations.poses.sukhasana[state.language]}
             fill
             priority
             sizes="(max-width: 900px) 100vw, 65vw"

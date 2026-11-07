@@ -19,9 +19,11 @@ import {
   Check,
   Clock3,
 } from "lucide-react";
+import { useState } from "react";
 import { useLocal } from "./providers";
 import { Button } from "./ui/button";
 import type { SearchEntry } from "@/content/catalog";
+import { illustrationAlt } from "@/content/illustration-alt";
 import type { ReactNode } from "react";
 export const icons = {
   calendar: CalendarDays,
@@ -98,15 +100,36 @@ export function FavoriteButton({ id }: { id: string }) {
 }
 export function ContentCard({ item }: { item: SearchEntry }) {
   const { state } = useLocal();
+  const [imageFailed, setImageFailed] = useState(false);
   return (
     <article className="content-card">
-      <Link href={item.href} className="card-image">
-        <Image
-          src={item.image}
-          alt=""
-          fill
-          sizes="(max-width: 600px) 90vw, (max-width: 1100px) 40vw, 25vw"
-        />
+      <Link href={item.href} className="card-image" aria-label={item.name[state.language]}>
+        {!imageFailed && item.image ? (
+          <Image
+            src={item.image}
+            alt={
+              illustrationAlt(item.image)?.[state.language] ?? (state.language === "es"
+                ? `Ilustración de ${item.name.es}`
+                : `Illustration of ${item.name.en}`)
+            }
+            fill
+            loading="lazy"
+            sizes="(max-width: 600px) 90vw, (max-width: 1100px) 40vw, 25vw"
+            onError={() => setImageFailed(true)}
+          />
+        ) : (
+          <span
+            className="card-image-fallback"
+            role="img"
+            aria-label={
+              state.language === "es"
+                ? `Imagen no disponible: ${item.name.es}`
+                : `Image unavailable: ${item.name.en}`
+            }
+          >
+            <BookOpen size={30} />
+          </span>
+        )}
         <span className="badge">{item.category}</span>
       </Link>
       <div className="card-body">
@@ -236,11 +259,19 @@ export function EmptyState({
     </div>
   );
 }
+export function formatDurationLabel(seconds: number) {
+  const wholeMinutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  if (wholeMinutes === 0) return `${remainingSeconds} s`;
+  return remainingSeconds === 0
+    ? `${wholeMinutes} min`
+    : `${wholeMinutes} min ${remainingSeconds} s`;
+}
 export function Duration({ seconds }: { seconds: number }) {
   return (
     <span className="row small">
       <Clock3 size={14} />
-      {Math.ceil(seconds / 60)} min
+      {formatDurationLabel(seconds)}
     </span>
   );
 }

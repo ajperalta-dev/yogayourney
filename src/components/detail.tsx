@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowUpRight, BookOpen, ShieldCheck } from "lucide-react";
 import { usePathname } from "next/navigation";
 import type { ContentItem, Field } from "@/lib/models";
 import type { SearchEntry } from "@/content/catalog";
+import { illustrationAlt } from "@/content/illustration-alt";
 import { useLocal } from "./providers";
 import {
   FavoriteButton,
@@ -35,6 +36,7 @@ export function Detail({
   section: string;
 }) {
   const { state, update, ready, t } = useLocal();
+  const [failedImageId, setFailedImageId] = useState<string | null>(null);
   const path = usePathname();
   useEffect(() => {
     if (ready)
@@ -64,20 +66,35 @@ export function Detail({
       <div className="detail-layout">
         <div>
           <div className="detail-image">
-            <Image
-              src={item.image}
-              alt={t(
-                `Ilustración orientativa: ${item.name.es}`,
-                `Illustrative placeholder: ${item.name.en}`,
-              )}
-              fill
-              priority
-              sizes="(max-width: 800px) 95vw, 55vw"
-            />
+            {!item.image || failedImageId === item.id ? (
+              <div
+                className="detail-image-fallback"
+                role="img"
+                aria-label={t(
+                  `Imagen no disponible: ${item.name.es}`,
+                  `Image unavailable: ${item.name.en}`,
+                )}
+              >
+                <BookOpen size={34} />
+                <span>{item.name[state.language]}</span>
+              </div>
+            ) : (
+              <Image
+                src={item.image}
+                alt={illustrationAlt(item.image)?.[state.language] ?? t(
+                  `Ilustración esquemática de ${item.name.es}`,
+                  `Schematic illustration of ${item.name.en}`,
+                )}
+                fill
+                priority
+                sizes="(max-width: 800px) 95vw, 55vw"
+                onError={() => setFailedImageId(item.id)}
+              />
+            )}
             <span className="badge">
               {t(
-                "Ilustración de ejemplo · no es una guía de alineación",
-                "Sample illustration · not an alignment guide",
+                "Ilustración esquemática · no sustituye una guía de alineación",
+                "Schematic illustration · not an alignment guide",
               )}
             </span>
           </div>
@@ -86,7 +103,7 @@ export function Detail({
               <BookOpen size={15} /> {t("Modo estudio", "Study mode")}
             </span>
             <Duration seconds={item.duration} />
-            <span>{t("Ficha de muestra", "Sample entry")}</span>
+            <span>{t("Ficha de estudio", "Study entry")}</span>
           </div>
           <Tabs defaultValue="technique">
             <TabsList
@@ -119,8 +136,8 @@ export function Detail({
                 {!fields.some((f) => f.group === value) && (
                   <p className="muted">
                     {t(
-                      "Esta muestra no contiene información adicional en esta pestaña.",
-                      "This sample has no additional information in this tab.",
+                      "No hay información adicional en esta pestaña.",
+                      "No additional information is available in this tab.",
                     )}
                   </p>
                 )}
@@ -205,8 +222,8 @@ export function Detail({
           )}
           <div className="editorial-note">
             {t(
-              "Contenido representativo para validar la aplicación. Revisión docente y catálogo completo pendientes.",
-              "Representative content for validating the application. Teacher review and the complete catalog are pending.",
+              "Las ilustraciones son esquemáticas y orientativas. Adaptá cada postura a tus posibilidades y priorizá una respiración cómoda.",
+              "The illustrations are schematic guides. Adapt each pose to your needs and keep your breathing comfortable.",
             )}
           </div>
         </aside>

@@ -2,8 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Check, ExternalLink } from "lucide-react";
 import type { ContentItem, Sequence } from "@/lib/models";
+import { illustrationAlt } from "@/content/illustration-alt";
 import { validateSequenceDuration } from "@/lib/sequence-validation";
 import { useLocal } from "./providers";
 import { Button } from "./ui/button";
@@ -13,6 +14,8 @@ import {
   SafetyAlert,
   FavoriteButton,
   EmptyState,
+  Duration,
+  formatDurationLabel,
 } from "./common";
 import { Timer } from "./timer";
 export function SequencePlayer({
@@ -26,6 +29,8 @@ export function SequencePlayer({
   const [position, setPosition] = useState(0);
   const [finished, setFinished] = useState(false);
   const [done, setDone] = useState<number[]>([]);
+  const [failedPoseImages, setFailedPoseImages] = useState<string[]>([]);
+  const [failedCoverId, setFailedCoverId] = useState<string | null>(null);
   const [mode, setMode] = useState<"study" | "practice">("practice");
   const itemsById = new Map(items.map((item) => [item.id, item]));
   const step = sequence.steps[position];
@@ -103,8 +108,51 @@ export function SequencePlayer({
         eyebrow={sequence.style.toUpperCase()}
         title={sequence.name[lang]}
         description={sequence.description[lang]}
-        action={<FavoriteButton id={sequence.id} />}
+        action={
+          <div className="sequence-heading-actions">
+            <div className="sequence-heading-cover">
+              {!sequence.image || failedCoverId === sequence.id ? (
+                <div
+                  className="sequence-card-image-fallback"
+                  role="img"
+                  aria-label={t("Portada no disponible", "Cover unavailable")}
+                >
+                  <BookOpen size={24} />
+                </div>
+              ) : (
+                <Image
+                  src={sequence.image}
+                  alt={illustrationAlt(sequence.image)?.[lang] ?? t(
+                    `Portada ilustrativa de ${sequence.name.es}`,
+                    `Illustrative cover for ${sequence.name.en}`,
+                  )}
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 600px) 38vw, 132px"
+                  onError={() => setFailedCoverId(sequence.id)}
+                />
+              )}
+            </div>
+            <FavoriteButton id={sequence.id} />
+          </div>
+        }
       />
+      <div className="detail-meta sequence-meta">
+        <Duration seconds={sequence.duration} />
+        <span>
+          {sequence.level === "beginner"
+            ? t("Nivel principiante", "Beginner level")
+            : sequence.level === "intermediate"
+              ? t("Nivel intermedio", "Intermediate level")
+              : t("Nivel avanzado", "Advanced level")}
+        </span>
+        <span>
+          {sequence.steps.length} {t("posturas", "poses")}
+        </span>
+      </div>
+      <p className="sequence-objective">
+        <strong>{t("Objetivo:", "Goal:")}</strong> {sequence.objective[lang]}
+      </p>
       {restricted && (
         <SafetyAlert>
           {t(
@@ -144,15 +192,38 @@ export function SequencePlayer({
       ) : (
         <div className="player-layout">
           <div className="player-visual">
-            <Image
-              src={item.image}
-              alt={item.name[lang]}
-              fill
-              sizes="(max-width: 800px) 95vw, 60vw"
-              priority
-            />
+            {!item.image || failedPoseImages.includes(item.id) ? (
+              <div
+                className="player-visual-fallback"
+                role="img"
+                aria-label={t(
+                  `Imagen no disponible: ${item.name.es}`,
+                  `Image unavailable: ${item.name.en}`,
+                )}
+              >
+                <BookOpen size={42} />
+                <span>{item.name[lang]}</span>
+              </div>
+            ) : (
+              <Image
+                src={item.image}
+                alt={illustrationAlt(item.image)?.[lang] ?? t(
+                  `Ilustración orientativa de ${item.name.es}`,
+                  `Illustrative image of ${item.name.en}`,
+                )}
+                fill
+                loading={position === 0 ? "eager" : "lazy"}
+                priority={position === 0}
+                sizes="(max-width: 800px) 95vw, 60vw"
+                onError={() =>
+                  setFailedPoseImages((failed) =>
+                    failed.includes(item.id) ? failed : [...failed, item.id],
+                  )
+                }
+              />
+            )}
             <span className="badge">
-              {t("Ilustración orientativa", "Illustrative placeholder")}
+              {t("Ilustración orientativa", "Illustrative diagram")}
             </span>
           </div>
           <div className="panel player-info">
@@ -274,8 +345,10 @@ export function SequencePlayer({
             }}
           >
             <span>{done.includes(i) ? "✓" : i + 1}</span>
-            {itemsById.get(s.contentId)?.name[lang] || s.contentId}
-            <small>{Math.ceil(s.duration / 60)} min</small>
+            <span className="sequence-outline-name">
+              {itemsById.get(s.contentId)?.name[lang] || s.contentId}
+            </span>
+            <small>{formatDurationLabel(s.duration)}</small>
           </button>
         ))}
       </div>

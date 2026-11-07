@@ -231,3 +231,21 @@ Se crearon portadas SVG específicas para las ocho secuencias existentes: cinco 
 `SequenceCard` ahora renderiza la portada con tamaño responsive y texto alternativo localizado; si la carga falla, muestra un símbolo de estudio accesible. Las ocho rutas exactas están en `IMAGES_TODO.md` para reemplazar estas composiciones esquemáticas por arte final. `scripts/create-assets.mjs` genera las composiciones y sus derivados WebP, evitando que la generación vuelva a sustituirlas por una ilustración genérica.
 
 La generación de assets finalizó; la comprobación de rutas encontró ocho portadas válidas. Pasaron TypeScript, lint y las 10 pruebas. El build permanece pendiente porque el servidor de desarrollo activo mantiene bloqueado el directorio `.next`, según la incidencia registrada en la sección anterior.
+
+## Integración y renovación de las ilustraciones
+
+Se reemplazaron las ilustraciones provisionales de las 32 posturas y las 8 portadas por un mismo personaje articulado en SVG. Todas usan un lienzo de 480 × 360 y el mismo diseño de ropa, pelo, cara y extremidades. Las posturas de suelo muestran una esterilla. La portada de cada secuencia muestra una postura de sus propios pasos. La portada de inicio, la imagen genérica de estudio y las rutas antiguas también usan el personaje nuevo.
+
+| Lote | Posturas | Rango en el generador | Revisión |
+| --- | ---: | --- | --- |
+| 1 | 11 | `tadasana` → `ardha-uttanasana` | SVG renderizados. Se ajustó el contacto de las manos en la media flexión. |
+| 2 | 11 | `phalahakasana` → `dandasana` | SVG renderizados. Se comprobó la distinción visual entre los apoyos y las posturas de pie. |
+| 3 | 10 | `paschimottanasana` → `supported-seat` | SVG renderizados. Se ajustó el cojín en Niño y se redibujó la torsión tumbada desde arriba. |
+
+**Estado actual:** 8 secuencias, 32 posturas y 51 fichas. No quedan imágenes provisorias de la tanda anterior. Las vistas que se beneficiarían de una revisión anatómica docente están en `IMAGES_REVIEW.md`.
+
+Las tarjetas y las fichas conservan las rutas locales por ID y muestran descripciones alternativas en español e inglés. El detalle de secuencia muestra portada, objetivo, nivel y tiempo exacto. El reproductor conserva el tiempo de cada paso y cambia la imagen con la postura. Las fichas siguen usando las pestañas existentes para mostrar instrucciones, respiración, adaptaciones, errores comunes y precauciones. Las listas cargan las imágenes de forma diferida y las vistas ofrecen una alternativa si un recurso falla.
+
+`npm run validate:content` comprueba textos vacíos o provisorios, referencias, duración total, rutas locales, textos alternativos y lienzo de los SVG. Las comprobaciones de build, TypeScript, lint y las 10 pruebas resolvieron el build pendiente de la tanda anterior.
+
+Se verificaron 11 rutas en un navegador a 390 y 1366 px. Las páginas revisadas no mostraron desbordamiento horizontal ni imágenes sin texto alternativo. En Hatha, el avance desde Asiento cómodo a Brazos elevados cambió la ilustración y el temporizador de 30 a 15 segundos. El reproductor mostró la alternativa al simular un error de carga y Aerial conservó el modo de estudio supervisado.
