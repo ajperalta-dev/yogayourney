@@ -114,6 +114,10 @@ export const sections: {
     id: "ayurveda",
     name: l("Ayurveda", "Ayurveda"),
     description: l("Ritmos de vida", "Rhythms of living"),
+    introduction: l(
+      "Ayurveda es una tradición de conocimiento originada en el sur de Asia. Sus cinco elementos y tres doshas son marcos tradicionales de reflexión, no categorías biomédicas ni diagnósticos. Explora las fichas como ideas culturales, elige solo hábitos cotidianos seguros y adapta cualquier práctica a tu contexto, alimentación y clima local.",
+      "Ayurveda is a knowledge tradition originating in South Asia. Its five elements and three doshas are traditional frameworks for reflection, not biomedical categories or diagnoses. Explore the entries as cultural ideas, choose only safe everyday habits, and adapt any practice to your context, food, and local climate.",
+    ),
     icon: "leaf",
     color: "sage",
   },

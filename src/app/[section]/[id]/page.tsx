@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Detail } from "@/components/detail";
 import { byId, catalog, cardEntry, sectionFor } from "@/content/catalog";
+import { sequences } from "@/content/sequences";
 import { detailFields } from "@/lib/detail-fields";
 export function generateStaticParams() {
   return catalog.flatMap((item) =>
@@ -50,6 +51,13 @@ export default async function DetailPage({
         .map((id) => byId[id])
         .filter(Boolean)
         .map((i) => cardEntry(i))}
+      relatedSequences={
+        item.kind === "ayurveda" && item.sequenceIds
+          ? sequences.filter((sequence) =>
+              item.sequenceIds?.includes(sequence.id),
+            )
+          : []
+      }
     />
   );
 }

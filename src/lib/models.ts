@@ -165,6 +165,8 @@ export interface AyurvedaTopic extends ContentBase {
   concept: Localized;
   tradition: Localized;
   reflection: Localized;
+  /** Built-in practice sequence IDs related to this educational topic. */
+  sequenceIds?: string[];
 }
 export type ContentItem =
   | Asana

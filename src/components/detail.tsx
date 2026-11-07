@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowUpRight, BookOpen, ShieldCheck } from "lucide-react";
 import { usePathname } from "next/navigation";
-import type { ContentItem, Field } from "@/lib/models";
+import type { ContentItem, Field, Sequence } from "@/lib/models";
 import type { SearchEntry } from "@/content/catalog";
 import { illustrationAlt } from "@/content/illustration-alt";
 import { useLocal } from "./providers";
@@ -28,11 +28,13 @@ export function Detail({
   item,
   fields,
   related,
+  relatedSequences,
   section,
 }: {
   item: ContentItem;
   fields: Field[];
   related: SearchEntry[];
+  relatedSequences: Sequence[];
   section: string;
 }) {
   const { state, update, ready, t } = useLocal();
@@ -253,9 +255,12 @@ export function Detail({
               />
             </div>
           )}
-          {related.length > 0 && (
+          {(related.length > 0 || relatedSequences.length > 0) && (
             <div className="panel">
-              <Related items={related} />
+              {related.length > 0 && <Related items={related} />}
+              {relatedSequences.length > 0 && (
+                <RelatedSequences sequences={relatedSequences} />
+              )}
             </div>
           )}
           <div className="editorial-note">
@@ -283,5 +288,25 @@ function Related({ items }: { items: SearchEntry[] }) {
         ))}
       </div>
     </>
+  );
+}
+
+function RelatedSequences({ sequences }: { sequences: Sequence[] }) {
+  const { state, t } = useLocal();
+  return (
+    <section className="related-sequences">
+      <h3>{t("Secuencias sugeridas", "Suggested sequences")}</h3>
+      <div className="related-links">
+        {sequences.map((sequence) => (
+          <Link key={sequence.id} href={`/practice/${sequence.id}/`}>
+            <span>{sequence.name[state.language]}</span>
+            <span className="small muted">
+              <Duration seconds={sequence.duration} />
+            </span>
+            <ArrowUpRight size={14} />
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

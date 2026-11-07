@@ -1868,6 +1868,10 @@ select {
 .quiz-options button:disabled {
   opacity: 1;
 }
+.quiz-options button.selected {
+  background: var(--sage);
+  border-color: #89a47b;
+}
 .quiz-options button > span {
   border: 1px solid var(--line);
   width: 30px;

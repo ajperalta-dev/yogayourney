@@ -13,6 +13,7 @@ import {
 } from "@/content/sections";
 import { normalize } from "@/lib/utils";
 import { meditationPlans } from "@/content/meditation/plans";
+import { doshaQuizQuestions, type Dosha } from "@/content/ayurveda/quiz";
 import { useLocal } from "./providers";
 import {
   ContentCard,
@@ -81,12 +82,21 @@ export function Library({
           )}
         </SafetyAlert>
       )}
+      {section === "ayurveda" && (
+        <SafetyAlert>
+          {t(
+            "Este contenido educativo presenta ideas tradicionales; no sustituye la consulta médica ni se debe usar para prevenir, diagnosticar o tratar enfermedades. No suspendas medicación ni empieces ayunos, dietas restrictivas o suplementos por un dosha. Consulta a un profesional sanitario ante una condición, medicación, embarazo o síntoma que te preocupe.",
+            "This educational content presents traditional ideas; it does not replace medical care and should not be used to prevent, diagnose, or treat disease. Do not stop medication or begin fasting, restrictive diets, or supplements based on a dosha. Consult a healthcare professional about a health condition, medication, pregnancy, or concerning symptom.",
+          )}
+        </SafetyAlert>
+      )}
       {config?.introduction && section !== "learn" && (
         <div className="panel">
           <p className="muted">{config.introduction[state.language]}</p>
         </div>
       )}
       {section === "meditation" && <MeditationPlans />}
+      {section === "ayurveda" && <AyurvedaQuiz />}
       {section === "learn" ? (
         <div className="section-grid large">
           {sections.map((s) => (
@@ -200,6 +210,129 @@ export function Library({
     </>
   );
 }
+
+const doshaLabels: Record<Dosha, { es: string; en: string }> = {
+  vata: { es: "Vata", en: "Vata" },
+  pitta: { es: "Pitta", en: "Pitta" },
+  kapha: { es: "Kapha", en: "Kapha" },
+};
+
+function AyurvedaQuiz() {
+  const { state, t } = useLocal();
+  const [answers, setAnswers] = useState<Dosha[]>([]);
+  const [selected, setSelected] = useState<Dosha | null>(null);
+  const [result, setResult] = useState<{
+    leaders: Dosha[];
+    scores: Record<Dosha, number>;
+  } | null>(null);
+  const question = doshaQuizQuestions[answers.length];
+
+  function advance() {
+    if (!selected) return;
+    const completedAnswers = [...answers, selected];
+    if (completedAnswers.length === doshaQuizQuestions.length) {
+      const scores: Record<Dosha, number> = {
+        vata: 0,
+        pitta: 0,
+        kapha: 0,
+      };
+      completedAnswers.forEach((answer) => {
+        scores[answer] += 1;
+      });
+      const highest = Math.max(...Object.values(scores));
+      setResult({
+        leaders: (Object.keys(scores) as Dosha[]).filter(
+          (dosha) => scores[dosha] === highest,
+        ),
+        scores,
+      });
+      return;
+    }
+    setAnswers(completedAnswers);
+    setSelected(null);
+  }
+
+  function reset() {
+    setAnswers([]);
+    setSelected(null);
+    setResult(null);
+  }
+
+  return (
+    <section aria-labelledby="ayurveda-quiz-heading">
+      <div className="quiz panel">
+        <span className="eyebrow">AYURVEDA / SELF-REFLECTION</span>
+        <h2 id="ayurveda-quiz-heading">
+          {t("Cuestionario orientativo de dosha", "A reflective dosha questionnaire")}
+        </h2>
+        {result ? (
+          <div role="status" className="quiz-explanation">
+            <strong>
+              {result.leaders.length === 1
+                ? t(
+                    `Tus respuestas se inclinan hacia ${doshaLabels[result.leaders[0]].es}.`,
+                    `Your answers leaned toward ${doshaLabels[result.leaders[0]].en}.`,
+                  )
+                : t(
+                    `Tus respuestas muestran una combinación: ${result.leaders.map((dosha) => doshaLabels[dosha].es).join(" y ")}.`,
+                    `Your answers show a mixed pattern: ${result.leaders.map((dosha) => doshaLabels[dosha].en).join(" and ")}.`,
+                  )}
+            </strong>
+            <p>
+              {t(
+                `Actividad cultural no validada clínicamente; no es una evaluación médica. Recuento: Vata ${result.scores.vata}, Pitta ${result.scores.pitta}, Kapha ${result.scores.kapha}.`,
+                `Unvalidated cultural reflection, not a medical assessment. Count: Vata ${result.scores.vata}, Pitta ${result.scores.pitta}, Kapha ${result.scores.kapha}.`,
+              )}
+            </p>
+            <div className="related-links">
+              {result.leaders.map((dosha) => (
+                <Link key={dosha} href={`/ayurveda/${dosha}/`}>
+                  {t("Explorar", "Explore")} {doshaLabels[dosha][state.language]}
+                  <ArrowRight size={15} />
+                </Link>
+              ))}
+            </div>
+            <Button onClick={reset}>{t("Empezar de nuevo", "Start again")}</Button>
+          </div>
+        ) : (
+          <>
+            <p className="muted">
+              {t(
+                "Responde según patrones que reconoces a lo largo del tiempo, no por un día reciente. El resultado solo invita a explorar las fichas.",
+                "Answer from patterns you recognize over time, not from one recent day. The result is only an invitation to explore the entries.",
+              )}
+            </p>
+            <span className="eyebrow">
+              {answers.length + 1} / {doshaQuizQuestions.length}
+            </span>
+            <h3>{question.prompt[state.language]}</h3>
+            <div className="quiz-options">
+              {question.options.map((option, index) => (
+                <button
+                  type="button"
+                  key={option.dosha}
+                  aria-pressed={selected === option.dosha}
+                  className={selected === option.dosha ? "selected" : ""}
+                  onClick={() => setSelected(option.dosha)}
+                >
+                  <span>{String.fromCharCode(65 + index)}</span>
+                  {option.label[state.language]}
+                </button>
+              ))}
+            </div>
+            <Button disabled={selected === null} onClick={advance}>
+              {answers.length === doshaQuizQuestions.length - 1
+                ? t("Ver orientación", "View reflection")
+                : t("Siguiente", "Next")}
+              <ArrowRight size={16} />
+            </Button>
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function MeditationPlans() {
   const { t, state } = useLocal();
   return (
