@@ -398,3 +398,13 @@ La sección cuenta ahora con **8 secuencias Yin**: pausa inicial (15 min), quiet
 **Verificación:** `npm run validate:content` confirmó 8 secuencias Yin, referencias e imágenes válidas, pausas de 30–60 segundos, Savasana final y sumas exactas. `npm run lint` y `npm run build` finalizaron correctamente.
 
 **Pendiente:** revisión opcional por profesorado cualificado de las alternativas anatómicas, especialmente Silla de montar y Dragón, y de las asociaciones tradicionales de meridianos.
+
+## Aerial Yoga: seguridad y prácticas asistidas (2026-11-07)
+
+El diagnóstico inicial encontró 3 secuencias cortas y 1 ficha, Asiento con apoyo, destinada a estudio en tierra. Se añadieron 7 fichas Aerial bilingües para posición de pie, zancada asistida, reclinación baja, estudio de estabilidad, repaso teórico de inversiones, descanso en Capullo y salida gradual. Cada ficha indica inicio y contactos de la hamaca, entrada y salida, respiración, seguridad, beneficios prudentes, errores, regresión, nivel de riesgo y asistencia de instructor/spotter. Las inversiones solo aparecen como orientación teórica de riesgo alto.
+
+Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minutos, además de conservar las tres fichas de estudio existentes. Todas las secuencias Aerial concluyen con Capullo y salida gradual asistida. El aviso de sección ahora incluye capacidad nominal y revisión de equipo, montaje y anclajes, referencia de altura, espacio despejado, calentamiento, comida reciente y contraindicaciones. La introducción añade el contexto contemporáneo y el glosario de equipo.
+
+**Verificación:** el validador confirma 8 secuencias Aerial dentro de 20–60 minutos, sumas exactas, cierres requeridos, referencias y 7 imágenes de postura más 8 portadas locales con alt bilingüe. `npm run build` y `npm run lint` finalizaron correctamente.
+
+**Pendiente:** revisión presencial por instructor cualificado de las descripciones y montaje; esta app no puede evaluar anclajes, carga nominal, ajuste al cuerpo, spotter ni aptitud médica individual. Las instrucciones no habilitan práctica aérea autónoma.

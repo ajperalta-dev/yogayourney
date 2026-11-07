@@ -180,6 +180,15 @@ function validateCatalogItem(item: ContentItem): void {
       errors.push(`${itemPath}: la técnica intensa o con retención debe requerir instructor`);
     }
   }
+  if (item.kind === "aerial") {
+    const riskField = item.fields.find((field) => field.group === "safety" && field.label.en === "Risk level");
+    if (!riskField || !("text" in riskField) || !/low|medium|high/i.test(riskField.text.en) || !/bajo|medio|alto/i.test(riskField.text.es)) {
+      errors.push(`${itemPath}: falta el nivel de riesgo bilingüe`);
+    }
+    if (!item.spotterRequired || !item.studyOnly) {
+      errors.push(`${itemPath}: la práctica aérea debe quedar marcada para estudio y con asistencia requerida`);
+    }
+  }
   if (item.kind === "mantra" && !item.sanskrit.trim()) {
     errors.push(`${itemPath}.sanskrit: texto tradicional vacío`);
   }
@@ -326,9 +335,18 @@ for (const sequence of sequences) {
       }
     }
   }
+  if (sequence.style === "aerial") {
+    const lastTwo = sequence.steps.slice(-2).map((step) => step.contentId);
+    if (lastTwo[0] !== "aerial-cocoon" || lastTwo[1] !== "aerial-safe-exit") {
+      errors.push(`secuencia ${sequence.id}: debe terminar con Capullo y salida gradual`);
+    }
+  }
 }
 if (sequences.filter((sequence) => sequence.style === "yin").length < 8) {
   errors.push("Yin Yoga: se requieren al menos ocho secuencias completas");
+}
+if (sequences.filter((sequence) => sequence.style === "aerial" && sequence.duration >= 20 * 60 && sequence.duration <= 60 * 60).length < 8) {
+  errors.push("Aerial Yoga: se requieren al menos ocho secuencias de 20–60 minutos");
 }
 
 for (const entry of schedule) {

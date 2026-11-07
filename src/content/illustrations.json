@@ -36,7 +36,14 @@
     "banana-pose": {"es":"Persona tumbada boca arriba en Plátano con el cuerpo curvado suavemente hacia un lado","en":"Person lying on the back in Banana pose with the body gently curved to one side"},
     "melting-heart": {"es":"Persona en Corazón que se derrite con el pecho apoyado y las caderas sobre las rodillas","en":"Person in Melting Heart with the chest supported and hips over the knees"},
     "saddle": {"es":"Persona en Silla de montar reclinada sobre un bolster con las rodillas acolchadas","en":"Person in a supported reclining Saddle with knees padded"},
-    "supported-seat": {"es":"Persona sentada en una silla firme con los pies en el suelo y las manos sobre los muslos","en":"Person sitting on a sturdy chair with feet grounded and hands resting on the thighs"}
+    "supported-seat": {"es":"Persona sentada en una silla firme con los pies en el suelo y las manos sobre los muslos","en":"Person sitting on a sturdy chair with feet grounded and hands resting on the thighs"},
+    "aerial-standing-support": {"es":"Persona de pie junto a las asas de una hamaca baja, con los pies apoyados","en":"Person standing beside low hammock loops with feet grounded"},
+    "aerial-supported-lunge": {"es":"Persona en una zancada corta asistida, con la rodilla trasera acolchada","en":"Person in a short assisted lunge with the back knee padded"},
+    "aerial-supported-recline": {"es":"Persona reclinada en un apoyo amplio y bajo, con el cuello libre","en":"Person reclining into broad low support with the neck clear"},
+    "aerial-core-study": {"es":"Persona practicando estabilidad de pie con asas bajas y pies apoyados","en":"Person practicing upright stability with low loops and grounded feet"},
+    "aerial-inversion-briefing": {"es":"Persona en el suelo revisando seguridad de inversiones con un instructor","en":"Person on the floor reviewing inversion safety with an instructor"},
+    "aerial-cocoon": {"es":"Persona descansando en una hamaca baja con rostro y cuello despejados","en":"Person resting in a low hammock with face and neck unobstructed"},
+    "aerial-safe-exit": {"es":"Persona sentada en el suelo tras salir gradualmente de una hamaca","en":"Person seated on the floor after a gradual hammock exit"}
   },
   "covers": {
     "surya-a": "urdhva-hastasana",
@@ -58,6 +65,14 @@
     "yin-spine-60": "melting-heart",
     "yin-evening-75": "banana-pose",
     "aerial-intermediate-study": "supported-seat",
-    "aerial-advanced-study": "supported-seat"
+    "aerial-advanced-study": "supported-seat",
+    "aerial-hammock-introduction": "aerial-standing-support",
+    "aerial-warmup-mobility": "aerial-supported-lunge",
+    "aerial-spine-release": "aerial-supported-recline",
+    "aerial-hip-opening": "aerial-supported-lunge",
+    "aerial-core-stability": "aerial-core-study",
+    "aerial-inversion-readiness": "aerial-inversion-briefing",
+    "aerial-cocoon-relaxation": "aerial-cocoon",
+    "aerial-full-body-practice": "aerial-standing-support"
   }
 }

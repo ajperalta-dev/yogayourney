@@ -1,4 +1,4 @@
-import type { Sequence, SequenceStep } from "@/lib/models";
+import type { Localized, Sequence, SequenceStep } from "@/lib/models";
 import { l } from "@/lib/utils";
 import { ashtangaSequences } from "./ashtanga";
 
@@ -26,8 +26,55 @@ function sequence(
   };
 }
 
+function aerialSession(input: {
+  id: string; name: Localized; minutes: number; level: Sequence["level"];
+  objective: Localized; focus: string[];
+}) {
+  const workSeconds = input.minutes * 60 - 720;
+  const poseSeconds = Math.min(180, Math.floor(workSeconds / input.focus.length));
+  const restCount = input.focus.length - 1;
+  const restSeconds = restCount > 0
+    ? Math.floor((workSeconds - poseSeconds * input.focus.length) / restCount)
+    : 0;
+  return sequence(
+    {
+      id: input.id, name: input.name, style: "aerial", level: input.level,
+      duration: input.minutes * 60,
+      description: l(
+        `Clase supervisada de ${input.minutes} minutos. El instructor comprueba equipo, altura, espacio y consentimiento; todas las prácticas en hamaca requieren asistencia presencial. Termina con relajación en Capullo y una salida gradual al suelo.`,
+        `A ${input.minutes}-minute supervised class. The instructor checks equipment, height, clear space, and consent; all hammock practice requires in-person assistance. Finish with Cocoon rest and a gradual return to the floor.`,
+      ),
+      objective: input.objective,
+    },
+    [
+      { contentId: "sukhasana", duration: 120, stage: "centering" },
+      { contentId: "tadasana", duration: 180, stage: "warm-up" },
+      ...input.focus.flatMap((contentId, index) => [
+        { contentId, duration: poseSeconds, stage: "asanas" as const },
+        ...(index < restCount && restSeconds > 0
+          ? [{ contentId: "sukhasana", duration: restSeconds, stage: "asanas" as const }]
+          : []),
+      ]),
+      { contentId: "aerial-cocoon", duration: 300, stage: "savasana" },
+      { contentId: "aerial-safe-exit", duration: 120, stage: "cool-down" },
+    ],
+  );
+}
+
+const aerialSessions = [
+  aerialSession({ id: "aerial-hammock-introduction", name: l("Aerial · conocer la hamaca", "Aerial · meet the hammock"), minutes: 20, level: "beginner", objective: l("Aprender nombres del equipo, señal de parada y apoyos básicos con los pies en el suelo.", "Learn equipment terms, a stop signal, and basic support with feet grounded."), focus: ["supported-seat", "aerial-standing-support", "supported-seat"] }),
+  aerialSession({ id: "aerial-warmup-mobility", name: l("Aerial · calentamiento y movilidad", "Aerial · warm-up and mobility"), minutes: 25, level: "beginner", objective: l("Preparar hombros, caderas y tobillos antes de cualquier carga asistida.", "Prepare shoulders, hips, and ankles before any assisted loading."), focus: ["aerial-standing-support", "urdhva-hastasana", "aerial-supported-lunge"] }),
+  aerialSession({ id: "aerial-spine-release", name: l("Aerial · apoyo para la columna", "Aerial · supported spine"), minutes: 30, level: "beginner", objective: l("Explorar un apoyo reclinado bajo con respiración cómoda; no se promete descompresión clínica.", "Explore low supported reclining with comfortable breathing; no clinical decompression is promised."), focus: ["aerial-supported-recline", "bhujangasana", "aerial-supported-recline", "supported-seat"] }),
+  aerialSession({ id: "aerial-hip-opening", name: l("Aerial · movilidad de caderas", "Aerial · hip mobility"), minutes: 35, level: "intermediate", objective: l("Ensayar rangos moderados para caderas y piernas con ambas manos asistidas y pies cerca del suelo.", "Rehearse moderate hip and leg ranges with assisted hands and feet kept near the floor."), focus: ["aerial-supported-lunge", "baddha-konasana", "aerial-standing-support", "supported-seat", "aerial-supported-lunge"] }),
+  aerialSession({ id: "aerial-core-stability", name: l("Aerial · estabilidad y fuerza", "Aerial · stability and strength"), minutes: 40, level: "intermediate", objective: l("Observar control del tronco con tensión baja y sin suspender el cuerpo.", "Explore trunk control at low tension without suspending the body."), focus: ["aerial-core-study", "phalahakasana", "aerial-standing-support", "supported-seat", "aerial-core-study", "tadasana"] }),
+  aerialSession({ id: "aerial-inversion-readiness", name: l("Aerial · preparación para inversiones", "Aerial · inversion readiness"), minutes: 45, level: "advanced", objective: l("Revisar riesgos, contraindicaciones y criterios docentes; no contiene ni autoriza una inversión.", "Review risks, contraindications, and teaching criteria; this class does not include or authorize an inversion."), focus: ["aerial-inversion-briefing", "aerial-standing-support", "aerial-core-study", "supported-seat", "aerial-inversion-briefing", "aerial-safe-exit", "tadasana"] }),
+  aerialSession({ id: "aerial-cocoon-relaxation", name: l("Aerial · descanso en capullo", "Aerial · cocoon rest"), minutes: 50, level: "beginner", objective: l("Practicar relajación asistida, espacio libre para la respiración y orientación gradual al salir.", "Practice assisted rest, an unobstructed airway, and gradual reorientation on exit."), focus: ["aerial-standing-support", "aerial-supported-recline", "aerial-cocoon", "supported-seat", "aerial-cocoon", "aerial-safe-exit", "sukhasana", "aerial-supported-recline"] }),
+  aerialSession({ id: "aerial-full-body-practice", name: l("Aerial · práctica equilibrada de cuerpo completo", "Aerial · balanced whole-body practice"), minutes: 60, level: "intermediate", objective: l("Combinar preparación en tierra, movilidad asistida, estabilidad y descanso con supervisión continua.", "Combine grounded preparation, assisted mobility, stability, and rest with continuous supervision."), focus: ["aerial-standing-support", "aerial-supported-lunge", "aerial-supported-recline", "aerial-core-study", "baddha-konasana", "aerial-supported-lunge", "aerial-standing-support", "aerial-core-study", "supported-seat", "aerial-supported-recline"] }),
+];
+
 export const sequences: Sequence[] = [
   ...ashtangaSequences,
+  ...aerialSessions,
   sequence(
     {
       id: "hatha-foundations",
@@ -95,10 +142,10 @@ export const sequences: Sequence[] = [
       name: l("Aerial · repaso supervisado", "Aerial · supervised review"),
       style: "aerial",
       level: "beginner",
-      duration: 450,
+      duration: 480,
       description: l(
-        "Repaso de 7 minutos y medio en el suelo para prepararte a estudiar los apoyos con una persona instructora. Centrate en una silla firme y en una posición de pie estable; el paso Asiento con apoyo es un repaso sentado, no una entrada a la hamaca. No cargues peso en la tela ni practiques inversiones, transiciones o montajes por tu cuenta. Cerrá con descanso en Savasana.",
-        "A seven-and-a-half-minute floor-based review to prepare for studying support with an instructor. Focus on a sturdy chair and a steady standing position; the Supported Seat step is a seated review, not an entry into the hammock. Do not load the fabric or practice inversions, transitions, or rigging on your own. Finish with Savasana.",
+        "Repaso de 8 minutos en tierra para prepararte a estudiar los apoyos con una persona instructora. Asiento con apoyo no es una entrada a la hamaca; no cargues tela ni pruebes inversiones por tu cuenta. Cierra con Capullo y salida gradual asistida.",
+        "An 8-minute grounded review before studying support with an instructor. Supported Seat is not a hammock entry; do not load fabric or try inversions on your own. Close with Cocoon and an assisted gradual exit.",
       ),
       objective: l(
         "Reconocer apoyos y repasar medidas básicas de seguridad antes de una clase de yoga aéreo presencial, siempre con supervisión y equipo revisado.",
@@ -110,7 +157,8 @@ export const sequences: Sequence[] = [
       { contentId: "tadasana", duration: 90, stage: "warm-up" },
       { contentId: "supported-seat", duration: 120, stage: "asanas" },
       { contentId: "sukhasana", duration: 60, stage: "cool-down" },
-      { contentId: "savasana", duration: 90, stage: "savasana" },
+      { contentId: "aerial-cocoon", duration: 60, stage: "savasana" },
+      { contentId: "aerial-safe-exit", duration: 60, stage: "cool-down" },
     ],
   ),
   sequence(
@@ -263,7 +311,8 @@ export const sequences: Sequence[] = [
       { contentId: "tadasana", duration: 90, stage: "warm-up" },
       { contentId: "supported-seat", duration: 180, stage: "asanas" },
       { contentId: "sukhasana", duration: 90, stage: "cool-down" },
-      { contentId: "savasana", duration: 150, stage: "savasana" },
+      { contentId: "aerial-cocoon", duration: 90, stage: "savasana" },
+      { contentId: "aerial-safe-exit", duration: 60, stage: "cool-down" },
     ],
   ),
   sequence(
@@ -287,7 +336,8 @@ export const sequences: Sequence[] = [
       { contentId: "tadasana", duration: 120, stage: "warm-up" },
       { contentId: "supported-seat", duration: 240, stage: "asanas" },
       { contentId: "sukhasana", duration: 120, stage: "cool-down" },
-      { contentId: "savasana", duration: 300, stage: "savasana" },
+      { contentId: "aerial-cocoon", duration: 180, stage: "savasana" },
+      { contentId: "aerial-safe-exit", duration: 120, stage: "cool-down" },
     ],
   ),
   sequence(

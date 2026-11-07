@@ -98,6 +98,14 @@ export function Library({
           )}
         </SafetyAlert>
       )}
+      {section === "aerial" && (
+        <SafetyAlert>
+          {t(
+            "SEGURIDAD: usa hamaca, tela, asas y mosquetones específicos para uso aéreo, del material y con la capacidad de carga indicada por el fabricante para la persona y el ejercicio. Revísalos antes de cada sesión; nunca uses piezas gastadas, dañadas o sin especificación. Un profesional cualificado debe montar o inspeccionar anclajes y estructura. La pelvis a la altura de la cadera es solo referencia inicial; el instructor ajusta la tela y deja espacio libre alrededor y colchoneta. Calienta antes y no practiques tras comer recientemente. Consulta antes por embarazo, presión alta, glaucoma, problemas cardíacos o vertebrales, vértigo o cirugía reciente. Inversiones y suspensiones altas: solo con instructor y spotter. Sal gradualmente y espera a sentirte estable antes de caminar.",
+            "SAFETY: use a hammock, fabric, handles, and carabiners designed for aerial use, with material and working-load rating specified by the manufacturer for the person and exercise. Inspect them before every session; never use worn, damaged, or unrated parts. A qualified professional must install or inspect anchors and structure. Pelvis at hip height is only a starting reference; the instructor adjusts the fabric, with clear surrounding space and a mat. Warm up first and do not practice soon after eating. Seek advice first for pregnancy, high blood pressure, glaucoma, heart or spinal conditions, vertigo, or recent surgery. Inversions and high suspensions are instructor-and-spotter only. Exit gradually and wait until steady before walking.",
+          )}
+        </SafetyAlert>
+      )}
       {config?.introduction && section !== "learn" && (
         <div className="panel">
           <p className="muted">{config.introduction[state.language]}</p>

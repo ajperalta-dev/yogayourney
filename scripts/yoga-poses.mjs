@@ -218,4 +218,13 @@ export const floorAndSupported = {
   },
 };
 
-export const poses = { ...standingBasics, ...activeSeries, ...floorAndSupported };
+export const poses = {
+  ...standingBasics, ...activeSeries, ...floorAndSupported,
+  "aerial-standing-support": standingBasics.tadasana,
+  "aerial-supported-lunge": activeSeries["virabhadrasana-ii"],
+  "aerial-supported-recline": floorAndSupported.sphinx,
+  "aerial-core-study": standingBasics.tadasana,
+  "aerial-inversion-briefing": floorAndSupported["supported-seat"],
+  "aerial-cocoon": floorAndSupported["supported-child"],
+  "aerial-safe-exit": floorAndSupported["supported-seat"],
+};
