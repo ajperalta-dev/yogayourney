@@ -3,6 +3,8 @@
 **Fecha:** 2026-11-07
 **Alcance de la fase inicial:** auditoría de solo lectura del repositorio. En esa fase no se modificaron código, contenido ni assets; solo se documentó el inventario.
 
+**Nota sobre conteos:** el inventario y las cifras de las primeras secciones de este documento son una fotografía de la auditoría inicial; las ampliaciones posteriores se registran al final. El último estado, después de completar Mantras, es de 73 fichas, 15 secuencias y 32 posturas.
+
 ## Inventario de secciones y categorías
 
 Hay 11 secciones en `src/content/sections.ts`. El catálogo principal contiene 51 fichas con IDs únicos. Ashtanga reutiliza para su biblioteca las 26 fichas de asanas que también aparecen en Hatha; no son 26 registros adicionales.
@@ -278,3 +280,17 @@ El esquema `PranayamaTechnique` ahora admite `meaning`, `instructionSteps`, `rec
 El catálogo queda en **61 fichas, 11 técnicas de Pranayama, 32 posturas y 15 secuencias**. Se verificó que no hay campos ni instrucciones vacías, que las 61 imágenes locales resuelven y que build, typecheck, lint y las 10 pruebas existentes pasan.
 
 **Pendiente:** revisión de una persona docente de yoga respiratorio para validar transliteraciones, progresiones y variaciones por tradición, especialmente en Bhastrika y Kumbhaka. No se añadieron dependencias ni se modificó otra sección.
+
+## Catálogo de Mantras (2026-11-07)
+
+Se completó la sección con **15 fichas**, conservando y completando `om-shanti`, `opening-mantra` y `closing-mantra`, y agregando Om, Gāyatrī, Mahāmṛtyuñjaya, Om Namaḥ Śivāya, Lokāḥ Samastāḥ Sukhino Bhavantu, Saha Nāvavatu, Asato Mā Sadgamaya, Pūrṇamadaḥ, Gaṇeśa, Hare Kṛṣṇa, So’ham y Sat Nām. Las categorías del catálogo agrupan por intención: Opening, Peace, Protection, Energy, Gratitude, Devotion y Self-awareness.
+
+Cada ficha incluye texto original, transliteración, traducción propia al inglés (también localizada al español), significado, contexto, intención, sugerencias de repetición, pronunciación fonética y nivel. La introducción de la sección explica el canto audible, el murmullo y la repetición mental, el uso opcional de la mala y una progresión simple de 3/9 repeticiones a 27 o 108. La biblioteca usa el filtro de categorías existente; el detalle muestra los campos en las pestañas existentes. Se ocultó el aviso de audio pendiente cuando no hay una grabación local, ya que la pronunciación escrita es el apoyo disponible.
+
+**Decisiones de texto y contexto:** las transliteraciones IAST se contrastaron con fuentes textuales; las traducciones al inglés son redacción propia y no reproducen traducciones modernas. Gāyatrī se guarda como Ṛgveda 3.62.10 sin el Om ni las fórmulas bhūr bhuvaḥ svaḥ que algunas recitaciones añaden; Mahāmṛtyuñjaya se guarda sin Om inicial porque no aparece en el verso védico consultado. Lokāḥ Samastāḥ se incluye porque fue pedido, aclarando que su fuente antigua no está verificada y que “and free” no está literalmente en el verso. El mantra de cierre de Ashtanga conserva el texto recibido y su vocabulario histórico, pero queda aclarado que no se verificó una fuente clásica única para la fórmula completa. Sat Nām se conserva en panyabí y escritura gurmukhi, como frase del Mūl Mantar sij; no se presenta falsamente como sánscrito. Las traducciones son originales; no se añadieron audios ni se enlazaron imágenes externas.
+
+Fuentes consultadas para texto y contexto: [Ṛgveda 3.62.10 y variantes de Gāyatrī](https://slokasandra.com/mantras/gayatri-mantra-rigveda-3-62-10/), [Ṛgveda 7.59.12, Mahāmṛtyuñjaya](https://udyog.io/en/mantra/mahamrityunjaya-mantra), [Taittirīya Upaniṣad](https://sanskritdocuments.org/doc_upanishhat/tait.html), [Bṛhadāraṇyaka Upaniṣad 1.3.28](https://sanskritdocuments.org/doc_upanishhat/bribasic.html), [Sikh Mūl Mantar y Sat Nām](https://gnnsj.org/sikh-dharam/gurbani/mool-mantar/) y [cantos usados en Ashtanga](https://ashtanga.yoga/chants/).
+
+El catálogo queda en **73 fichas, 15 mantras, 32 posturas y 15 secuencias**. La validación detectó y ayudó a corregir una frase de seguridad que parecía un placeholder por coincidencia de palabras; después de la corrección, la validación de contenido, typecheck, lint, las 10 pruebas y el build quedaron aprobados.
+
+**Pendiente:** una persona experta en sánscrito y representantes o docentes de las tradiciones pertinentes pueden revisar variantes regionales, acentos védicos y prácticas de conteo. El repertorio evita presentar la repetición como promesa terapéutica o como sustituto de la práctica religiosa contextual.

@@ -115,10 +115,15 @@ export interface PranayamaTechnique extends ContentBase {
 export interface Mantra extends ContentBase {
   kind: "mantra";
   sanskrit: string;
+  /** Some included devotional phrases belong to another language/script tradition. */
+  textLanguage?: Localized;
   transliteration: string;
+  pronunciation: Localized;
   translation: Localized;
   meaning: Localized;
   context: Localized;
+  intention: Localized;
+  practice: Localized;
   audio?: string;
 }
 export interface AnatomyTopic extends ContentBase {

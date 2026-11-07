@@ -74,6 +74,10 @@ export const sections: {
     id: "mantras",
     name: l("Mantras", "Mantras"),
     description: l("Sonido e intención", "Sound and intention"),
+    introduction: l(
+      "Un mantra es una sílaba, palabra o verso que se recita o contempla dentro de una tradición espiritual. Acercate a cada texto con respeto por su contexto; las traducciones expresan una lectura posible, no agotan todos sus sentidos. Elegí una intención, sentate cómodamente y pronunciá sin forzar la voz. Podés cantar en voz audible, murmurar o repetir mentalmente; son formas distintas y ninguna es obligatoria. Empezá con 3 o 9 repeticiones y, si te resulta útil, probá 27 o una vuelta de 108 cuentas con una mala. Mové una cuenta por repetición y seguí el método de tu tradición; algunas malas incluyen una cuenta principal que se honra sin cruzarla. Las categorías agrupan los mantras por intención. Sat Nām se presenta aparte como frase de la tradición sij en panyabí y escritura gurmukhi, no como sánscrito.",
+      "A mantra is a syllable, word, or verse recited or contemplated within a spiritual tradition. Approach each text with respect for its context; translations offer one possible reading and cannot hold every nuance. Choose an intention, sit comfortably, and use an unforced voice. You may chant aloud, murmur, or repeat mentally; these are distinct options and none is required. Begin with 3 or 9 repetitions, then try 27 or one 108-bead mala round if useful. Move one bead per repetition and follow your tradition’s method; some malas have a main bead that practitioners honor without crossing. Categories group the mantras by intention. Sat Nām is identified separately as a Sikh phrase in Punjabi and Gurmukhi script, not as Sanskrit.",
+    ),
     icon: "music",
     color: "peach",
   },

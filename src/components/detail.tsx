@@ -59,6 +59,9 @@ export function Detail({
           </div>
           <h1>{item.name[state.language]}</h1>
           {item.sanskrit && <p className="sanskrit">{item.sanskrit}</p>}
+          {item.kind === "mantra" && item.textLanguage && (
+            <p className="small muted">{item.textLanguage[state.language]}</p>
+          )}
           <p className="muted">{item.summary[state.language]}</p>
         </div>
         <FavoriteButton id={item.id} />
@@ -198,7 +201,9 @@ export function Detail({
             <div className="panel">
               <p className="sanskrit">{item.sanskrit}</p>
               <p>{item.transliteration}</p>
-              <AudioPlayer src={item.audio} title={item.name[state.language]} />
+              {item.audio && (
+                <AudioPlayer src={item.audio} title={item.name[state.language]} />
+              )}
             </div>
           )}
           <NotesEditor id={item.id} />
