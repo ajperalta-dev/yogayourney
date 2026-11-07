@@ -380,3 +380,11 @@ La revisión de Pranayama, Kriyas y Ayurveda confirmó contenido localizado en e
 **Verificación ejecutada:** `npm run build`, `npm run lint`, `npm test` (10 pruebas aprobadas), `npm run typecheck` y `npm run validate:content` finalizaron correctamente. El build prerenderizó las rutas existentes. No se añadieron dependencias ni se cambiaron nombres, arquitectura o diseño; el aviso de Pranayama utiliza el componente de seguridad ya existente.
 
 **Pendiente:** la exactitud docente de las secuencias y la información de seguridad y tradiciones sigue siendo apropiada para una revisión por profesorado cualificado; el contenido educativo no sustituye consejo médico individual.
+
+## Identidad visual: logo actualizado (2026-11-07)
+
+Se integró el logo proporcionado en la marca del menú lateral y se sustituyeron los iconos PNG de 192 y 512 píxeles usados por la app instalada. El PNG original tiene fondo transparente y queda en `public/logo.png`; los iconos de aplicación se componen sobre el fondo claro de la interfaz con margen suficiente para las máscaras de dispositivos. También se actualizó el favicon SVG, los metadatos de Next.js y la precarga del service worker; el caché pasó a v2 para renovar los iconos guardados.
+
+**Decisión:** se conservó el nombre textual “yogajourney” junto al símbolo para mantener la marca legible y accesible, y el símbolo recibe texto alternativo vacío al ser decorativo junto al nombre.
+
+**Verificación:** `npm run build` y `npm run lint` finalizaron correctamente tras integrar el logo.

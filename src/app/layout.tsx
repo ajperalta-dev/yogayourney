@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Tu espacio personal para estudiar, practicar y enseñar yoga. 200 Hours YTT · Rishikesh, India.",
   manifest: "/manifest.webmanifest",
-  icons: { icon: "/icon.svg", apple: "/icon-192.png" },
+  icons: { icon: "/icon-192.png", apple: "/icon-192.png" },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

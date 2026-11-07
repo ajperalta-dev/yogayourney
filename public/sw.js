@@ -1,6 +1,6 @@
 /* Increment when the app shell changes. Personal data stays in localStorage. */
-const CACHE = 'yoga-journey-v1';
-const CORE = ['/', '/offline.html', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/images/journey.svg', '/images/study.svg'];
+const CACHE = 'yoga-journey-v2';
+const CORE = ['/', '/offline.html', '/manifest.webmanifest', '/logo.png', '/icon-192.png', '/icon-512.png', '/images/journey.svg', '/images/study.svg'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('yoga-journey-') && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', event => {

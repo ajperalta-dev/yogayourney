@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, type ReactNode } from "react";
 import {
@@ -60,7 +61,13 @@ export function AppShell({
       <aside className={`sidebar ${menu ? "is-open" : ""}`}>
         <Link href="/" className="brand" onClick={() => setMenu(false)}>
           <span className="brand-mark">
-            <Flower2 size={29} />
+            <Image
+              src="/logo.png"
+              alt=""
+              width={38}
+              height={38}
+              priority
+            />
           </span>
           <span>
             yoga<span className="brand-secondary">journey</span>
