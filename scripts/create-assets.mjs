@@ -61,28 +61,92 @@ const figures = {
   },
 };
 function svgFigure(id, f) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380"><rect width="600" height="380" fill="#edf0e5"/><circle cx="300" cy="183" r="128" fill="#e3e9d8"/><circle cx="300" cy="183" r="145" fill="none" stroke="#d9e1cd"/><path d="M120 310h360" stroke="#becdb0" stroke-width="2"/><ellipse cx="300" cy="313" rx="105" ry="7" fill="#cedac1"/><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="${f.legs}" stroke="#56765a" stroke-width="17"/><path d="${f.body}" stroke="#bf9471" stroke-width="26"/><path d="${f.arms}" stroke="#ab8d6d" stroke-width="11"/></g><circle cx="${f.head[0]}" cy="${f.head[1]}" r="18" fill="#ab8d6d"/><path d="M${f.head[0] - 17} ${f.head[1] - 6}q0-23 20-16 14 4 15 16-12-12-35 0" fill="#3d5641"/><g fill="#98ac86" opacity=".6"><circle cx="130" cy="100" r="3"/><circle cx="473" cy="246" r="4"/><path d="M453 115h16m-8-8v16" stroke="#98ac86" stroke-width="1"/></g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380" role="img"><title>Ilustración orientativa: ${id}</title><desc>Figura esquemática de yoga en paleta verde salvia y arena.</desc><rect width="600" height="380" fill="#edf0e5"/><circle cx="300" cy="183" r="128" fill="#e3e9d8"/><circle cx="300" cy="183" r="145" fill="none" stroke="#d9e1cd"/><path d="M120 310h360" stroke="#becdb0" stroke-width="2"/><ellipse cx="300" cy="313" rx="105" ry="7" fill="#cedac1"/>${f.overlay ?? ""}<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="${f.legs}" stroke="#56765a" stroke-width="17"/><path d="${f.body}" stroke="#bf9471" stroke-width="26"/><path d="${f.arms}" stroke="#ab8d6d" stroke-width="11"/></g><circle cx="${f.head[0]}" cy="${f.head[1]}" r="18" fill="#ab8d6d"/><path d="M${f.head[0] - 17} ${f.head[1] - 6}q0-23 20-16 14 4 15 16-12-12-35 0" fill="#3d5641"/><g fill="#98ac86" opacity=".6"><circle cx="130" cy="100" r="3"/><circle cx="473" cy="246" r="4"/><path d="M453 115h16m-8-8v16" stroke="#98ac86" stroke-width="1"/></g></svg>`;
 }
-for (const [id, f] of Object.entries(figures))
-  await fs.writeFile(`public/images/${id}.svg`, svgFigure(id, f));
 await fs.writeFile(
   "public/images/study.svg",
   `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380"><rect width="600" height="380" fill="#eeeadd"/><circle cx="300" cy="180" r="118" fill="#e4dfce"/><g fill="none" stroke="#829476" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M300 276c-64-10-105-56-90-118 45 1 80 47 90 118Z"/><path d="M300 276c64-10 105-56 90-118-45 1-80 47-90 118Z"/><path d="M300 264c-51-46-48-107 0-148 48 41 51 102 0 148Z"/><path d="M216 288q84 39 168 0"/></g><circle cx="300" cy="87" r="5" fill="#a5ad8b"/></svg>`,
 );
-const poseIds = [
-  "urdhva-hastasana", "uttanasana", "ardha-uttanasana", "phalahakasana",
-  "chaturanga-dandasana", "urdhva-mukha-svanasana", "adho-mukha-svanasana",
-  "utkatasana", "virabhadrasana-i", "virabhadrasana-ii",
-  "utthita-parsvakonasana", "prasarita-padottanasana", "parsvottanasana",
-  "dandasana", "paschimottanasana", "ardha-matsyendrasana",
-  "setu-bandha-sarvangasana", "viparita-karani", "dragon", "sphinx",
-  "supported-child", "reclined-twist", "supported-seat",
-];
 await fs.mkdir("public/images/poses", { recursive: true });
 await fs.mkdir("public/images/sequences", { recursive: true });
+const poseFigures = {
+  ...figures,
+  "urdhva-hastasana": {
+    head: [300, 102], body: "M300 125L300 218", arms: "M296 145L263 73M304 145L337 73", legs: "M300 218L278 302M300 218L322 302",
+  },
+  uttanasana: {
+    head: [307, 226], body: "M300 155Q338 174 314 211", arms: "M318 192L293 276M326 194L336 276", legs: "M300 155L277 302M300 155L328 302",
+  },
+  "ardha-uttanasana": {
+    head: [299, 164], body: "M293 137Q280 164 300 191", arms: "M286 150L248 242M298 151L347 242", legs: "M300 191L274 302M300 191L325 302", overlay: '<rect x="235" y="242" width="30" height="22" rx="4" fill="#d3b38e"/><rect x="333" y="242" width="30" height="22" rx="4" fill="#d3b38e"/>',
+  },
+  phalahakasana: {
+    head: [164, 200], body: "M184 205L337 235", arms: "M194 207L190 276M208 209L215 275", legs: "M337 235L410 266L474 266M337 235L414 278L478 278",
+  },
+  "chaturanga-dandasana": {
+    head: [166, 218], body: "M186 218L338 242", arms: "M194 216L216 270M208 218L232 269", legs: "M338 242L411 266L475 266M338 242L413 278L477 278",
+  },
+  "urdhva-mukha-svanasana": {
+    head: [184, 173], body: "M203 190Q275 225 355 250", arms: "M210 199L207 279M224 204L222 279", legs: "M355 250L420 260L480 260M355 250L424 274L482 274",
+  },
+  "adho-mukha-svanasana": {
+    head: [213, 207], body: "M230 211L316 139", arms: "M231 211L162 282M244 201L236 282", legs: "M316 139L386 211L461 281M316 139L403 194L488 281",
+  },
+  utkatasana: {
+    head: [300, 108], body: "M300 131L300 205", arms: "M295 145L266 83M305 145L334 83", legs: "M300 205L263 239L272 302M300 205L338 239L328 302",
+  },
+  "virabhadrasana-i": {
+    head: [275, 103], body: "M275 126L280 213", arms: "M269 144L239 76M281 144L311 76", legs: "M280 213L321 247L348 302M280 213L224 250L158 302",
+  },
+  "virabhadrasana-ii": {
+    head: [300, 106], body: "M300 130L300 214", arms: "M294 148L207 151M306 148L393 151", legs: "M300 214L355 245L369 302M300 214L248 245L174 302",
+  },
+  "utthita-parsvakonasana": {
+    head: [352, 142], body: "M340 158Q309 188 280 218", arms: "M338 159L415 113M322 176L363 253", legs: "M280 218L336 247L361 302M280 218L222 255L160 302",
+  },
+  "prasarita-padottanasana": {
+    head: [300, 202], body: "M300 153Q276 177 300 190", arms: "M286 169L268 255M314 169L332 255", legs: "M300 153L222 302M300 153L378 302",
+  },
+  parsvottanasana: {
+    head: [321, 206], body: "M300 147Q343 166 328 191", arms: "M321 177L300 256M330 177L353 255", legs: "M300 147L275 302M300 147L373 261L432 302",
+  },
+  dandasana: {
+    head: [300, 105], body: "M300 128L300 217", arms: "M293 149L272 254M307 149L328 254", legs: "M300 217L380 280L461 280M300 217L382 294L464 294",
+  },
+  paschimottanasana: {
+    head: [369, 242], body: "M300 205Q350 200 350 229", arms: "M334 213L415 273M345 216L432 278", legs: "M300 205L388 280L470 280M300 205L388 294L470 294",
+  },
+  "ardha-matsyendrasana": {
+    head: [329, 116], body: "M300 204Q326 171 315 139", arms: "M292 151L260 222L316 246M307 153L358 195", legs: "M300 204L244 269L335 269M300 204L360 229L380 284",
+  },
+  "setu-bandha-sarvangasana": {
+    head: [169, 255], body: "M190 260Q262 229 326 207", arms: "M195 264L229 291M211 258L248 284", legs: "M326 207L363 242L360 296M326 207L397 241L401 296",
+  },
+  "viparita-karani": {
+    head: [162, 261], body: "M183 260L286 260", arms: "M199 260L190 289M211 260L205 289", legs: "M286 260L307 173L307 92M286 260L329 173L329 92", overlay: '<path d="M365 55V311" stroke="#bdcbb1" stroke-width="8"/><path d="M351 311h37" stroke="#bdcbb1" stroke-width="5"/>',
+  },
+  butterfly: {
+    head: [300, 119], body: "M300 141L300 216", arms: "M294 156L268 214L294 248M306 156L332 214L306 248", legs: "M300 216Q251 203 221 258Q250 283 300 266Q350 283 379 258Q349 203 300 216",
+  },
+  dragon: {
+    head: [300, 102], body: "M300 125Q286 164 285 207", arms: "M292 151L250 226M304 151L325 226", legs: "M285 207L334 240L355 302M285 207L226 239L168 289", overlay: '<rect x="146" y="282" width="70" height="18" rx="8" fill="#d3b38e"/>',
+  },
+  sphinx: {
+    head: [184, 207], body: "M203 220Q280 245 365 269", arms: "M213 220L223 270L287 270M226 225L238 260L294 260", legs: "M365 269L430 277L484 277M365 269L431 290L483 290",
+  },
+  "supported-child": {
+    head: [252, 253], body: "M267 239Q306 201 340 182", arms: "M276 227L207 263M288 216L222 280", legs: "M340 182Q399 186 408 235L378 277M340 182Q373 180 385 211", overlay: '<rect x="190" y="258" width="113" height="30" rx="13" fill="#d3b38e"/>',
+  },
+  "reclined-twist": {
+    head: [153, 258], body: "M174 260L282 264", arms: "M184 261L225 294M202 260L240 287", legs: "M282 264Q347 257 379 213L431 202M282 264Q344 268 381 224L439 222", overlay: '<rect x="400" y="196" width="58" height="45" rx="12" fill="#d3b38e"/>',
+  },
+  "supported-seat": {
+    head: [300, 114], body: "M300 137L300 216", arms: "M294 156L272 216L272 244M306 156L328 216L328 244", legs: "M300 216L281 260L252 291M300 216L321 260L350 291", overlay: '<path d="M244 233v75m112-75v75m-112-42h112m-98-24h84" fill="none" stroke="#9a7e62" stroke-width="8" stroke-linecap="round"/><path d="M450 52v100q0 35 31 35" fill="none" stroke="#819576" stroke-width="7" stroke-linecap="round"/>',
+  },
+};
+for (const [id, figure] of Object.entries(poseFigures))
+  await fs.writeFile(`public/images/poses/${id}.svg`, svgFigure(id, figure));
 const studyIllustration = await fs.readFile("public/images/study.svg");
-for (const id of poseIds)
-  await fs.writeFile(`public/images/poses/${id}.svg`, studyIllustration);
 for (const id of [
   "surya-a", "surya-b", "standing", "primary-series", "finishing",
   "hatha-foundations", "yin-stillness", "aerial-foundations",

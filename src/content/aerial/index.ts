@@ -29,8 +29,8 @@ export const aerial: AerialPose[] = [
       "Durante el minuto de repaso en el suelo, mantené una respiración cómoda y continua.",
       "During the one-minute ground-based review, keep breathing comfortably and continuously.",
     ),
-    image: "/images/poses/supported-seat.webp",
-    thumbnail: "/images/poses/supported-seat-thumb.webp",
+    image: "/images/poses/supported-seat.svg",
+    thumbnail: "/images/poses/supported-seat.svg",
     studyOnly: true,
     safety: caution,
     hammockSetup: l(

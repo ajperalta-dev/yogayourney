@@ -39,8 +39,8 @@ function pose({
     kind: "asana",
     level,
     categories: [category],
-    image: `${imageRoot}/${id}.webp`,
-    thumbnail: `${imageRoot}/${id}-thumb.webp`,
+    image: `${imageRoot}/${id}.svg`,
+    thumbnail: `${imageRoot}/${id}.svg`,
     instructionSteps: splitInstructionSteps(instructions),
     safety: contraindications,
     anatomyIds,
@@ -65,7 +65,7 @@ export const asanas: Asana[] = [
     name: l("Montaña", "Mountain"),
     category: "Standing",
     duration: 25,
-    imageRoot: "/images",
+    imageRoot: "/images/poses",
     instructions: l(
       "Parate con los pies paralelos y repartí el peso entre los talones y la base de los dedos. Aflojá las rodillas y dejá los brazos a los lados.",
       "Stand with your feet parallel and share the weight between your heels and the bases of your toes. Soften the knees and let the arms rest by your sides.",
@@ -105,7 +105,7 @@ export const asanas: Asana[] = [
     name: l("Triángulo extendido", "Extended triangle"),
     category: "Standing",
     duration: 40,
-    imageRoot: "/images",
+    imageRoot: "/images/poses",
     instructions: l(
       "Separá los pies y girá el pie delantero hacia afuera. Alargá el torso sobre la pierna delantera y apoyá la mano en un bloque. Volvé al centro y cambiá de lado.",
       "Step the feet apart and turn the front foot out. Reach your torso over the front leg and rest your hand on a block. Return to center and change sides.",
@@ -145,7 +145,7 @@ export const asanas: Asana[] = [
     name: l("Flexión con agarre de dedos", "Big toe pose"),
     category: "Forward bends",
     duration: 25,
-    imageRoot: "/images",
+    imageRoot: "/images/poses",
     instructions: l(
       "Flexioná las caderas con las rodillas blandas. Si llegás sin tirar, tomá los dedos gordos de los pies con las manos. Soltá el agarre y volvé a subir despacio.",
       "Fold at the hips with soft knees. If you can reach without pulling, hold your big toes with your hands. Release the grip and rise slowly.",
@@ -185,7 +185,7 @@ export const asanas: Asana[] = [
     name: l("Manos bajo los pies", "Hand under foot pose"),
     category: "Forward bends",
     duration: 20,
-    imageRoot: "/images",
+    imageRoot: "/images/poses",
     instructions: l(
       "Incliná el torso desde las caderas con las rodillas dobladas. Si llegás con comodidad, deslizá las palmas boca arriba debajo de la parte delantera de los pies. Retirá las manos antes de subir.",
       "Hinge at the hips with the knees bent. If you can comfortably reach, slide the hands palms up under the front of the feet. Release the hands before rising.",
@@ -225,7 +225,7 @@ export const asanas: Asana[] = [
     name: l("Ángulo unido", "Bound angle"),
     category: "Sitting",
     duration: 35,
-    imageRoot: "/images",
+    imageRoot: "/images/poses",
     instructions: l(
       "Sentate y juntá las plantas de los pies a una distancia cómoda de la pelvis. Apoyá las manos en los tobillos y alargá el torso sobre el asiento. Juntá las rodillas con ayuda de las manos al salir.",
       "Sit and bring the soles together at a comfortable distance from the pelvis. Rest your hands on your ankles and lengthen up from the seat. Use your hands to help bring the knees together as you come out.",
@@ -265,7 +265,7 @@ export const asanas: Asana[] = [
     name: l("Cobra baja", "Low cobra"),
     category: "Backbends",
     duration: 20,
-    imageRoot: "/images",
+    imageRoot: "/images/poses",
     instructions: l(
       "Acostate boca abajo y poné las palmas junto a las costillas. Despegá apenas el pecho con los codos cerca del torso y la pelvis apoyada. Bajá despacio.",
       "Lie on your belly and place the palms beside your ribs. Lift the chest slightly with your elbows close to the torso and the pelvis down. Lower slowly.",
@@ -305,7 +305,7 @@ export const asanas: Asana[] = [
     name: l("Asiento cómodo", "Easy seat"),
     category: "Sitting",
     duration: 45,
-    imageRoot: "/images",
+    imageRoot: "/images/poses",
     instructions: l(
       "Sentate sobre una manta con las piernas cruzadas sin esfuerzo. Apoyá las manos en los muslos y enderezá suavemente el torso. Descruzá las piernas despacio al salir.",
       "Sit on a blanket with your legs comfortably crossed. Rest your hands on your thighs and gently lengthen the torso. Uncross your legs slowly to come out.",
@@ -345,7 +345,7 @@ export const asanas: Asana[] = [
     name: l("Descanso consciente", "Resting pose"),
     category: "Relaxation",
     duration: 90,
-    imageRoot: "/images",
+    imageRoot: "/images/poses",
     instructions: l(
       "Acostate boca arriba con las piernas cómodamente separadas. Dejá descansar los brazos y apoyá las rodillas si lo necesitás. Para salir, doblá las rodillas, girá de lado y usá las manos para volver a sentarte.",
       "Lie on your back with your legs comfortably apart. Rest your arms and support your knees if needed. Bend the knees, roll onto one side, and press up with your hands to finish.",

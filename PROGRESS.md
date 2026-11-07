@@ -86,7 +86,7 @@ Las sumas reportadas coinciden con la duración declarada en las ocho secuencias
 4. **Aerial (contenido completo, imagen pendiente):** `aerial-foundations` mantiene el repaso en suelo, modo de estudio y límites de seguridad para la práctica supervisada.
 5. **Pranayama, Mantras, Anatomía, Kriyas, Meditación y Ayurveda:** ampliar las colecciones que hoy tienen una sola ficha, según el alcance ya previsto, sin crear secciones nuevas.
 6. **Horario y herramientas de estudio:** revisar cobertura y textos de las cinco clases, seis tarjetas y cinco preguntas; localizar en español los nombres de categoría usados como filtros si el diseño actual permite hacerlo.
-7. **Imágenes e integración:** reemplazar arte provisional conforme a `IMAGES_TODO.md`, mostrar la imagen de secuencia en la UI existente, añadir alt descriptivo y fallback local manteniendo los componentes y estilos actuales.
+7. **Imágenes e integración (posturas completas; secuencias pendiente):** las 32 fichas de postura ya apuntan a SVG locales provisionales según `IMAGES_TODO.md`. Queda reemplazar el arte de secuencias, mostrar la imagen de secuencia en la UI existente y completar alt descriptivo y fallback local manteniendo los componentes y estilos actuales.
 8. **Verificación de contenido (pendiente):** validar rutas y datos de cada ficha, revisar imágenes referenciadas y repetir build, lint y pruebas existentes después de implementar contenido.
 
 ## Decisiones y límites de la auditoría inicial
@@ -129,7 +129,7 @@ Cada ficha tiene instrucciones ordenadas, tiempo orientativo, respiración, erro
 
 Mariposa con apoyo se distingue de Ángulo unido por el pliegue pasivo sobre un cojín, los talones más alejados y la permanencia Yin. Las dos variantes mantienen sus IDs y sus fichas. Plancha conserva el ID histórico `phalahakasana` para que las secuencias guardadas sigan resolviendo su referencia. Asiento con apoyo usa `sanskrit: null` y su minuto corresponde al repaso en suelo con silla.
 
-El campo `image` quedó preparado con las rutas de recursos que ya existían. La incorporación de nuevas imágenes sigue prevista para la etapa de arte.
+Los campos `image` y `thumbnail` apuntan ahora a SVG locales provisionales específicos por postura, bajo `/images/poses/`. Los archivos fuente y los derivados WebP responsivos se generan con `scripts/create-assets.mjs`.
 
 | Sección | Postura completada | ID | Tiempo de ficha |
 | --- | --- | --- | ---: |
@@ -199,3 +199,16 @@ Se completaron las tres secuencias de estas secciones, conservando nombres, nive
 Hatha reparte 80 segundos por postura de pie para practicar ambos lados dentro del mismo intervalo. Yin incluye los dos lados en los intervalos de Dragón bajo y Torsión tumbada; el tiempo del paso incluye entrada, salida y descanso, no exige sostener la postura durante todo el temporizador. Aerial se conserva como repaso en silla y en el suelo, no como secuencia para cargar peso en una hamaca; la ficha `studyOnly` mantiene desactivado el modo de práctica autónoma.
 
 Se verificaron las tres sumas (495, 1.680 y 450 segundos), el orden de las fases y la resolución de las referencias de postura. Las imágenes de secuencia existentes siguen siendo provisionales y están pendientes de reemplazo según `IMAGES_TODO.md`.
+
+## Imágenes de posturas
+
+Se completaron las imágenes provisionales de las 32 posturas de la biblioteca en `/public/images/poses/`, con SVGs de silueta esquemática en una paleta común. Los campos `image` y `thumbnail` de las 26 asanas, cinco posturas Yin y una ficha Aerial apuntan al archivo `.svg` que coincide con su ID. El generador conserva estos dibujos y produce derivados WebP responsivos para compatibilidad con otros usos.
+
+| Lote | Posturas | Estado | Rango de IDs |
+| --- | ---: | --- | --- |
+| 1 | 16 de 32 | completo | `tadasana` → `utkatasana` |
+| 2 | 16 de 32 | completo | `virabhadrasana-i` → `supported-seat` |
+
+**Punto de continuación:** las 32 imágenes de postura están cubiertas; no queda un lote de posturas pendiente. Queda reemplazar las 32 ilustraciones provisionales por arte final. `IMAGES_TODO.md` contiene las rutas exactas de posturas y secuencias que conviene reemplazar. Los ocho SVG de secuencia continúan pendientes.
+
+La comprobación automática encontró los 32 SVG, confirmó que cada campo `image` coincide con el ID y que no hay rutas inexistentes. Pasaron TypeScript, lint y las 10 pruebas. El build estático no pudo reemplazar `.next` porque hay un servidor de desarrollo activo usando esa carpeta (Windows devolvió `EPERM` al intentar quitar un segmento); queda repetir el build cuando ese servidor se detenga.
