@@ -80,7 +80,7 @@ Las sumas reportadas coinciden con la duración declarada en las ocho secuencias
 
 ## Plan ordenado de trabajo
 
-1. **Ashtanga (pendiente):** revisar progresión y fases de las cinco secuencias existentes, definir objetivos descriptivos por secuencia y comprobar sus tiempos y alternativas sin presentarlas como series tradicionales completas.
+1. **Ashtanga (contenido completo, imagen pendiente):** las cinco secuencias tienen fases y tiempos propios, objetivos concretos y referencias verificadas a la biblioteca.
 2. **Hatha (pendiente):** revisar la progresión de `hatha-foundations`, aclarar el objetivo propio y verificar que calentamiento, posturas principales, enfriamiento y Savasana estén bien representados.
 3. **Yin (parcial):** las cinco fichas tienen permanencia y precauciones propias. Queda revisar la progresión, los intervalos y los rebotes dentro de `yin-stillness`.
 4. **Aerial (parcial):** la ficha de Asiento con apoyo distingue el repaso en silla de la práctica supervisada. Queda revisar el intervalo y el alcance de cada paso de la secuencia.
@@ -169,3 +169,19 @@ El campo `image` quedó preparado con las rutas de recursos que ya existían. La
 La verificación cubrió IDs únicos en kebab-case, fichas con campos completos en ambos idiomas y referencias válidas en las ocho secuencias. Pasaron las 10 pruebas, TypeScript, lint y el build estático de 112 páginas.
 
 Referencias editoriales para la técnica y las precauciones de la biblioteca. [Common Yoga Protocol, Ministry of Ayush](https://yoga.ayush.gov.in/public/assets/front/pdf/CYPEnglishLeaflet.pdf), [Yoga: Effectiveness and Safety, NCCIH](https://www.nccih.nih.gov/health/yoga-effectiveness-and-safety), [Surya Namaskara A, AshtangaYoga.info](https://www.ashtangayoga.info/ashtanga-yoga/surya-namaskara-a-sun-salutation/item/urdhva-mukha-shvanasana/?cHash=7ce3fc3ac2f5713cf241628956799281), [Three Beginning Flows, Yin Yoga](https://yinyoga.com/yinsights/three-beginning-flows/).
+
+## Secuencias de Ashtanga
+
+La primera tanda sigue el orden del plan. Cada secuencia conserva su nombre, nivel y duración. Los objetivos concretan la intención original de coordinar el movimiento con la respiración en un rango cómodo. Cada paso usa una ficha de la biblioteca mediante su ID.
+
+| Secuencia | Calentamiento | Posturas principales | Enfriamiento | Savasana | Total | Estado |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Surya Namaskar A · adaptación breve (`surya-a`) | 100 s | 65 s | 75 s | 120 s | 360 s | contenido completo, imagen pendiente |
+| Surya Namaskar B · adaptación breve (`surya-b`) | 110 s | 250 s | 60 s | 120 s | 540 s | contenido completo, imagen pendiente |
+| Fundamentos de pie · Standing (`standing`) | 180 s | 240 s | 90 s | 150 s | 660 s | contenido completo, imagen pendiente |
+| Ashtanga · fundamentos de la serie primaria (`primary-series`) | 330 s | 795 s | 75 s | 330 s | 1530 s | contenido completo, imagen pendiente |
+| Cierre · suelo y descanso (`finishing`) | 120 s | 140 s | 60 s | 160 s | 480 s | contenido completo, imagen pendiente |
+
+Surya A usa Cobra baja y admite apoyar las rodillas en Plancha. Surya B reserva un paso para ambos lados de Guerrero I y usa los intervalos de descenso para incluir una pausa cuando haga falta. Fundamentos de pie da tiempo para cambiar de lado. La selección de la serie primaria enlaza posturas de pie y sentadas, y Cierre empieza con una preparación suave en el suelo. Las cinco propuestas son adaptaciones para la app. [Saludo al sol A, AshtangaYoga.info](https://www.ashtangayoga.info/ashtanga-yoga/surya-namaskara-a-sun-salutation/), [Series de práctica de Ashtanga](https://www.ashtangayoga.info/ashtanga-yoga/traditional-practice-series/).
+
+Se comprobó que cada suma coincide con el total declarado, que las cuatro fases aparecen en orden y que todos los IDs resuelven a fichas existentes. Pasaron TypeScript, lint, las 10 pruebas y el build estático.
