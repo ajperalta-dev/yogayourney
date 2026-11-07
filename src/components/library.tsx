@@ -71,6 +71,11 @@ export function Library({
           </span>
         }
       />
+      {config?.introduction && section !== "learn" && (
+        <div className="panel">
+          <p className="muted">{config.introduction[state.language]}</p>
+        </div>
+      )}
       {section === "learn" ? (
         <div className="section-grid large">
           {sections.map((s) => (

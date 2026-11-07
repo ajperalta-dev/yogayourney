@@ -249,3 +249,20 @@ Las tarjetas y las fichas conservan las rutas locales por ID y muestran descripc
 `npm run validate:content` comprueba textos vacíos o provisorios, referencias, duración total, rutas locales, textos alternativos y lienzo de los SVG. Las comprobaciones de build, TypeScript, lint y las 10 pruebas resolvieron el build pendiente de la tanda anterior.
 
 Se verificaron 11 rutas en un navegador a 390 y 1366 px. Las páginas revisadas no mostraron desbordamiento horizontal ni imágenes sin texto alternativo. En Hatha, el avance desde Asiento cómodo a Brazos elevados cambió la ilustración y el temporizador de 30 a 15 segundos. El reproductor mostró la alternativa al simular un error de carga y Aerial conservó el modo de estudio supervisado.
+
+## Contenido por nivel: Ashtanga, Hatha, Yin Yoga y Aerial Yoga (2026-11-07)
+
+Se añadieron introducciones localizadas en español e inglés a las cuatro secciones y se muestran en sus bibliotecas con el panel visual existente. Las introducciones describen origen o contexto, enfoque, público, beneficios posibles y formato de clase. Se conservaron las secciones y la biblioteca central; las secuencias nuevas enlazan fichas por `contentId` y no duplican instrucciones de postura.
+
+| Sección | Secuencias por nivel disponibles | Estado y trabajo pendiente |
+| --- | --- | --- |
+| Ashtanga | Principiante: `surya-a`, `standing`, `finishing`; intermedio: `surya-b`, `primary-series`; avanzado: `primary-series-vinyasa` | Contenido actualizado. La nueva práctica avanzada es una selección abreviada para estudiar vinyasa, no una Primary Series tradicional completa; completar la serie con el catálogo de posturas restante y revisión docente queda pendiente. |
+| Hatha | Principiante: `hatha-foundations`; intermedio: `hatha-steady-flow`; avanzado: `hatha-whole-body` | Contenido completo para la cobertura solicitada, con alternancia de pie/suelo, opciones de apoyo, relajación y suma validada. |
+| Yin Yoga | Principiante: `yin-stillness`; intermedio: `yin-grounding`; avanzado: `yin-long-rest` | Contenido completo para la cobertura solicitada. Las permanencias principales proponen varios minutos, ambos lados cuando corresponde, salida gradual, descanso neutro y señales para reducir o salir. |
+| Aerial Yoga | Principiante: `aerial-foundations`; intermedio: `aerial-intermediate-study`; avanzado: `aerial-advanced-study` | Repasos de seguridad y preparación; las tres secuencias siguen en modo de estudio. No se añadieron inversiones guiadas ni posturas con carga en tela: falta contenido aéreo validado por instructor/a, ilustración específica y comprobación presencial de equipo y montaje. |
+
+Se generaron siete portadas SVG locales con el mismo personaje y una postura que pertenece a cada secuencia. Las rutas están en `public/images/sequences/` y en `src/content/illustrations.json`; las nuevas portadas figuran como provisionales en `IMAGES_TODO.md`. No se agregaron posturas: las 32 fichas existentes conservan nombre sánscrito, instrucciones paso a paso, respiración, errores comunes, modificaciones, precauciones e imagen.
+
+El catálogo queda en **15 secuencias, 32 posturas y 51 fichas**. `npm run validate:content`, `npm run typecheck`, `npm run lint` y `npm run build` finalizaron correctamente; el validador comprobó duración, referencias, textos y rutas de imagen. No se ejecutaron pruebas automatizadas en esta tanda.
+
+**Decisión documentada:** por seguridad, la app no ofrece instrucciones para montar hamacas ni practicar inversiones aéreas sin supervisión. El siguiente paso de Aerial requiere una biblioteca de posturas concretas, validación de instructor/a y arte anatómico correspondiente antes de habilitar práctica guiada. El resto de las siete secciones permanece sin cambios.

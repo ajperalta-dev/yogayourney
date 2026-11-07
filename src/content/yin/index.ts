@@ -23,7 +23,7 @@ export const yin: YinPose[] = [
     ),
     kind: "yin",
     sanskrit: "Baddha Koṇāsana",
-    duration: 120,
+    duration: 300,
     safety: butterflyCaution,
     breathing: l(
       "Dejá que las costillas se muevan al respirar. Si el apoyo te dificulta respirar, elevá el torso.",
@@ -43,8 +43,8 @@ export const yin: YinPose[] = [
     entry: butterflyEntry,
     instructionSteps: splitInstructionSteps(butterflyEntry),
     hold: l(
-      "Empezá con un minuto en un rango suave. Quedate hasta dos minutos si el apoyo resulta cómodo.",
-      "Start with one minute in an easy range. Stay up to two minutes if the support feels comfortable.",
+      "Para esta práctica, comenzá con 3 minutos en un rango suave y quedate hasta 5 solo si respirar y salir siguen siendo cómodos.",
+      "For this practice, begin with 3 minutes in an easy range and stay up to 5 only if breathing and leaving remain comfortable.",
     ),
     exit: l(
       "Elevá el torso despacio y ayudá a las piernas con las manos.",
@@ -77,7 +77,7 @@ const quietPoses = [
     id: "dragon",
     name: l("Dragón bajo", "Low dragon"),
     sanskrit: "Añjaneyāsana",
-    duration: 90,
+    duration: 360,
     area: l(
       "Parte delantera de la cadera de la pierna de atrás.",
       "Front of the hip of the back leg.",
@@ -91,8 +91,8 @@ const quietPoses = [
       "Breathe evenly. Soften the shoulders as you exhale without sinking farther into the hips.",
     ),
     hold: l(
-      "Empezá con 30 a 45 segundos por lado. Volvé a cuatro apoyos antes de cambiar.",
-      "Start with 30 to 45 seconds per side. Return to tabletop before switching.",
+      "Sostené hasta 3 minutos por lado si resulta tolerable; el temporizador de la secuencia reserva 6 minutos para ambos lados, salida y pausa. Volvé a cuatro apoyos antes de cambiar.",
+      "Stay up to 3 minutes per side if tolerable; the sequence timer reserves 6 minutes for both sides, exit, and pause. Return to tabletop before switching.",
     ),
     caution: l(
       "Salí si el apoyo provoca dolor en la rodilla de atrás o si la cadera delantera se pinza.",
@@ -115,7 +115,7 @@ const quietPoses = [
     id: "sphinx",
     name: l("Esfinge", "Sphinx"),
     sanskrit: "Sālamba Bhujaṅgāsana",
-    duration: 60,
+    duration: 240,
     area: l("Parte delantera del torso.", "Front of the torso."),
     entry: l(
       "Acostate boca abajo. Apoyá los antebrazos con los codos debajo o un poco por delante de los hombros. Dejá el pecho apenas elevado y la nuca larga.",
@@ -126,8 +126,8 @@ const quietPoses = [
       "Breathe into the sides of the ribs with the abdomen relaxed.",
     ),
     hold: l(
-      "Empezá con 30 segundos y quedate hasta un minuto si la espalda está cómoda.",
-      "Start with 30 seconds and stay up to a minute if your back is comfortable.",
+      "Comenzá con 3 minutos como máximo y acortá la permanencia si la espalda no se siente cómoda.",
+      "Begin with up to 3 minutes and shorten the hold if your back does not feel comfortable.",
     ),
     caution: l(
       "Bajá si la extensión produce presión lumbar o dolor de hombro. Elegí otra postura si estar boca abajo dificulta respirar.",
@@ -150,7 +150,7 @@ const quietPoses = [
     id: "supported-child",
     name: l("Niño con apoyo", "Supported child’s pose"),
     sanskrit: "Bālāsana",
-    duration: 90,
+    duration: 180,
     area: l(
       "Espalda y caderas en un rango cómodo.",
       "Back and hips within a comfortable range.",
@@ -188,7 +188,7 @@ const quietPoses = [
     id: "reclined-twist",
     name: l("Torsión tumbada", "Reclined twist"),
     sanskrit: "Supta Matsyendrāsana",
-    duration: 90,
+    duration: 360,
     area: l(
       "Costados y rotación suave del tronco.",
       "Side body and gentle trunk rotation.",
@@ -202,8 +202,8 @@ const quietPoses = [
       "Inhale into the upper side of the torso. Exhale without pressing the knees down.",
     ),
     hold: l(
-      "Quedate de 30 a 45 segundos por lado. Volvé al centro antes de cambiar.",
-      "Stay for 30 to 45 seconds per side. Return to center before switching.",
+      "Sostené hasta 3 minutos por lado solo si no hay dolor ni hormigueo. Volvé al centro y descansá antes de cambiar; el paso de secuencia incluye ambos lados y la transición.",
+      "Stay for up to 3 minutes per side only if there is no pain or tingling. Return to center and rest before switching; the sequence step includes both sides and the transition.",
     ),
     caution: l(
       "Volvé al centro si aparece dolor lumbar o si sentís hormigueo en una pierna. Mantené la cabeza neutra si girarla molesta.",
