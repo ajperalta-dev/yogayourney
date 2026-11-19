@@ -169,6 +169,9 @@ export interface AyurvedaTopic extends ContentBase {
   /** Built-in practice sequence IDs related to this educational topic. */
   sequenceIds?: string[];
 }
+export interface PhilosophyTopic extends ContentBase {
+  kind: "philosophy";
+}
 export type ContentItem =
   | Asana
   | YinPose
@@ -178,7 +181,8 @@ export type ContentItem =
   | AnatomyTopic
   | Kriya
   | MeditationPractice
-  | AyurvedaTopic;
+  | AyurvedaTopic
+  | PhilosophyTopic;
 export type ClassStage =
   | "centering"
   | "pranayama"

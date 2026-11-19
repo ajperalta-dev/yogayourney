@@ -415,3 +415,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - El conteo de áreas de Home se actualizó a 12. No se agregaron fichas, texto formativo ni lógica nueva.
 - Pendiente para la siguiente etapa: completar el contenido de Filosofía.
 
+
+## Filosofía — etapa 2, bloque 1
+- Añadida una ficha ES/EN sobre práctica y desapego, con desarrollo, devanagari/IAST, aplicación docente, reflexión y fuente tradicional contrastada (Yoga Sūtra 1.12–1.16).
+- Nuevo tipo PhilosophyTopic basado en ContentBase; integrado en el catálogo y rutas dinámicas existentes. Enlaces verificados a breath-awareness y dirga-pranayama. Usa las imágenes locales de estudio existentes.
+- Decisión: comenzar por fundamentos, dado que no se indicó una lista de bloques. La aplicación docente se identifica como interpretación contemporánea.
+- Verificación: compilación correcta; build detenido por los errores preexistentes del borrador sin seguimiento scripts/audit-hatha.ts. Lint correcto.
+- Pendiente: siguientes bloques, sujetos a la indicación «sigue»; resolver el borrador de auditoría Hatha en su propio alcance.

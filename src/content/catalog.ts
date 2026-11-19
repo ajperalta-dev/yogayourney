@@ -14,6 +14,7 @@ import { mantras } from "./mantras";
 import { anatomy } from "./anatomy";
 import { kriyas } from "./kriyas";
 import { meditation } from "./meditation";
+import { philosophy } from "./philosophy";
 import { ayurveda } from "./ayurveda";
 import { sequences } from "./sequences";
 import { sections } from "./sections";
@@ -30,6 +31,7 @@ export const catalog: ContentItem[] = [
   ...kriyas,
   ...meditation,
   ...ayurveda,
+  ...philosophy,
 ];
 export const byId = Object.fromEntries(catalog.map((item) => [item.id, item]));
 export function sectionFor(item: ContentItem): SectionId {
@@ -44,6 +46,7 @@ export function sectionFor(item: ContentItem): SectionId {
       kriya: "kriyas",
       meditation: "meditation",
       ayurveda: "ayurveda",
+      philosophy: "philosophy",
     } as const
   )[item.kind];
 }
