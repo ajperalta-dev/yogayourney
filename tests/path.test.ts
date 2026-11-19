@@ -41,5 +41,5 @@ test("all units have valid bilingual lessons referencing real generated exercise
  for (const unit of pathUnits) { assert.ok(unit.lessons.length); for (const l of unit.lessons) {
  assert.ok(l.exerciseIds.length >= 8 && l.exerciseIds.length <= 12); assert.ok(l.exerciseIds.every(id => ids.has(id)));
  }}
- for (const e of pathExercises) { assert.ok(e.prompt.es && e.prompt.en && e.explanation.es && e.explanation.en); if ("options" in e) { assert.equal(e.options.length, 4); assert.ok(e.options[e.correct]); } }
+ for (const e of pathExercises) { assert.ok(e.prompt.es && e.prompt.en && e.explanation.es && e.explanation.en); if ("options" in e) { assert.equal(e.options.length, e.type === "true-false" ? 2 : 4); assert.ok(e.options[e.correct]); } }
 });

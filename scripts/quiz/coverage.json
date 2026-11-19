@@ -1,0 +1,40 @@
+{
+  "units": 1,
+  "exercises": 60,
+  "distribution": {
+    "hatha": {
+      "hatha-vocabulary": {
+        "multiple-choice": 4,
+        "fill-blank": 4,
+        "matching": 2
+      },
+      "hatha-images": {
+        "image-to-name": 4,
+        "name-to-image": 4,
+        "true-false": 2
+      },
+      "hatha-sequence-study": {
+        "sequence-order": 5,
+        "word-order": 3,
+        "multiple-choice": 2
+      },
+      "hatha-relationships": {
+        "multiple-choice": 5,
+        "true-false": 2,
+        "matching": 2,
+        "odd-one-out": 1
+      },
+      "hatha-teaching": {
+        "teacher-scenario": 6,
+        "true-false": 2,
+        "fill-blank": 2
+      },
+      "hatha-safety": {
+        "teacher-scenario": 6,
+        "true-false": 2,
+        "fill-blank": 2
+      }
+    }
+  },
+  "errors": []
+}
