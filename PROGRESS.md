@@ -477,3 +477,13 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - Resultado automático: 26 fichas de Filosofía, cero incidencias. Resúmenes ≤280 caracteres; desarrollos ES/EN entre 150 y 400 palabras.
 - Catálogo actual: 146 fichas. La pantalla de progreso usa `catalog.length` como denominador, por lo que muestra el nuevo total dinámicamente; las menciones a 108 en secciones anteriores de este archivo son registros históricos de auditorías previas.
 - `npm run validate:content` y `npm run lint` pasaron. `npm run build` compila, pero TypeScript se detiene en errores preexistentes del borrador local `scripts/audit-hatha.ts` (fuera del alcance de Filosofía).
+
+## Camino / Path — reconocimiento y etapa 1
+- Repaso actual: `src/content/study.ts` y `src/components/study-tools.tsx`; rutas `study/[tool]`. Tipos `ContentItem`, `Flashcard`, `QuizQuestion` y registro `src/content/sections.ts`.
+- Se reutiliza `PersonalState`, `parseState`, el proveedor existente y la clave `yoga-journey:v1`. Se añade el campo opcional `path`; las copias antiguas se leen con estado inicial de Camino y conservan tarjetas, tests y resto de datos.
+- Modelo y motor separados de UI en `src/lib/path/`: unidades, lecciones, ejercicios, cola con reencolado, progreso, precisión, XP proporcional, protección ante recompensa repetida de una sesión, desbloqueo secuencial por unidad, dominio 0–5, racha por fecha local, meta diaria de 20 XP y cajas Leitner con próxima fecha.
+- Banco inicial por unidad en `src/content/path/`: 11 unidades, 20 lecciones de reconocimiento de conceptos y 178 ejercicios ES/EN derivados de nombres/resúmenes existentes. Lecciones de 8–12 ejercicios y estimación de 4 minutos. Se conserva referencia por id a la ficha; Schedule se excluye por no ser catálogo de estudio. Más tipos y agrupación editorial temática se ampliarán con la etapa de generación del banco.
+- Datos antiguos de cuestionarios agregados no identifican nodos de Camino, por lo que se preservan sin conceder dominio/XP ficticios. No se crean claves de almacenamiento, cuentas, backend ni UI nueva.
+- Comprobaciones: cinco tests nuevos pasan (cola/reencolado, precisión/XP, racha, desbloqueo, Leitner, copias antiguas y banco); lint pasa. La suite global da 14/15: falla una aserción previa sobre nombre sánscrito de banana-pose. Se actualizó la aserción histórica de 11 a 12 secciones.
+- Build compila y falla al revisar TypeScript por los errores previos del archivo local sin seguimiento `scripts/audit-hatha.ts`.
+- Pendiente: UI Camino, temas y tipos de ejercicio posteriores, integración de sesiones y repaso con el proveedor, revisión editorial de distractores y temporización real. Los 4 minutos son estimación, sin temporizador forzado.

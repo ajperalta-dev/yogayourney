@@ -15,9 +15,9 @@ import { quizQuestions } from "../src/content/study";
 import { defaultState, parseState } from "../src/lib/storage";
 import { validateSequenceDuration } from "../src/lib/sequence-validation";
 import { normalize } from "../src/lib/utils";
-test("the 11 sections remain separate", () => {
-  assert.equal(sections.length, 11);
-  assert.equal(new Set(sections.map((s) => s.id)).size, 11);
+test("the 12 sections remain separate", () => {
+  assert.equal(sections.length, 12);
+  assert.equal(new Set(sections.map((s) => s.id)).size, 12);
 });
 test("canonical content IDs, links and image assets resolve", () => {
   assert.equal(new Set(catalog.map((c) => c.id)).size, catalog.length);

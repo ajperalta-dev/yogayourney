@@ -1,3 +1,4 @@
+import { parsePath } from "./path/persistence";
 import type { PersonalState, Sequence } from "./models";
 import { validateSequenceDuration } from "./sequence-validation";
 export const STORAGE_KEY = "yoga-journey:v1";
@@ -13,6 +14,7 @@ export const defaultState: PersonalState = {
   quizzes: [],
   cards: {},
   sequences: [],
+  path: parsePath(undefined),
 };
 function record(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);
@@ -158,5 +160,5 @@ export function parseState(raw: string): PersonalState {
     )
   )
     throw new Error("Invalid progress");
-  return { ...v, sequences } as unknown as PersonalState;
+  return { ...v, sequences, path: parsePath(v.path) } as unknown as PersonalState;
 }

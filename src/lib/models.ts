@@ -245,6 +245,7 @@ export interface UserNote {
   updatedAt: string;
 }
 export interface PersonalState {
+  path?: import("./path/models").PathProgress;
   version: 1;
   language: Language;
   theme: "light" | "dark" | "system";

@@ -1,0 +1,14 @@
+import { bank as ashtanga } from "./ashtanga";
+import { bank as hatha } from "./hatha";
+import { bank as yin } from "./yin";
+import { bank as aerial } from "./aerial";
+import { bank as pranayama } from "./pranayama";
+import { bank as mantras } from "./mantras";
+import { bank as meditation } from "./meditation";
+import { bank as anatomy } from "./anatomy";
+import { bank as kriyas } from "./kriyas";
+import { bank as ayurveda } from "./ayurveda";
+import { bank as philosophy } from "./philosophy";
+const banks = [ashtanga, hatha, yin, aerial, pranayama, mantras, meditation, anatomy, kriyas, ayurveda, philosophy];
+export const pathUnits = banks.map(bank => bank.unit);
+export const pathExercises = banks.flatMap(bank => bank.exercises);
