@@ -422,3 +422,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - Decisión: comenzar por fundamentos, dado que no se indicó una lista de bloques. La aplicación docente se identifica como interpretación contemporánea.
 - Verificación: compilación correcta; build detenido por los errores preexistentes del borrador sin seguimiento scripts/audit-hatha.ts. Lint correcto.
 - Pendiente: siguientes bloques, sujetos a la indicación «sigue»; resolver el borrador de auditoría Hatha en su propio alcance.
+
+## Filosofía — etapa 2, Bloque A
+- Completadas cuatro fichas ES/EN: definición del yoga, línea temporal, textos fundamentales y yoga moderno/referentes.
+- Cada ficha incluye resumen, desarrollo, devanagari con IAST y significado, aplicación docente, reflexión y enlaces a fichas existentes.
+- Fechas antiguas y relatos de linaje se presentan como aproximados o discutidos; se evitó atribuir un origen único al yoga moderno.
+- Build compila código, pero falla en TypeScript por errores preexistentes de `scripts/audit-hatha.ts` (variable anticipada y acceso a `thumbnail` en una unión de tipos). Lint pasó.
+- Pendiente: siguientes bloques de Filosofía.
