@@ -464,3 +464,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - No existe un componente equivalente de mapa mental/resumen visual en las secciones revisadas, así que no se creó una vista nueva.
 - Validación de contenido y lint pasaron. Build compila, pero TypeScript queda bloqueado por los errores previos de `scripts/audit-hatha.ts`.
 - Bloque F terminado.
+
+## Filosofía — revisión de calidad editorial
+- Ajustados los 26 resúmenes a menos de 280 caracteres y los 26 desarrollos ES/EN al rango de 150–400 palabras.
+- Convertidas las referencias visibles a bibliografía de autor/título, retirando URLs y citas textuales. Las explicaciones son paráfrasis educativas originales.
+- Añadido REVIEW_PHILOSOPHY.md con cronologías, atribuciones y pronunciaciones que requieren revisión experta antes de publicación.
+- Confirmado: glosario de 90 términos; 40 tarjetas ES/EN de Filosofía; validador de contenido y lint aprobados.
+- Build compila, pero TypeScript falla por errores ajenos al contenido filosófico en `scripts/audit-hatha.ts`.
