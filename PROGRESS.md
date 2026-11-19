@@ -457,3 +457,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - Validación de contenido: 12 secciones y 145 fichas; campos, enlaces, duraciones e imágenes verificados. Lint pasó.
 - Build compila, pero TypeScript vuelve a detenerse por errores preexistentes en `scripts/audit-hatha.ts`.
 - Pendiente: siguientes bloques de Filosofía.
+
+## Filosofía — etapa 2, Bloque F
+- Añadida ficha de glosario con 90 términos en devanagari e IAST, aproximación de pronunciación y significado ES/EN.
+- Añadidas 40 tarjetas bilingües de Filosofía al formato global de repaso existente; ahora hay 46 tarjetas en total.
+- No existe un componente equivalente de mapa mental/resumen visual en las secciones revisadas, así que no se creó una vista nueva.
+- Validación de contenido y lint pasaron. Build compila, pero TypeScript queda bloqueado por los errores previos de `scripts/audit-hatha.ts`.
+- Bloque F terminado.

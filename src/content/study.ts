@@ -1,5 +1,53 @@
 import type { Flashcard, QuizQuestion } from "@/lib/models";
 import { l } from "@/lib/utils";
+const philosophyCards: Flashcard[] = ([
+  ["fc-phil-01", "¿Qué significa darśana?", "What does darśana mean?", "Visión o perspectiva filosófica.", "A philosophical vision or perspective."],
+  ["fc-phil-02", "¿Cuáles son los seis darśanas clásicos?", "What are the six classical darśanas?", "Nyāya, Vaiśeṣika, Sāṃkhya, Yoga, Pūrvamīmāṃsā y Vedānta.", "Nyāya, Vaiśeṣika, Sāṃkhya, Yoga, Pūrvamīmāṃsā, and Vedānta."],
+  ["fc-phil-03", "¿Qué estudia Sāṃkhya?", "What does Sāṃkhya study?", "La distinción entre puruṣa y prakṛti y la evolución de la experiencia.", "The distinction between puruṣa and prakṛti and the unfolding of experience."],
+  ["fc-phil-04", "¿Qué representa puruṣa en Sāṃkhya?", "What does puruṣa represent in Sāṃkhya?", "Conciencia o principio testigo.", "Consciousness or the witnessing principle."],
+  ["fc-phil-05", "¿Qué representa prakṛti?", "What does prakṛti represent?", "Naturaleza primordial, caracterizada por los tres guṇas.", "Primordial nature, characterized by the three guṇas."],
+  ["fc-phil-06", "Nombra los tres guṇas.", "Name the three guṇas.", "Sattva, rajas y tamas.", "Sattva, rajas, and tamas."],
+  ["fc-phil-07", "¿Cuántos tattvas enumera habitualmente Sāṃkhya?", "How many tattvas does Sāṃkhya commonly enumerate?", "24 principios de prakṛti más puruṣa como el 25.º.", "24 prakṛti principles, with puruṣa as the 25th."],
+  ["fc-phil-08", "¿Qué significa Advaita?", "What does Advaita mean?", "No dualidad.", "Non-duality."],
+  ["fc-phil-09", "¿Qué relación postula Advaita entre ātman y brahman?", "What relationship does Advaita posit between ātman and brahman?", "En la lectura clásica, el sí mismo profundo no es distinto de brahman.", "In the classical reading, the deepest self is not distinct from brahman."],
+  ["fc-phil-10", "¿Māyā significa que el mundo no existe?", "Does māyā mean the world does not exist?", "No; sus sentidos son más matizados y varían entre escuelas.", "No; its meanings are more nuanced and vary among schools."],
+  ["fc-phil-11", "¿Qué escena enmarca la Bhagavad Gītā?", "What scene frames the Bhagavad Gītā?", "El diálogo entre Arjuna y Krishna antes de una batalla del Mahābhārata.", "The dialogue between Arjuna and Krishna before a Mahābhārata battle."],
+  ["fc-phil-12", "¿Qué explora Arjuna en la Gītā?", "What does Arjuna explore in the Gītā?", "Un dilema sobre deber, acción, guerra y consecuencias.", "A dilemma about duty, action, war, and consequences."],
+  ["fc-phil-13", "¿Qué propone karma-yoga?", "What does karma-yoga propose?", "Actuar con disciplina sin quedar dominado por el apego al fruto.", "Act with discipline without being ruled by attachment to results."],
+  ["fc-phil-14", "¿Qué significa dharma?", "What does dharma mean?", "Puede significar deber, enseñanza, orden o conducta apropiada según contexto.", "It can mean duty, teaching, order, or appropriate conduct, by context."],
+  ["fc-phil-15", "¿Qué son los kleśas?", "What are the kleśas?", "Aflicciones u obstáculos en el marco filosófico de Patañjali.", "Afflictions or obstacles in Patañjali's philosophical framework."],
+  ["fc-phil-16", "Nombra los cinco kleśas.", "Name the five kleśas.", "Avidyā, asmitā, rāga, dveṣa y abhiniveśa.", "Avidyā, asmitā, rāga, dveṣa, and abhiniveśa."],
+  ["fc-phil-17", "¿Qué significa citta?", "What does citta mean?", "El campo de la mente o de la experiencia mental en este sistema.", "The field of mind or mental experience in this system."],
+  ["fc-phil-18", "¿Qué es una vṛtti?", "What is a vṛtti?", "Un movimiento o patrón mental.", "A mental movement or pattern."],
+  ["fc-phil-19", "¿Cuáles son las cinco vṛttis?", "What are the five vṛttis?", "Pramāṇa, viparyaya, vikalpa, nidrā y smṛti.", "Pramāṇa, viparyaya, vikalpa, nidrā, and smṛti."],
+  ["fc-phil-20", "¿Qué sugiere citta-vṛtti-nirodha?", "What does citta-vṛtti-nirodha suggest?", "Regular o aquietar los patrones de la mente; no necesariamente reprimirlos.", "Regulating or settling mental patterns; not necessarily suppressing them."],
+  ["fc-phil-21", "¿Cuáles son los cuatro pādas de Yoga Sūtra?", "What are the four pādas of the Yoga Sūtra?", "Samādhi, Sādhana, Vibhūti y Kaivalya.", "Samādhi, Sādhana, Vibhūti, and Kaivalya."],
+  ["fc-phil-22", "¿Qué enuncia Yoga Sūtra II.29?", "What does Yoga Sūtra II.29 list?", "Los ocho miembros del yoga.", "The eight limbs of yoga."],
+  ["fc-phil-23", "Nombra los ocho miembros.", "Name the eight limbs.", "Yama, niyama, āsana, prāṇāyāma, pratyāhāra, dhāraṇā, dhyāna y samādhi.", "Yama, niyama, āsana, prāṇāyāma, pratyāhāra, dhāraṇā, dhyāna, and samādhi."],
+  ["fc-phil-24", "¿Qué es ahiṃsā?", "What is ahiṃsā?", "No dañar o reducir el daño.", "Non-harming or reducing harm."],
+  ["fc-phil-25", "¿Qué es satya?", "What is satya?", "Veracidad, atendiendo también a cómo comunicamos.", "Truthfulness, including how we communicate."],
+  ["fc-phil-26", "¿Qué es asteya?", "What is asteya?", "No tomar lo que no se ha dado; también reconocer crédito y trabajo.", "Not taking what is not given; also crediting work and contributions."],
+  ["fc-phil-27", "¿Qué es brahmacarya en interpretaciones diversas?", "What is brahmacarya across varied interpretations?", "Conducta disciplinada o continencia; su interpretación depende de tradición.", "Disciplined conduct or continence; interpretation depends on tradition."],
+  ["fc-phil-28", "¿Qué es aparigraha?", "What is aparigraha?", "No acumular ni aferrarse a posesiones o resultados.", "Non-hoarding or non-clinging to possessions or outcomes."],
+  ["fc-phil-29", "Nombra los cinco niyamas.", "Name the five niyamas.", "Śauca, santoṣa, tapas, svādhyāya e īśvara-praṇidhāna.", "Śauca, santoṣa, tapas, svādhyāya, and īśvara-praṇidhāna."],
+  ["fc-phil-30", "¿Cómo define II.46 āsana?", "How does II.46 define āsana?", "Como estable y cómoda; las traducciones varían.", "As steady and comfortable; translations vary."],
+  ["fc-phil-31", "¿Qué describe pratyāhāra?", "What does pratyāhāra describe?", "El recogimiento de los sentidos respecto de sus objetos.", "The senses withdrawing from their objects."],
+  ["fc-phil-32", "¿En qué difieren dhāraṇā y dhyāna?", "How do dhāraṇā and dhyāna differ?", "Dhāraṇā fija la atención; dhyāna es su continuidad meditativa.", "Dhāraṇā fixes attention; dhyāna is its sustained meditative flow."],
+  ["fc-phil-33", "¿Qué es īśvara en Patañjali?", "What is Īśvara in Patañjali?", "Un puruṣa especial según I.24; su interpretación teísta varía.", "A special puruṣa in I.24; theistic interpretations vary."],
+  ["fc-phil-34", "¿Qué pares presenta I.12 como medios?", "Which pair does I.12 present as means?", "Abhyāsa y vairāgya: práctica persistente y desapego.", "Abhyāsa and vairāgya: sustained practice and nonattachment."],
+  ["fc-phil-35", "¿Son kośas capas anatómicas?", "Are kośas anatomical layers?", "No; son envolturas de un mapa tradicional de experiencia.", "No; they are sheaths in a traditional map of experience."],
+  ["fc-phil-36", "¿Qué es una nāḍī?", "What is a nāḍī?", "Un canal sutil de ciertos modelos tradicionales, no una estructura anatómica verificada.", "A subtle channel in certain traditional models, not a verified anatomical structure."],
+  ["fc-phil-37", "¿Todos los textos usan el mismo sistema de cakras?", "Do all texts use the same cakra system?", "No; los sistemas y números varían históricamente.", "No; systems and numbers vary historically."],
+  ["fc-phil-38", "¿Prāṇa es idéntico al oxígeno?", "Is prāṇa identical to oxygen?", "No; es un concepto tradicional de aliento o fuerza vital.", "No; it is a traditional concept of breath or life force."],
+  ["fc-phil-39", "¿Cuáles son los tres cuerpos en algunas lecturas Vedānta?", "What are the three bodies in some Vedānta readings?", "Sthūla, sūkṣma y kāraṇa śarīra.", "Sthūla, sūkṣma, and kāraṇa śarīra."],
+  ["fc-phil-40", "¿Qué presenta Māṇḍūkya como turīya?", "What does the Māṇḍūkya present as turīya?", "“El cuarto”, no reducible a los estados ordinarios de vigilia, sueño y sueño profundo.", "“The fourth,” not reducible to ordinary waking, dream, and deep-sleep states."],
+] as const).map(([id, frontEs, frontEn, backEs, backEn]) => ({
+  id,
+  category: "Philosophy",
+  front: l(frontEs, frontEn),
+  back: l(backEs, backEn),
+}));
+
 export const flashcards: Flashcard[] = [
   {
     id: "fc-sanskrit",
@@ -58,6 +106,7 @@ export const flashcards: Flashcard[] = [
       "Non-harming; an invitation to act without causing harm.",
     ),
   },
+  ...philosophyCards,
 ];
 export const quizQuestions: QuizQuestion[] = [
   {
