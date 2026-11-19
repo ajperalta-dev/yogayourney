@@ -3290,3 +3290,33 @@ select {
     font-size: 9px;
   }
 }
+
+/* Camino exercise controls reuse the app's surfaces and semantic colors. */
+.path-exercise { max-width: 54rem; margin-inline: auto; }
+.path-exercise fieldset { min-width: 0; border: 0; padding: 0; }
+.path-exercise legend { margin-bottom: .75rem; font-weight: 600; }
+.path-effects { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+.path-effects label { display: flex; gap: .5rem; align-items: center; min-height: 44px; }
+.path-exercise input, .path-exercise select { accent-color: var(--primary); }
+.path-choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .75rem; }
+.path-choice { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; padding: 1rem; border: 1px solid var(--muted); border-radius: var(--radius); cursor: pointer; min-height: 52px; overflow-wrap: anywhere; transition: background 220ms ease; }
+.path-choice:has(:checked) { background: var(--sage); }
+.path-choice:focus-within { outline: 2px solid var(--focus); outline-offset: 3px; }
+.path-choice input { flex-shrink: 0; width: 1.25rem; height: 1.25rem; }
+.path-pairs { display: grid; gap: 1rem; }
+.path-pairs label { display: grid; gap: .5rem; }
+.path-pairs select { min-height: 48px; width: 100%; border: 1px solid var(--muted); border-radius: var(--radius); background: var(--sage); color: inherit; padding: .75rem; font: inherit; }
+.path-token-bank, .path-exercise-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.path-order li { margin-block: .5rem; overflow-wrap: anywhere; }
+.path-exercise .button { white-space: normal; min-height: 44px; }
+.path-exercise-image { width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; background: var(--sage); }
+.path-exercise-image img { width: 100%; height: 100%; object-fit: contain; }
+.path-exercise-image p { padding: 1rem; }
+.path-feedback { margin-block: 1rem; border-radius: var(--radius); }
+.path-feedback:not([data-result="pending"]) { padding: 1.25rem; animation: path-feedback-in 240ms ease-out; }
+.path-feedback[data-result="correct"] { background: var(--sage); }
+.path-feedback[data-result="incorrect"] { background: var(--accent); color: var(--accent-ink); }
+@keyframes path-feedback-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .path-exercise *, .path-exercise *::before, .path-exercise *::after { animation: none !important; transition: none !important; }
+}

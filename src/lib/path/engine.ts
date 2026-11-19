@@ -10,6 +10,11 @@ export function answer(session: Session, correct: boolean): Session {
   const queue = correct ? rest : [...rest, id];
   return { ...session, queue, attempts: session.attempts + 1, correct: session.correct + Number(correct), mastered: correct ? [...session.mastered, id] : session.mastered, mistakes: correct ? session.mistakes : [...session.mistakes, id], finished: queue.length === 0 };
 }
+/** A skip rotates the queue without counting a guess or awarding progress. */
+export function skipExercise(session: Session): Session {
+  if (session.finished || !session.queue.length) return session;
+  return { ...session, queue: [...session.queue.slice(1), session.queue[0]] };
+}
 export function metrics(session: Session) {
   const accuracy = session.attempts ? session.correct / session.attempts : 0;
   return { progress: session.mastered.length / session.total, accuracy, xp: session.finished ? Math.round(accuracy * session.total * 10) : 0 };
