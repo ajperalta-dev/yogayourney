@@ -153,7 +153,7 @@ export function Dashboard({
         <div>
           <BookOpen size={20} />
           <span>
-            <strong>11</strong> {t("áreas para descubrir", "areas to discover")}
+            <strong>12</strong> {t("áreas para descubrir", "areas to discover")}
           </span>
         </div>
         <div>

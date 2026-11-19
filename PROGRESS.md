@@ -408,3 +408,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 **Verificación:** el validador confirma 8 secuencias Aerial dentro de 20–60 minutos, sumas exactas, cierres requeridos, referencias y 7 imágenes de postura más 8 portadas locales con alt bilingüe. `npm run build` y `npm run lint` finalizaron correctamente.
 
 **Pendiente:** revisión presencial por instructor cualificado de las descripciones y montaje; esta app no puede evaluar anclajes, carga nominal, ajuste al cuerpo, spotter ni aptitud médica individual. Las instrucciones no habilitan práctica aérea autónoma.
+# Filosofía — alta de sección
+
+- Registrada como la sección 12 con nombre localizado “Filosofía” / “Philosophy” y subtítulo breve en ES/EN.
+- Usa la ruta dinámica `/philosophy/`, la tarjeta de áreas existente y el listado de Learn; su biblioteca queda vacía por alcance de esta etapa.
+- El conteo de áreas de Home se actualizó a 12. No se agregaron fichas, texto formativo ni lógica nueva.
+- Pendiente para la siguiente etapa: completar el contenido de Filosofía.
+

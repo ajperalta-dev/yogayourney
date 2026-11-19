@@ -12,7 +12,8 @@ export type SectionId =
   | "anatomy"
   | "kriyas"
   | "meditation"
-  | "ayurveda";
+  | "ayurveda"
+  | "philosophy";
 export type DetailGroup =
   "technique" | "anatomy" | "benefits" | "teaching" | "safety";
 export type Field =

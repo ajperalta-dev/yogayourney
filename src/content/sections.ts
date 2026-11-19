@@ -121,6 +121,13 @@ export const sections: {
     icon: "leaf",
     color: "sage",
   },
+  {
+    id: "philosophy",
+    name: l("Filosofía", "Philosophy"),
+    description: l("El porqué de la práctica", "The why behind the practice"),
+    icon: "book",
+    color: "peach",
+  },
 ];
 export const hathaCategories = [
   "Standing",
