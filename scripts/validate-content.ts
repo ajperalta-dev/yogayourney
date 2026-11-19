@@ -33,6 +33,7 @@ const sectionIds = new Set<SectionId>([
   "kriyas",
   "meditation",
   "ayurveda",
+  "philosophy",
 ]);
 const contentById = new Map(catalog.map((item) => [item.id, item]));
 const sequenceById = new Map(sequences.map((sequence) => [sequence.id, sequence]));
@@ -246,8 +247,8 @@ function validatePracticeReferences(
   }
 }
 
-if (sections.length !== 11) {
-  errors.push(`secciones: se esperaban las 11 secciones definidas y hay ${sections.length}`);
+if (sections.length !== 12) {
+  errors.push(`secciones: se esperaban las 12 secciones definidas y hay ${sections.length}`);
 }
 const seenSectionIds = new Set<string>();
 for (const section of sections) {

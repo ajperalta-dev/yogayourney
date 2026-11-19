@@ -436,3 +436,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - Referencias académicas incluidas; las interpretaciones se presentan sin dogmatismo y Tantra se trata en marco educativo general.
 - Lint pasó y el código compiló; build vuelve a detenerse solo en errores preexistentes de `scripts/audit-hatha.ts` durante TypeScript.
 - Pendiente: bloques siguientes de Filosofía.
+
+## Filosofía — etapa 2, Bloque C
+- Añadidas siete fichas bilingües: introducción a Yoga Sūtra; citta/vṛttis; kleśas; ocho miembros; yamas/niyamas; āsana–samādhi; abhyāsa/vairāgya/Īśvara.
+- Yamas y niyamas se agrupan en una ficha con los diez términos, ejemplos cotidianos y de enseñanza, límites de aplicación y reflexión.
+- Se corrigió el validador de contenido para aceptar el alta de la sección Filosofía y su total de 12 áreas. Validación de contenido y lint pasaron.
+- Build compila el código, pero TypeScript continúa detenido por los errores preexistentes de `scripts/audit-hatha.ts`.
+- Pendiente: próximos bloques de Filosofía.
