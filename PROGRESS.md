@@ -443,3 +443,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - Se corrigió el validador de contenido para aceptar el alta de la sección Filosofía y su total de 12 áreas. Validación de contenido y lint pasaron.
 - Build compila el código, pero TypeScript continúa detenido por los errores preexistentes de `scripts/audit-hatha.ts`.
 - Pendiente: próximos bloques de Filosofía.
+
+## Filosofía — etapa 2, Bloque D
+- Añadidas cuatro fichas bilingües sobre Bhagavad Gītā; conceptos dharma/karma/saṃsāra/mokṣa/ātman/māyā/guṇa/sevā/satsaṅga/guru-śiṣya; mapas tradicionales de kośas/nāḍīs/cakras/prāṇa; y cuerpos/estados de conciencia.
+- Se separan expresamente los modelos tradicionales de la anatomía y medicina; las explicaciones mantienen diferencias entre escuelas y contextos.
+- Validación de contenido: 12 secciones y 141 fichas, con campos, enlaces y recursos verificados. Lint pasó.
+- Build compila, pero TypeScript se detiene en errores preexistentes de `scripts/audit-hatha.ts`.
+- Pendiente: siguientes bloques de Filosofía.
