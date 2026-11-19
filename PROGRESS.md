@@ -471,3 +471,9 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - Añadido REVIEW_PHILOSOPHY.md con cronologías, atribuciones y pronunciaciones que requieren revisión experta antes de publicación.
 - Confirmado: glosario de 90 términos; 40 tarjetas ES/EN de Filosofía; validador de contenido y lint aprobados.
 - Build compila, pero TypeScript falla por errores ajenos al contenido filosófico en `scripts/audit-hatha.ts`.
+
+## Filosofía — Etapa 3, verificación y cierre
+- Añadido `npm run audit:philosophy`, que comprueba traducciones ES/EN, campos vacíos, placeholders, enlaces, IAST y límites editoriales e imprime solo conteos/IDs.
+- Resultado automático: 26 fichas de Filosofía, cero incidencias. Resúmenes ≤280 caracteres; desarrollos ES/EN entre 150 y 400 palabras.
+- Catálogo actual: 146 fichas. La pantalla de progreso usa `catalog.length` como denominador, por lo que muestra el nuevo total dinámicamente; las menciones a 108 en secciones anteriores de este archivo son registros históricos de auditorías previas.
+- `npm run validate:content` y `npm run lint` pasaron. `npm run build` compila, pero TypeScript se detiene en errores preexistentes del borrador local `scripts/audit-hatha.ts` (fuera del alcance de Filosofía).

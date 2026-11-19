@@ -8,6 +8,7 @@
     "start": "node scripts/serve.mjs",
     "assets": "node scripts/create-assets.mjs",
     "validate:content": "tsx scripts/validate-content.ts",
+    "audit:philosophy": "tsx scripts/audit-philosophy.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts"
