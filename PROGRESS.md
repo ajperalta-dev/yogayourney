@@ -450,3 +450,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - Validación de contenido: 12 secciones y 141 fichas, con campos, enlaces y recursos verificados. Lint pasó.
 - Build compila, pero TypeScript se detiene en errores preexistentes de `scripts/audit-hatha.ts`.
 - Pendiente: siguientes bloques de Filosofía.
+
+## Filosofía — etapa 2, Bloque E
+- Añadidas cuatro fichas bilingües: ética y límites docentes; raíces culturales y respeto; filosofía en la vida cotidiana con enlace a Ayurveda; e integración de filosofía en una clase.
+- Se incluyeron consentimiento específico y renovable al ajustar, confidencialidad, límites de competencia, derivación clínica, crédito de fuentes y ejemplos temáticos de enseñanza.
+- Validación de contenido: 12 secciones y 145 fichas; campos, enlaces, duraciones e imágenes verificados. Lint pasó.
+- Build compila, pero TypeScript vuelve a detenerse por errores preexistentes en `scripts/audit-hatha.ts`.
+- Pendiente: siguientes bloques de Filosofía.
