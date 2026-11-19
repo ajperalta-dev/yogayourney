@@ -429,3 +429,10 @@ Se añadieron 8 secuencias supervisadas de 20, 25, 30, 35, 40, 45, 50 y 60 minut
 - Fechas antiguas y relatos de linaje se presentan como aproximados o discutidos; se evitó atribuir un origen único al yoga moderno.
 - Build compila código, pero falla en TypeScript por errores preexistentes de `scripts/audit-hatha.ts` (variable anticipada y acceso a `thumbnail` en una unión de tipos). Lint pasó.
 - Pendiente: siguientes bloques de Filosofía.
+
+## Filosofía — etapa 2, Bloque B
+- Añadidas cinco fichas bilingües: seis darśanas, Sāṃkhya y sus tattvas/guṇas, Advaita Vedānta, caminos del yoga, y Tantra en relación con Haṭha.
+- Se aclara que el recuento común de Sāṃkhya comprende 24 principios de prakṛti más puruṣa como 25.º; también se distinguen las escuelas vedánticas y los sentidos históricos variables de rāja/haṭha.
+- Referencias académicas incluidas; las interpretaciones se presentan sin dogmatismo y Tantra se trata en marco educativo general.
+- Lint pasó y el código compiló; build vuelve a detenerse solo en errores preexistentes de `scripts/audit-hatha.ts` durante TypeScript.
+- Pendiente: bloques siguientes de Filosofía.
