@@ -6,9 +6,10 @@ import {
   Progress,
 } from "@/components/study-tools";
 import { catalog, searchIndex } from "@/content/catalog";
+import { PathScreen } from "@/components/path/screen";
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return ["favorites", "flashcards", "quiz", "progress"].map((tool) => ({
+  return ["favorites", "flashcards", "quiz", "progress", "path"].map((tool) => ({
     tool,
   }));
 }
@@ -19,6 +20,8 @@ export default async function Page({
 }) {
   const { tool } = await params;
   switch (tool) {
+    case "path":
+      return <PathScreen />;
     case "favorites":
       return (
         <Favorites index={searchIndex.map((i) => ({ ...i, searchText: "" }))} />

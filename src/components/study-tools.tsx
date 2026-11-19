@@ -23,6 +23,11 @@ export function StudyHome() {
   const { t } = useLocal();
   const tools = [
     {
+      id: "path", es: "Camino", en: "Path",
+      descEs: "Un paso cada día. Aprende a tu ritmo.", descEn: "A step each day. Learn at your own pace.",
+      icon: GraduationCap,
+    },
+    {
       id: "flashcards",
       es: "Flashcards",
       en: "Flashcards",

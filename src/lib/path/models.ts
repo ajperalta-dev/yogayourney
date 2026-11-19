@@ -27,7 +27,7 @@ export interface OrderExercise extends ExerciseBase {
 }
 export type Exercise = ChoiceExercise | PairExercise | OrderExercise;
 export type ExerciseResponse = number | string[] | Record<string, string>;
-export interface Lesson { id: string; unitId: SectionId; name: Localized; minutes: 3 | 4 | 5; exerciseIds: string[]; }
+export interface Lesson { id: string; unitId: SectionId; name: Localized; minutes: 3 | 4 | 5; exerciseIds: string[]; checkpoint?: boolean; }
 export interface Unit { id: SectionId; name: Localized; lessons: Lesson[]; }
 export interface Session {
   id: string; lessonId: string; queue: string[]; total: number; mastered: string[];
@@ -35,6 +35,8 @@ export interface Session {
 }
 export interface NodeProgress { mastery: number; box: number; nextReview: string; }
 export interface PathProgress {
+  active?: Session;
+  unlockedUnits?: string[];
   version: 1; rewardedSessions: string[]; completed: string[]; nodes: Record<string, NodeProgress>;
   xp: number; streak: number; dailyGoal: number; dailyXp: number;
   lastActivity: string | null; errors: Record<string, number>; legacyImported: boolean;

@@ -1,7 +1,7 @@
 import type { Lesson, PathProgress, Session } from "./models";
 export const emptyPath = (): PathProgress => ({ version: 1, rewardedSessions: [], completed: [], nodes: {}, xp: 0, streak: 0, dailyGoal: 20, dailyXp: 0, lastActivity: null, errors: {}, legacyImported: true });
 export function startLesson(lesson: Lesson): Session {
-  if (lesson.exerciseIds.length < 8 || lesson.exerciseIds.length > 12 || new Set(lesson.exerciseIds).size !== lesson.exerciseIds.length) throw new Error("Invalid lesson");
+  if ((lesson.checkpoint ? lesson.exerciseIds.length !== 15 : lesson.exerciseIds.length < 8 || lesson.exerciseIds.length > 12) || new Set(lesson.exerciseIds).size !== lesson.exerciseIds.length) throw new Error("Invalid lesson");
   return { id: crypto.randomUUID(), lessonId: lesson.id, queue: [...lesson.exerciseIds], total: lesson.exerciseIds.length, mastered: [], attempts: 0, correct: 0, mistakes: [], finished: false };
 }
 export function answer(session: Session, correct: boolean): Session {

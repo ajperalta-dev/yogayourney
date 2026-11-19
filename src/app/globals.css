@@ -3320,3 +3320,40 @@ select {
 @media (prefers-reduced-motion: reduce) {
   .path-exercise *, .path-exercise *::before, .path-exercise *::after { animation: none !important; transition: none !important; }
 }
+
+/* Camino: familiar wellness surfaces, local learning progression. */
+.path-screen { min-width: 0; }
+.path-stats { position: sticky; top: 12px; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; padding: 1rem; margin-bottom: 1.5rem; border-radius: var(--radius); background: var(--surface); color: var(--text); box-shadow: var(--shadow); border: 1px solid var(--line); }
+.path-daily-goal { display: flex; gap: .5rem; align-items: center; }
+.path-daily-goal small { display: block; }
+.path-goal-ring { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(closest-side, var(--surface) 75%, transparent 77%), conic-gradient(var(--primary) var(--goal), var(--sage) 0); font-size: 13px; font-weight: 600; }
+.path-unit { margin-block: 2rem; }
+.path-unit-heading { padding: 1.5rem; }
+.path-unit-heading .button { margin-top: 1rem; }
+.path-unit-heading.sage { background: var(--sage); }
+.path-unit-heading.peach { background: var(--peach); }
+.path-unit-heading.lavender { background: var(--lavender); }
+.path-unit-heading.blue { background: var(--blue); }
+.path-unit-heading.sand { background: var(--sand); }
+.path-traversal { position: relative; width: min(100%, 400px); margin: 1.5rem auto; }
+.path-nodes { position: relative; list-style: none; padding: 0; margin: 0; }
+.path-nodes > li { height: 184px; display: flex; flex-direction: column; align-items: center; position: relative; width: 45%; max-width: 180px; margin-inline: auto; left: var(--node-offset); }
+.path-trail { position: absolute; width: 100%; height: 100%; pointer-events: none; inset: 0; overflow: visible; }
+.path-trail path { fill: none; stroke: var(--control-line); stroke-width: 3; stroke-dasharray: 5 8; }
+.path-node { width: 80px; height: 80px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); color: var(--text); border: 2px solid var(--control-line); box-shadow: var(--shadow); cursor: pointer; transition: transform 220ms ease; }
+.path-node:hover { transform: translateY(-3px); }
+.path-node[data-state="available"], .path-node[data-state="in-progress"] { background: var(--primary); color: var(--primary-ink); }
+.path-node[data-state="in-progress"] { outline: 3px solid var(--focus); outline-offset: 4px; }
+.path-node[data-state="completed"] { background: var(--sage); }
+.path-node[data-state="mastered"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent-ink); }
+.path-node-title { text-align: center; max-width: 100%; margin-top: .25rem; font-size: 14px; line-height: 1.1; }
+.path-nodes small { font-size: 13px; }
+.path-stars { display: flex; gap: 2px; }
+.path-node-dialog { max-width: min(94vw, 30rem); max-height: 85svh; overflow-y: auto; padding: 1.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+.path-node-dialog::backdrop { background: #10221999; }
+.path-node-dialog > .button-icon { float: right; }
+.path-node-dialog p, .path-session-summary p { margin-block: 1rem; }
+.path-active, .path-unit { scroll-margin-top: 120px; }
+@media (max-width: 600px) { .path-stats { top: 8px; font-size: 13px; } .path-node-title { font-size: 13px; max-width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .path-node { transition: none; } .path-node:hover { transform: none; } }
+
