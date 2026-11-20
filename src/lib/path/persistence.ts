@@ -17,5 +17,7 @@ export function parsePath(value: unknown): PathProgress {
   const validGame=g && integer(g.correctAnswers) && g.goal && ["minutes","lessons"].includes(g.goal.type) && (g.goal.type==="minutes"?[5,10,15,20]:[1,2,3,4]).includes(g.goal.target) && g.days && typeof g.days==="object" && !Array.isArray(g.days) && Object.entries(g.days).every(([key,d])=>date(key)&&d&&integer(d.seconds)&&integer(d.lessons)) && strings(g.frozenWeeks)&&g.frozenWeeks.every(date)&&strings(g.badges);
   const r=p.reviews;
   const validReviews=r && typeof r==="object"&&!Array.isArray(r)&&Object.values(r).every(v=>v&&integer(v.box)&&v.box<=5&&date(v.due)&&date(v.last)&&integer(v.correct)&&integer(v.wrong)&&typeof v.contentId==="string"&&(v.flashcardId===undefined||typeof v.flashcardId==="string"));
-  return { ...p, reviews:validReviews?r:undefined, game:validGame?g:undefined, active: validActive ? active : undefined, unlockedUnits: strings(p.unlockedUnits) ? p.unlockedUnits : [], legacyImported: true };
+  const normalized:PathProgress={ ...p, reviews:validReviews?r:undefined, game:validGame?g:undefined, active: validActive ? active : undefined, unlockedUnits: strings(p.unlockedUnits) ? p.unlockedUnits : [], legacyImported: true };
+  for(const key of ["reviews","game","active"] as const)if(normalized[key]===undefined)delete normalized[key];
+  return normalized;
 }

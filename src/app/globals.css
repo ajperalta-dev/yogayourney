@@ -3368,3 +3368,12 @@ select {
 .path-review-actions { margin-block: 1rem; padding: 1.25rem; }
 .path-review-actions .button { margin: .25rem; white-space: normal; }
 .path-review-actions p { margin-block: .75rem; }
+
+/* Stable exercise area while a deferred bank is being restored. */
+.path-active { min-height: 34rem; }
+.path-node { scroll-margin-block: 190px 100px; }
+.path-unit-heading { color: var(--text); }
+.path-unit-heading h2 { color: inherit; }
+.path-stats { scroll-margin-top: 1rem; }
+
+.path-loading { min-height: 100svh; }

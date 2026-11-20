@@ -22,7 +22,7 @@ export default async function Page({
   const { tool } = await params;
   switch (tool) {
     case "path":
-      return <Suspense fallback={<p>…</p>}><PathScreen /></Suspense>;
+      return <Suspense fallback={<div className="path-loading" role="status"><p>…</p></div>}><PathScreen /></Suspense>;
     case "favorites":
       return (
         <Favorites index={searchIndex.map((i) => ({ ...i, searchText: "" }))} />

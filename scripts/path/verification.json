@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-20",
+  "framework": "16.4.6",
+  "tests": 42,
+  "browser": "Chrome headless; static export; isolated profile",
+  "checks": {
+    "startupBanks": 0,
+    "nodes": 45,
+    "dialog": true,
+    "escapeCloses": true,
+    "exercise": true,
+    "feedbackFocus": true,
+    "saved": true,
+    "resumed": true,
+    "inProgress": true,
+    "overflow": {
+      "360": false,
+      "390": false,
+      "768": false,
+      "1280": false
+    },
+    "scrollers": [],
+    "exerciseKeyboard": {
+      "multiple-choice": true,
+      "fill-blank": true,
+      "matching": true,
+      "image-to-name": true,
+      "name-to-image": true,
+      "true-false": true,
+      "sequence-order": true,
+      "word-order": true,
+      "odd-one-out": true,
+      "teacher-scenario": true,
+      "flashcard": true
+    },
+    "languagePreserved": true,
+    "loadedBankFiles": 1,
+    "matrix": [
+      {
+        "theme": "light",
+        "width": 360,
+        "overflow": false,
+        "bad": [],
+        "measured": 24
+      },
+      {
+        "theme": "light",
+        "width": 390,
+        "overflow": false,
+        "bad": [],
+        "measured": 26
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "overflow": false,
+        "bad": [],
+        "measured": 28
+      },
+      {
+        "theme": "light",
+        "width": 1280,
+        "overflow": false,
+        "bad": [],
+        "measured": 28
+      },
+      {
+        "theme": "dark",
+        "width": 360,
+        "overflow": false,
+        "bad": [],
+        "measured": 25
+      },
+      {
+        "theme": "dark",
+        "width": 390,
+        "overflow": false,
+        "bad": [],
+        "measured": 26
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "overflow": false,
+        "bad": [],
+        "measured": 28
+      },
+      {
+        "theme": "dark",
+        "width": 1280,
+        "overflow": false,
+        "bad": [],
+        "measured": 28
+      }
+    ],
+    "dialogFocusTrapped": true,
+    "cls": 0,
+    "reducedMotion": true,
+    "offlineReload": true,
+    "offlineAnswerSaved": true,
+    "coldOfflineSafe": true,
+    "reconnected": true
+  }
+}

@@ -3,31 +3,37 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { reviewCards } from "@/content/path/review-cards";
+import { runtimeUnits as pathUnits,runtimeEntries,loadAllBanks,loadExerciseBanks,loadUnit } from "@/lib/path/banks";
 import { makeReview,recordReview,selectReview,syncMastery } from "@/lib/path/review";
 import { awardAnswer, awardTime, badgeNames, dailyGoal, gameState, rank } from "@/lib/path/game";
 import { Check, Flag, LockKeyhole, Play, Star, Trophy, X } from "lucide-react";
-import { pathUnits, pathExercises } from "@/content/path";
+
 import { sections } from "@/content/sections";
 import { emptyPath, metrics, startLesson } from "@/lib/path/engine";
 import { assessment, canStart, completePathSession, localDay, nodeState, streakToday } from "@/lib/path/graph";
-import type { Lesson, Session, Unit } from "@/lib/path/models";
+import type { Exercise, Lesson, Session, Unit } from "@/lib/path/models";
 import { Button } from "../ui/button";
 import { EmptyState, ProgressBar, SectionHeader } from "../common";
 import { useLocal } from "../providers";
 import { SessionExercise } from "./exercise";
 
 const units = [...pathUnits].sort((a,b) => (a.id === "hatha" ? -1 : b.id === "hatha" ? 1 : pathUnits.indexOf(a)-pathUnits.indexOf(b)));
-const reviewPool=[...pathExercises,...reviewCards];
-const exercises = new Map(reviewPool.map(e=>[e.id,e]));
+const pathExercises=runtimeEntries.filter(e=>e.type!=="flashcard");
+const knownIds=new Set(runtimeEntries.map(e=>e.id));
 const allLessons = units.flatMap(unit=>[...unit.lessons, assessment(unit,pathExercises,"checkpoint"),assessment(unit,pathExercises,"placement")].filter((l):l is Lesson=>!!l));
 const offset = (i:number) => [0, 68, 90, 0, -90, -68][i%6];
 
-function NodeDialog({unit, lesson, reward, close, start, available, completed, replaces}: {unit:Unit;lesson?:Lesson;reward?:boolean;close:()=>void;start:(lesson:Lesson)=>void;available:boolean;completed:boolean;replaces?:boolean}) {
+function NodeDialog({unit, lesson, reward, close, start, available, completed, replaces, loading, loadFailed}: {unit:Unit;lesson?:Lesson;reward?:boolean;close:()=>void;start:(lesson:Lesson)=>void;available:boolean;completed:boolean;replaces?:boolean;loading?:boolean;loadFailed?:boolean}) {
   const {state,t} = useLocal();
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(()=>{ const dialog=ref.current; dialog?.showModal(); return ()=>dialog?.close(); },[]);
-  return <dialog className="path-node-dialog" ref={ref} onCancel={e=>{e.preventDefault();close();}} aria-labelledby="path-dialog-title">
+  return <dialog className="path-node-dialog" ref={ref} onKeyDown={e=>{
+    if(e.key!=="Tab")return;
+    const controls=[...e.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled),a[href],select:not(:disabled),input:not(:disabled),[tabindex="0"]')];
+    const first=controls[0],last=controls.at(-1);
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
+  }} onCancel={e=>{e.preventDefault();close();}} aria-labelledby="path-dialog-title" aria-busy={loading}>
     <Button variant="ghost" size="icon" onClick={close} aria-label={t("Cerrar","Close")}><X size={20}/></Button>
     <h2 id="path-dialog-title">{reward?t("Un momento para celebrar","A moment to celebrate"):lesson?.name[state.language] ?? t("Punto de control","Checkpoint")}</h2>
     <p>{unit.name[state.language]}</p>
@@ -37,7 +43,9 @@ function NodeDialog({unit, lesson, reward, close, start, available, completed, r
       {lesson.id.endsWith("-placement") && <p>{t("Superarla abre los nodos de esta unidad; no los marca como completados.","Passing opens this unit's nodes without marking them completed.")}</p>}
       {!available && <p>{t("Completá el nodo anterior o superá la prueba para saltar adelante.","Complete the previous node or pass the skip-ahead test.")}</p>}
       {replaces&&<p>{t("Al comenzar otra lección se reemplaza la sesión pausada. Tus logros anteriores se conservan.","Starting another lesson replaces the paused session. Your earlier achievements are preserved.")}</p>}
-      <Button disabled={!available} onClick={()=>start(lesson)}>{t("Comenzar","Start")}</Button>
+      {loading&&<p role="status">{t("Cargando la unidad…","Loading the unit…")}</p>}
+      {loadFailed&&<p role="alert">{t("No pudimos descargar esta unidad. Conectate y volvé a intentar; tu progreso se conserva.","We could not download this unit. Reconnect and try again; your progress is preserved.")}</p>}
+      <Button disabled={!available||loading} onClick={()=>start(lesson)}>{t("Comenzar","Start")}</Button>
     </> : <p>{t("Este punto de control necesita 15 preguntas distintas. Se abrirá cuando ampliemos el banco de esta unidad.","This checkpoint needs 15 distinct questions. It will open when this unit's bank is expanded.")}</p>}
   </dialog>;
 }
@@ -45,25 +53,32 @@ function NodeDialog({unit, lesson, reward, close, start, available, completed, r
 export function PathScreen() {
   const {state,ready,error,t,update} = useLocal();
   const progress=state.path ?? emptyPath();
+  const [loaded,setLoaded]=useState<Exercise[]>([]),[busy,setBusy]=useState(false),[bankError,setBankError]=useState(false);
+  const exercises=new Map(loaded.map(e=>[e.id,e]));
+  function merge(items:Exercise[]){setLoaded(previous=>[...new Map([...previous,...items].map(e=>[e.id,e])).values()]);}
   const today=localDay();
   const timer=useRef(0);
   const [selected,setSelected]=useState<{unit:Unit;lesson?:Lesson;reward?:boolean}|null>(null);
   const [showMap,setShowMap]=useState(false);
+  const [noReview,setNoReview]=useState(false);
   const daily=dailyGoal(progress,today), goal=daily.percent, game=gameState(progress), currentRank=rank(progress.xp);
   const session=progress.active;
   const search=useSearchParams();
   const cardId=search.get("card"), flashcardMode=search.get("mode")==="flashcards";
-  const cardExercises=cardId?reviewPool.filter(e=>e.contentId===cardId):[];
-  const personalized:Lesson|undefined=session?.lessonId==="personal-review"&&session.reviewOnly?{id:"personal-review",unitId:exercises.get([...session.queue,...session.mastered][0])?.unitId??"hatha" as const,name:{es:"Práctica personalizada",en:"Personal practice"},minutes:4 as const,exerciseIds:[...session.queue,...session.mastered]}:undefined;
+  const cardExercises=cardId?runtimeEntries.filter(e=>e.contentId===cardId):[];
+  const personalized:Lesson|undefined=session?.lessonId==="personal-review"&&session.reviewOnly?{id:"personal-review",unitId:runtimeEntries.find(e=>e.id===[...session.queue,...session.mastered][0])?.unitId??"hatha" as const,name:{es:"Práctica personalizada",en:"Personal practice"},minutes:4 as const,exerciseIds:[...session.queue,...session.mastered]}:undefined;
   const lesson=personalized??allLessons.find(l=>l.id===session?.lessonId);
   const activeUnit=units.find(u=>u.id===lesson?.unitId);
-  const validSession=!!session && !!lesson && [...session.queue,...session.mastered].every(id=>exercises.has(id)&&lesson.exerciseIds.includes(id)) && (session.reviewOnly || session.total===lesson.exerciseIds.length);
+  const validSession=!!session && !!lesson && [...session.queue,...session.mastered].every(id=>knownIds.has(id)&&lesson.exerciseIds.includes(id)) && (session.reviewOnly || session.total===lesson.exerciseIds.length);
 
-  function start(lesson:Lesson) {
+  async function start(lesson:Lesson) {
     const unit=units.find(u=>u.id===lesson.unitId)!;
     if (!canStart(lesson,unit,progress)) return;
     if (session?.lessonId===lesson.id&&!session.finished&&validSession) {setSelected(null);setShowMap(false);return;}
     timer.current=performance.now();
+    setBusy(true);setBankError(false);setNoReview(false);
+    try {merge(await loadUnit(lesson.unitId));}catch{setBankError(true);setBusy(false);return;}
+    setBusy(false);
     const active=startLesson(lesson);
     update(s=>({...s,path:{...(s.path??emptyPath()),active}})); setSelected(null);
     setShowMap(false);
@@ -90,10 +105,18 @@ export function PathScreen() {
     return ()=>clearInterval(id);
   },[activeId,activeFinished,showMap,update]);
   function reviewErrors(){if(!session||!lesson)return;const ids=[...new Set(session.mistakes)];if(!ids.length)return;const active:Session={id:crypto.randomUUID(),lessonId:lesson.id,queue:ids,total:ids.length,mastered:[],attempts:0,correct:0,mistakes:[],finished:false,reviewOnly:true,seconds:0};update(s=>({...s,path:{...(s.path??emptyPath()),active}}));}
-  function startReview(pool=selectReview(flashcardMode?reviewCards:reviewPool,state,today)) {const run=makeReview(pool);if(!run)return;update(s=>({...s,path:{...(s.path??emptyPath()),active:run.session}}));setShowMap(false);}
+  async function startReview(mode:"personal"|"cards"|"errors"|"entry"="personal") {
+    setBusy(true);setBankError(false);setNoReview(false);
+    try {const all=mode==="entry"?await loadExerciseBanks(cardExercises.map(e=>e.id)):await loadAllBanks();merge(all);
+      const pool=mode==="entry"?all.filter(e=>e.contentId===cardId).slice(0,10):selectReview(mode==="cards"||flashcardMode?all.filter(e=>e.type==="flashcard"):all,state,today,mode==="errors");
+      const run=makeReview(pool);setNoReview(!run);if(run){update(s=>({...s,path:{...(s.path??emptyPath()),active:run.session}}));setShowMap(false);}
+    }catch{setBankError(true);}finally{setBusy(false);}
+  }
+  const required=session?[...session.queue,...session.mastered].sort().join("|"):"";
+  useEffect(()=>{if(!required)return;let live=true;loadExerciseBanks(required.split("|")).then(items=>{if(live)setLoaded(previous=>[...new Map([...previous,...items].map(e=>[e.id,e])).values()]);}).catch(()=>{if(live)setBankError(true);});return ()=>{live=false;};},[required]);
   function leave() {update(s=>({...s,path:{...(s.path??emptyPath()),active:undefined}}));}
 
-  if (!ready) return <p role="status">{t("Preparando tu camino…","Preparing your path…")}</p>;
+  if (!ready) return <div className="path-loading"><p role="status">{t("Preparando tu camino…","Preparing your path…")}</p></div>;
   return <div className="path-screen">
     <header className="path-stats" aria-label={t("Tu actividad","Your activity")}>
       <span><strong>{streakToday(progress,today)}</strong> {t("días de racha","day streak")}</span><span><strong>{progress.xp}</strong> XP</span>
@@ -107,11 +130,14 @@ export function PathScreen() {
       {[5,10,15,20].map(n=><option key={`m${n}`} value={`minutes:${n}`}>{n} {t("minutos","minutes")}</option>)}{[1,2,3,4].map(n=><option key={`l${n}`} value={`lessons:${n}`}>{n} {t("lecciones","lessons")}</option>)}</select></label>
       <ul>{Object.entries(badgeNames).map(([id,name])=><li key={id}>{game.badges.includes(id)?"✓ ":"○ "}{name[state.language]} · {game.badges.includes(id)?t("Obtenido","Earned"):t("Por descubrir","To discover")}</li>)}</ul>
     </details>
-    <div className="panel path-review-actions"><Button onClick={()=>startReview()}>{t("Practicar · 10 ejercicios","Practice · 10 exercises")}</Button><Button variant="outline" disabled={!selectReview(reviewPool,state,today,true).length} onClick={()=>startReview(selectReview(reviewPool,state,today,true))}>{t("Repasar errores","Review mistakes")}</Button><Button variant="ghost" onClick={()=>startReview(selectReview(reviewCards,state,today))}>{t("Repasar flashcards","Review flashcards")}</Button>
+    <div className="panel path-review-actions"><Button disabled={busy} onClick={()=>startReview()}>{t("Practicar · 10 ejercicios","Practice · 10 exercises")}</Button><Button variant="outline" disabled={busy} onClick={()=>startReview("errors")}>{t("Repasar errores","Review mistakes")}</Button><Button variant="ghost" disabled={busy} onClick={()=>startReview("cards")}>{t("Repasar flashcards","Review flashcards")}</Button>
       <p>{t("Primero los errores y repasos vencidos, después nuevas preguntas. Comenzar reemplaza una sesión pausada.","Errors and due reviews first, then new questions. Starting replaces a paused session.")}</p>
-      {cardId&&<><p>{cardExercises.length?t("Ejercicios de la ficha seleccionada.","Exercises for the selected entry."):t("Esta ficha todavía no tiene ejercicios asociados.","This entry has no linked exercises yet.")}</p><Button disabled={!cardExercises.length} onClick={()=>startReview(cardExercises.slice(0,10))}>{t("Practicar esta ficha","Practice this entry")}</Button></>}
+      {cardId&&<><p>{cardExercises.length?t("Ejercicios de la ficha seleccionada.","Exercises for the selected entry."):t("Esta ficha todavía no tiene ejercicios asociados.","This entry has no linked exercises yet.")}</p><Button disabled={!cardExercises.length} onClick={()=>startReview("entry")}>{t("Practicar esta ficha","Practice this entry")}</Button></>}
     </div>
     <SectionHeader eyebrow={t("ESTUDIO / CAMINO","STUDY / PATH")} title={t("Tu camino, paso a paso","Your path, step by step")} description={t("Hatha es un buen comienzo. Elegí una unidad y avanzá a tu ritmo; tu actividad se guarda en este dispositivo.","Hatha is a good place to start. Choose a unit and move at your own pace; activity is saved on this device.")}/>
+    {noReview&&<p role="status">{t("No hay errores pendientes en este repaso. Podés elegir Practicar para continuar.","There are no pending mistakes in this review. Choose Practice to continue.")}</p>}
+    {busy&&<p role="status">{t("Preparando los ejercicios…","Preparing exercises…")}</p>}
+    {bankError&&<div className="panel" role="alert"><p>{t("No pudimos cargar el banco. Tu progreso está guardado; conectate para abrir una unidad aún no descargada.","We could not load the bank. Your progress is saved; connect to open a unit not yet downloaded.")}</p><Button onClick={()=>{setBankError(false);if(session)loadExerciseBanks([...session.queue,...session.mastered]).then(merge).catch(()=>setBankError(true));}}>{t("Reintentar","Retry")}</Button></div>}
     {error && <p role="alert">{t("No pudimos guardar la última actualización. Evitá cerrar la página hasta poder exportar tus datos desde Progreso.","We could not save the latest update. Keep this page open until you can export your data from Progress.")}</p>}
     {session && !validSession && <div className="panel"><p role="status">{t("El banco cambió desde tu última lección. Podés volver al camino; tus logros se conservan.","The bank changed since your last lesson. Return to the path; your achievements are preserved.")}</p><Button onClick={leave}>{t("Volver al camino","Back to path")}</Button></div>}
     {validSession && session && lesson && activeUnit && !showMap ? <section aria-label={lesson.name[state.language]} className="path-active">
@@ -125,7 +151,7 @@ export function PathScreen() {
         <p>{t("Cada vuelta a la práctica cuenta. Podés continuar o descansar.","Every return to practice counts. You can continue or rest.")}</p>
         <Button onClick={leave}>{t("Continuar","Continue")}</Button>{session.mistakes.length>0&&<Button variant="outline" onClick={reviewErrors}>{t("Repasar errores","Review mistakes")}</Button>}
       </div> : <>
-        <SessionExercise session={session} exercise={exercises.get(session.queue[0])!} onSessionChange={change}/>
+        {exercises.has(session.queue[0])?<SessionExercise session={session} exercise={exercises.get(session.queue[0])!} onSessionChange={change}/>:<p role="status">{t("Cargando tu lección…","Loading your lesson…")}</p>}
         <Button variant="ghost" onClick={()=>setShowMap(true)}>{t("Ver el recorrido","View the path")}</Button>
         <p className="muted">{t("Podés volver más tarde: el avance se guarda al continuar o saltar.","You can return later: progress is saved when you continue or skip.")}</p>
         <Link className="text-link" href="/study/">{t("Pausar y volver a Estudio","Pause and return to Study")}</Link>
@@ -167,6 +193,6 @@ export function PathScreen() {
         </section>;
       })}
     </>}
-    {selected&&<NodeDialog {...selected} close={()=>setSelected(null)} start={start} replaces={!!session&&!session.finished&&session.lessonId!==selected.lesson?.id} available={!!selected.lesson&&canStart(selected.lesson,selected.unit,progress)} completed={progress.completed.includes(`${selected.unit.id}-checkpoint`)}/>}
+    {selected&&<NodeDialog {...selected} loading={busy} loadFailed={bankError} close={()=>setSelected(null)} start={start} replaces={!!session&&!session.finished&&session.lessonId!==selected.lesson?.id} available={!!selected.lesson&&canStart(selected.lesson,selected.unit,progress)} completed={progress.completed.includes(`${selected.unit.id}-checkpoint`)}/>}
   </div>;
 }

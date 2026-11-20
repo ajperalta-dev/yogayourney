@@ -1,0 +1,2537 @@
+{
+  "units": [
+    {
+      "id": "ashtanga",
+      "name": {
+        "es": "Ashtanga",
+        "en": "Ashtanga"
+      },
+      "lessons": [
+        {
+          "id": "ashtanga-recognition-1",
+          "unitId": "ashtanga",
+          "name": {
+            "es": "Ashtanga · Reconocer conceptos 1",
+            "en": "Ashtanga · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "ashtanga-recognition-1-1",
+            "ashtanga-recognition-1-2",
+            "ashtanga-recognition-1-3",
+            "ashtanga-recognition-1-4",
+            "ashtanga-recognition-1-5",
+            "ashtanga-recognition-1-6",
+            "ashtanga-recognition-1-7",
+            "ashtanga-recognition-1-8",
+            "ashtanga-recognition-1-9"
+          ]
+        },
+        {
+          "id": "ashtanga-recognition-2",
+          "unitId": "ashtanga",
+          "name": {
+            "es": "Ashtanga · Reconocer conceptos 2",
+            "en": "Ashtanga · Recognizing concepts 2"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "ashtanga-recognition-2-1",
+            "ashtanga-recognition-2-2",
+            "ashtanga-recognition-2-3",
+            "ashtanga-recognition-2-4",
+            "ashtanga-recognition-2-5",
+            "ashtanga-recognition-2-6",
+            "ashtanga-recognition-2-7",
+            "ashtanga-recognition-2-8",
+            "ashtanga-recognition-2-9"
+          ]
+        },
+        {
+          "id": "ashtanga-recognition-3",
+          "unitId": "ashtanga",
+          "name": {
+            "es": "Ashtanga · Reconocer conceptos 3",
+            "en": "Ashtanga · Recognizing concepts 3"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "ashtanga-recognition-3-1",
+            "ashtanga-recognition-3-2",
+            "ashtanga-recognition-3-3",
+            "ashtanga-recognition-3-4",
+            "ashtanga-recognition-3-5",
+            "ashtanga-recognition-3-6",
+            "ashtanga-recognition-3-7",
+            "ashtanga-recognition-3-8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hatha",
+      "name": {
+        "es": "Hatha",
+        "en": "Hatha"
+      },
+      "lessons": [
+        {
+          "id": "hatha-vocabulary",
+          "unitId": "hatha",
+          "name": {
+            "es": "Hatha · Nombres y significado",
+            "en": "Hatha · Names and meanings"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "hatha-vocabulary-multiple-choice-adho-mukha-svanasana",
+            "hatha-vocabulary-multiple-choice-ardha-matsyendrasana",
+            "hatha-vocabulary-multiple-choice-ardha-uttanasana",
+            "hatha-vocabulary-multiple-choice-baddha-konasana",
+            "hatha-vocabulary-fill-blank-bhujangasana",
+            "hatha-vocabulary-fill-blank-chaturanga-dandasana",
+            "hatha-vocabulary-fill-blank-dandasana",
+            "hatha-vocabulary-fill-blank-pada-hastasana",
+            "hatha-vocabulary-pairs-1-padangusthasana",
+            "hatha-vocabulary-pairs-2-prasarita-padottanasana"
+          ]
+        },
+        {
+          "id": "hatha-images",
+          "unitId": "hatha",
+          "name": {
+            "es": "Hatha · Reconocer posturas",
+            "en": "Hatha · Recognizing poses"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "hatha-images-image-padangusthasana",
+            "hatha-images-image-parsvottanasana",
+            "hatha-images-image-paschimottanasana",
+            "hatha-images-image-phalahakasana",
+            "hatha-images-name-prasarita-padottanasana",
+            "hatha-images-name-savasana",
+            "hatha-images-name-setu-bandha-sarvangasana",
+            "hatha-images-name-sukhasana",
+            "hatha-images-image-claim-tadasana",
+            "hatha-images-image-claim-urdhva-hastasana"
+          ]
+        },
+        {
+          "id": "hatha-sequence-study",
+          "unitId": "hatha",
+          "name": {
+            "es": "Hatha · Orden de la práctica",
+            "en": "Hatha · Practice order"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "hatha-sequence-study-steps-0-sukhasana",
+            "hatha-sequence-study-steps-1-sukhasana",
+            "hatha-sequence-study-steps-2-sukhasana",
+            "hatha-sequence-study-steps-3-utthita-parsvakonasana",
+            "hatha-sequence-study-steps-4-utkatasana",
+            "hatha-sequence-study-words-adho-mukha-svanasana",
+            "hatha-sequence-study-words-ardha-matsyendrasana",
+            "hatha-sequence-study-words-ardha-uttanasana",
+            "hatha-sequence-study-opening-hatha-foundations-sukhasana",
+            "hatha-sequence-study-opening-hatha-steady-flow-sukhasana"
+          ]
+        },
+        {
+          "id": "hatha-relationships",
+          "unitId": "hatha",
+          "name": {
+            "es": "Hatha · Relaciones de las fichas",
+            "en": "Hatha · Entry relationships"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "hatha-relationships-counterpose-adho-mukha-svanasana",
+            "hatha-relationships-counterpose-ardha-matsyendrasana",
+            "hatha-relationships-counterpose-ardha-uttanasana",
+            "hatha-relationships-counterpose-baddha-konasana",
+            "hatha-relationships-level-claim-bhujangasana",
+            "hatha-relationships-level-claim-chaturanga-dandasana",
+            "hatha-relationships-benefits-1-adho-mukha-svanasana",
+            "hatha-relationships-benefits-2-bhujangasana",
+            "hatha-relationships-odd-0-urdhva-mukha-svanasana",
+            "hatha-relationships-anatomy-link-adho-mukha-svanasana"
+          ]
+        },
+        {
+          "id": "hatha-teaching",
+          "unitId": "hatha",
+          "name": {
+            "es": "Hatha · Enseñar con opciones",
+            "en": "Hatha · Teaching with options"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "hatha-teaching-1",
+            "hatha-teaching-2",
+            "hatha-teaching-3",
+            "hatha-teaching-4",
+            "hatha-teaching-5",
+            "hatha-teaching-6",
+            "hatha-teaching-7",
+            "hatha-teaching-8",
+            "hatha-teaching-9",
+            "hatha-teaching-10"
+          ]
+        },
+        {
+          "id": "hatha-safety",
+          "unitId": "hatha",
+          "name": {
+            "es": "Hatha · Seguridad y alcance",
+            "en": "Hatha · Safety and scope"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "hatha-safety-1",
+            "hatha-safety-2",
+            "hatha-safety-3",
+            "hatha-safety-4",
+            "hatha-safety-5",
+            "hatha-safety-6",
+            "hatha-safety-7",
+            "hatha-safety-8",
+            "hatha-safety-9",
+            "hatha-safety-10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yin",
+      "name": {
+        "es": "Yin Yoga",
+        "en": "Yin Yoga"
+      },
+      "lessons": [
+        {
+          "id": "yin-recognition-1",
+          "unitId": "yin",
+          "name": {
+            "es": "Yin Yoga · Reconocer conceptos 1",
+            "en": "Yin Yoga · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "yin-recognition-1-1",
+            "yin-recognition-1-2",
+            "yin-recognition-1-3",
+            "yin-recognition-1-4",
+            "yin-recognition-1-5",
+            "yin-recognition-1-6",
+            "yin-recognition-1-7",
+            "yin-recognition-1-8",
+            "yin-recognition-1-9",
+            "yin-recognition-1-10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aerial",
+      "name": {
+        "es": "Aerial Yoga",
+        "en": "Aerial Yoga"
+      },
+      "lessons": [
+        {
+          "id": "aerial-recognition-1",
+          "unitId": "aerial",
+          "name": {
+            "es": "Aerial Yoga · Reconocer conceptos 1",
+            "en": "Aerial Yoga · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "aerial-recognition-1-1",
+            "aerial-recognition-1-2",
+            "aerial-recognition-1-3",
+            "aerial-recognition-1-4",
+            "aerial-recognition-1-5",
+            "aerial-recognition-1-6",
+            "aerial-recognition-1-7",
+            "aerial-recognition-1-8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pranayama",
+      "name": {
+        "es": "Pranayama",
+        "en": "Pranayama"
+      },
+      "lessons": [
+        {
+          "id": "pranayama-recognition-1",
+          "unitId": "pranayama",
+          "name": {
+            "es": "Pranayama · Reconocer conceptos 1",
+            "en": "Pranayama · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "pranayama-recognition-1-1",
+            "pranayama-recognition-1-2",
+            "pranayama-recognition-1-3",
+            "pranayama-recognition-1-4",
+            "pranayama-recognition-1-5",
+            "pranayama-recognition-1-6",
+            "pranayama-recognition-1-7",
+            "pranayama-recognition-1-8",
+            "pranayama-recognition-1-9",
+            "pranayama-recognition-1-10",
+            "pranayama-recognition-1-11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mantras",
+      "name": {
+        "es": "Mantras",
+        "en": "Mantras"
+      },
+      "lessons": [
+        {
+          "id": "mantras-recognition-1",
+          "unitId": "mantras",
+          "name": {
+            "es": "Mantras · Reconocer conceptos 1",
+            "en": "Mantras · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "mantras-recognition-1-1",
+            "mantras-recognition-1-2",
+            "mantras-recognition-1-3",
+            "mantras-recognition-1-4",
+            "mantras-recognition-1-5",
+            "mantras-recognition-1-6",
+            "mantras-recognition-1-7",
+            "mantras-recognition-1-8"
+          ]
+        },
+        {
+          "id": "mantras-recognition-2",
+          "unitId": "mantras",
+          "name": {
+            "es": "Mantras · Reconocer conceptos 2",
+            "en": "Mantras · Recognizing concepts 2"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "mantras-recognition-2-1",
+            "mantras-recognition-2-2",
+            "mantras-recognition-2-3",
+            "mantras-recognition-2-4",
+            "mantras-recognition-2-5",
+            "mantras-recognition-2-6",
+            "mantras-recognition-2-7",
+            "mantras-recognition-2-8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meditation",
+      "name": {
+        "es": "Meditación",
+        "en": "Meditation"
+      },
+      "lessons": [
+        {
+          "id": "meditation-recognition-1",
+          "unitId": "meditation",
+          "name": {
+            "es": "Meditación · Reconocer conceptos 1",
+            "en": "Meditation · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "meditation-recognition-1-1",
+            "meditation-recognition-1-2",
+            "meditation-recognition-1-3",
+            "meditation-recognition-1-4",
+            "meditation-recognition-1-5",
+            "meditation-recognition-1-6",
+            "meditation-recognition-1-7",
+            "meditation-recognition-1-8",
+            "meditation-recognition-1-9",
+            "meditation-recognition-1-10",
+            "meditation-recognition-1-11",
+            "meditation-recognition-1-12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anatomy",
+      "name": {
+        "es": "Anatomía",
+        "en": "Anatomy"
+      },
+      "lessons": [
+        {
+          "id": "anatomy-recognition-1",
+          "unitId": "anatomy",
+          "name": {
+            "es": "Anatomía · Reconocer conceptos 1",
+            "en": "Anatomy · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "anatomy-recognition-1-1",
+            "anatomy-recognition-1-2",
+            "anatomy-recognition-1-3",
+            "anatomy-recognition-1-4",
+            "anatomy-recognition-1-5",
+            "anatomy-recognition-1-6",
+            "anatomy-recognition-1-7",
+            "anatomy-recognition-1-8"
+          ]
+        },
+        {
+          "id": "anatomy-recognition-2",
+          "unitId": "anatomy",
+          "name": {
+            "es": "Anatomía · Reconocer conceptos 2",
+            "en": "Anatomy · Recognizing concepts 2"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "anatomy-recognition-2-1",
+            "anatomy-recognition-2-2",
+            "anatomy-recognition-2-3",
+            "anatomy-recognition-2-4",
+            "anatomy-recognition-2-5",
+            "anatomy-recognition-2-6",
+            "anatomy-recognition-2-7",
+            "anatomy-recognition-2-8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kriyas",
+      "name": {
+        "es": "Detox / Kriyas",
+        "en": "Detox / Kriyas"
+      },
+      "lessons": [
+        {
+          "id": "kriyas-recognition-1",
+          "unitId": "kriyas",
+          "name": {
+            "es": "Detox / Kriyas · Reconocer conceptos 1",
+            "en": "Detox / Kriyas · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "kriyas-recognition-1-1",
+            "kriyas-recognition-1-2",
+            "kriyas-recognition-1-3",
+            "kriyas-recognition-1-4",
+            "kriyas-recognition-1-5",
+            "kriyas-recognition-1-6",
+            "kriyas-recognition-1-7",
+            "kriyas-recognition-1-8",
+            "kriyas-recognition-1-9",
+            "kriyas-recognition-1-10",
+            "kriyas-recognition-1-11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ayurveda",
+      "name": {
+        "es": "Ayurveda",
+        "en": "Ayurveda"
+      },
+      "lessons": [
+        {
+          "id": "ayurveda-recognition-1",
+          "unitId": "ayurveda",
+          "name": {
+            "es": "Ayurveda · Reconocer conceptos 1",
+            "en": "Ayurveda · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "ayurveda-recognition-1-1",
+            "ayurveda-recognition-1-2",
+            "ayurveda-recognition-1-3",
+            "ayurveda-recognition-1-4",
+            "ayurveda-recognition-1-5",
+            "ayurveda-recognition-1-6",
+            "ayurveda-recognition-1-7",
+            "ayurveda-recognition-1-8"
+          ]
+        },
+        {
+          "id": "ayurveda-recognition-2",
+          "unitId": "ayurveda",
+          "name": {
+            "es": "Ayurveda · Reconocer conceptos 2",
+            "en": "Ayurveda · Recognizing concepts 2"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "ayurveda-recognition-2-1",
+            "ayurveda-recognition-2-2",
+            "ayurveda-recognition-2-3",
+            "ayurveda-recognition-2-4",
+            "ayurveda-recognition-2-5",
+            "ayurveda-recognition-2-6",
+            "ayurveda-recognition-2-7",
+            "ayurveda-recognition-2-8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "philosophy",
+      "name": {
+        "es": "Filosofía",
+        "en": "Philosophy"
+      },
+      "lessons": [
+        {
+          "id": "philosophy-recognition-1",
+          "unitId": "philosophy",
+          "name": {
+            "es": "Filosofía · Reconocer conceptos 1",
+            "en": "Philosophy · Recognizing concepts 1"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "philosophy-recognition-1-1",
+            "philosophy-recognition-1-2",
+            "philosophy-recognition-1-3",
+            "philosophy-recognition-1-4",
+            "philosophy-recognition-1-5",
+            "philosophy-recognition-1-6",
+            "philosophy-recognition-1-7",
+            "philosophy-recognition-1-8",
+            "philosophy-recognition-1-9"
+          ]
+        },
+        {
+          "id": "philosophy-recognition-2",
+          "unitId": "philosophy",
+          "name": {
+            "es": "Filosofía · Reconocer conceptos 2",
+            "en": "Philosophy · Recognizing concepts 2"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "philosophy-recognition-2-1",
+            "philosophy-recognition-2-2",
+            "philosophy-recognition-2-3",
+            "philosophy-recognition-2-4",
+            "philosophy-recognition-2-5",
+            "philosophy-recognition-2-6",
+            "philosophy-recognition-2-7",
+            "philosophy-recognition-2-8",
+            "philosophy-recognition-2-9"
+          ]
+        },
+        {
+          "id": "philosophy-recognition-3",
+          "unitId": "philosophy",
+          "name": {
+            "es": "Filosofía · Reconocer conceptos 3",
+            "en": "Philosophy · Recognizing concepts 3"
+          },
+          "minutes": 4,
+          "exerciseIds": [
+            "philosophy-recognition-3-1",
+            "philosophy-recognition-3-2",
+            "philosophy-recognition-3-3",
+            "philosophy-recognition-3-4",
+            "philosophy-recognition-3-5",
+            "philosophy-recognition-3-6",
+            "philosophy-recognition-3-7",
+            "philosophy-recognition-3-8"
+          ]
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "id": "ashtanga-recognition-1-1",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "ashtanga-recognition-1-2",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "utthita-trikonasana"
+    },
+    {
+      "id": "ashtanga-recognition-1-3",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "padangusthasana"
+    },
+    {
+      "id": "ashtanga-recognition-1-4",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "pada-hastasana"
+    },
+    {
+      "id": "ashtanga-recognition-1-5",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "baddha-konasana"
+    },
+    {
+      "id": "ashtanga-recognition-1-6",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "bhujangasana"
+    },
+    {
+      "id": "ashtanga-recognition-1-7",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "sukhasana"
+    },
+    {
+      "id": "ashtanga-recognition-1-8",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "savasana"
+    },
+    {
+      "id": "ashtanga-recognition-1-9",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "urdhva-hastasana"
+    },
+    {
+      "id": "ashtanga-recognition-2-1",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "uttanasana"
+    },
+    {
+      "id": "ashtanga-recognition-2-2",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "ardha-uttanasana"
+    },
+    {
+      "id": "ashtanga-recognition-2-3",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "phalahakasana"
+    },
+    {
+      "id": "ashtanga-recognition-2-4",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "chaturanga-dandasana"
+    },
+    {
+      "id": "ashtanga-recognition-2-5",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "urdhva-mukha-svanasana"
+    },
+    {
+      "id": "ashtanga-recognition-2-6",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "adho-mukha-svanasana"
+    },
+    {
+      "id": "ashtanga-recognition-2-7",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "utkatasana"
+    },
+    {
+      "id": "ashtanga-recognition-2-8",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "virabhadrasana-i"
+    },
+    {
+      "id": "ashtanga-recognition-2-9",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "virabhadrasana-ii"
+    },
+    {
+      "id": "ashtanga-recognition-3-1",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "utthita-parsvakonasana"
+    },
+    {
+      "id": "ashtanga-recognition-3-2",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "prasarita-padottanasana"
+    },
+    {
+      "id": "ashtanga-recognition-3-3",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "parsvottanasana"
+    },
+    {
+      "id": "ashtanga-recognition-3-4",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "dandasana"
+    },
+    {
+      "id": "ashtanga-recognition-3-5",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "paschimottanasana"
+    },
+    {
+      "id": "ashtanga-recognition-3-6",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "ardha-matsyendrasana"
+    },
+    {
+      "id": "ashtanga-recognition-3-7",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "setu-bandha-sarvangasana"
+    },
+    {
+      "id": "ashtanga-recognition-3-8",
+      "unitId": "ashtanga",
+      "lessonId": "ashtanga-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "viparita-karani"
+    },
+    {
+      "id": "hatha-vocabulary-multiple-choice-adho-mukha-svanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "multiple-choice",
+      "contentId": "adho-mukha-svanasana"
+    },
+    {
+      "id": "hatha-vocabulary-multiple-choice-ardha-matsyendrasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "multiple-choice",
+      "contentId": "ardha-matsyendrasana"
+    },
+    {
+      "id": "hatha-vocabulary-multiple-choice-ardha-uttanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "multiple-choice",
+      "contentId": "ardha-uttanasana"
+    },
+    {
+      "id": "hatha-vocabulary-multiple-choice-baddha-konasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "multiple-choice",
+      "contentId": "baddha-konasana"
+    },
+    {
+      "id": "hatha-vocabulary-fill-blank-bhujangasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "fill-blank",
+      "contentId": "bhujangasana"
+    },
+    {
+      "id": "hatha-vocabulary-fill-blank-chaturanga-dandasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "fill-blank",
+      "contentId": "chaturanga-dandasana"
+    },
+    {
+      "id": "hatha-vocabulary-fill-blank-dandasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "fill-blank",
+      "contentId": "dandasana"
+    },
+    {
+      "id": "hatha-vocabulary-fill-blank-pada-hastasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "fill-blank",
+      "contentId": "pada-hastasana"
+    },
+    {
+      "id": "hatha-vocabulary-pairs-1-padangusthasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "matching",
+      "contentId": "padangusthasana"
+    },
+    {
+      "id": "hatha-vocabulary-pairs-2-prasarita-padottanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-vocabulary",
+      "type": "matching",
+      "contentId": "prasarita-padottanasana"
+    },
+    {
+      "id": "hatha-images-image-padangusthasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "image-to-name",
+      "contentId": "padangusthasana"
+    },
+    {
+      "id": "hatha-images-image-parsvottanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "image-to-name",
+      "contentId": "parsvottanasana"
+    },
+    {
+      "id": "hatha-images-image-paschimottanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "image-to-name",
+      "contentId": "paschimottanasana"
+    },
+    {
+      "id": "hatha-images-image-phalahakasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "image-to-name",
+      "contentId": "phalahakasana"
+    },
+    {
+      "id": "hatha-images-name-prasarita-padottanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "name-to-image",
+      "contentId": "prasarita-padottanasana"
+    },
+    {
+      "id": "hatha-images-name-savasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "name-to-image",
+      "contentId": "savasana"
+    },
+    {
+      "id": "hatha-images-name-setu-bandha-sarvangasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "name-to-image",
+      "contentId": "setu-bandha-sarvangasana"
+    },
+    {
+      "id": "hatha-images-name-sukhasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "name-to-image",
+      "contentId": "sukhasana"
+    },
+    {
+      "id": "hatha-images-image-claim-tadasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "true-false",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-images-image-claim-urdhva-hastasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-images",
+      "type": "true-false",
+      "contentId": "urdhva-hastasana"
+    },
+    {
+      "id": "hatha-sequence-study-steps-0-sukhasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "sequence-order",
+      "contentId": "sukhasana"
+    },
+    {
+      "id": "hatha-sequence-study-steps-1-sukhasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "sequence-order",
+      "contentId": "sukhasana"
+    },
+    {
+      "id": "hatha-sequence-study-steps-2-sukhasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "sequence-order",
+      "contentId": "sukhasana"
+    },
+    {
+      "id": "hatha-sequence-study-steps-3-utthita-parsvakonasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "sequence-order",
+      "contentId": "utthita-parsvakonasana"
+    },
+    {
+      "id": "hatha-sequence-study-steps-4-utkatasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "sequence-order",
+      "contentId": "utkatasana"
+    },
+    {
+      "id": "hatha-sequence-study-words-adho-mukha-svanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "word-order",
+      "contentId": "adho-mukha-svanasana"
+    },
+    {
+      "id": "hatha-sequence-study-words-ardha-matsyendrasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "word-order",
+      "contentId": "ardha-matsyendrasana"
+    },
+    {
+      "id": "hatha-sequence-study-words-ardha-uttanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "word-order",
+      "contentId": "ardha-uttanasana"
+    },
+    {
+      "id": "hatha-sequence-study-opening-hatha-foundations-sukhasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "multiple-choice",
+      "contentId": "sukhasana"
+    },
+    {
+      "id": "hatha-sequence-study-opening-hatha-steady-flow-sukhasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-sequence-study",
+      "type": "multiple-choice",
+      "contentId": "sukhasana"
+    },
+    {
+      "id": "hatha-relationships-counterpose-adho-mukha-svanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "multiple-choice",
+      "contentId": "adho-mukha-svanasana"
+    },
+    {
+      "id": "hatha-relationships-counterpose-ardha-matsyendrasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "multiple-choice",
+      "contentId": "ardha-matsyendrasana"
+    },
+    {
+      "id": "hatha-relationships-counterpose-ardha-uttanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "multiple-choice",
+      "contentId": "ardha-uttanasana"
+    },
+    {
+      "id": "hatha-relationships-counterpose-baddha-konasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "multiple-choice",
+      "contentId": "baddha-konasana"
+    },
+    {
+      "id": "hatha-relationships-level-claim-bhujangasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "true-false",
+      "contentId": "bhujangasana"
+    },
+    {
+      "id": "hatha-relationships-level-claim-chaturanga-dandasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "true-false",
+      "contentId": "chaturanga-dandasana"
+    },
+    {
+      "id": "hatha-relationships-benefits-1-adho-mukha-svanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "matching",
+      "contentId": "adho-mukha-svanasana"
+    },
+    {
+      "id": "hatha-relationships-benefits-2-bhujangasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "matching",
+      "contentId": "bhujangasana"
+    },
+    {
+      "id": "hatha-relationships-odd-0-urdhva-mukha-svanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "odd-one-out",
+      "contentId": "urdhva-mukha-svanasana"
+    },
+    {
+      "id": "hatha-relationships-anatomy-link-adho-mukha-svanasana",
+      "unitId": "hatha",
+      "lessonId": "hatha-relationships",
+      "type": "multiple-choice",
+      "contentId": "adho-mukha-svanasana"
+    },
+    {
+      "id": "hatha-teaching-1",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "teacher-scenario",
+      "contentId": "sukhasana"
+    },
+    {
+      "id": "hatha-teaching-2",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-teaching-3",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-teaching-4",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-teaching-5",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-teaching-6",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "true-false",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-teaching-7",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "true-false",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-teaching-8",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "fill-blank",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-teaching-9",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "fill-blank",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-teaching-10",
+      "unitId": "hatha",
+      "lessonId": "hatha-teaching",
+      "type": "teacher-scenario",
+      "contentId": "savasana"
+    },
+    {
+      "id": "hatha-safety-1",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-2",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-3",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-4",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-5",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-6",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "true-false",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-7",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "true-false",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-8",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "fill-blank",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-9",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "fill-blank",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "hatha-safety-10",
+      "unitId": "hatha",
+      "lessonId": "hatha-safety",
+      "type": "teacher-scenario",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "yin-recognition-1-1",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "butterfly"
+    },
+    {
+      "id": "yin-recognition-1-2",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "dragon"
+    },
+    {
+      "id": "yin-recognition-1-3",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "sphinx"
+    },
+    {
+      "id": "yin-recognition-1-4",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "supported-child"
+    },
+    {
+      "id": "yin-recognition-1-5",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "reclined-twist"
+    },
+    {
+      "id": "yin-recognition-1-6",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "caterpillar"
+    },
+    {
+      "id": "yin-recognition-1-7",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "shoelace"
+    },
+    {
+      "id": "yin-recognition-1-8",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "banana-pose"
+    },
+    {
+      "id": "yin-recognition-1-9",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "melting-heart"
+    },
+    {
+      "id": "yin-recognition-1-10",
+      "unitId": "yin",
+      "lessonId": "yin-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "saddle"
+    },
+    {
+      "id": "aerial-recognition-1-1",
+      "unitId": "aerial",
+      "lessonId": "aerial-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "supported-seat"
+    },
+    {
+      "id": "aerial-recognition-1-2",
+      "unitId": "aerial",
+      "lessonId": "aerial-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "aerial-standing-support"
+    },
+    {
+      "id": "aerial-recognition-1-3",
+      "unitId": "aerial",
+      "lessonId": "aerial-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "aerial-supported-lunge"
+    },
+    {
+      "id": "aerial-recognition-1-4",
+      "unitId": "aerial",
+      "lessonId": "aerial-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "aerial-supported-recline"
+    },
+    {
+      "id": "aerial-recognition-1-5",
+      "unitId": "aerial",
+      "lessonId": "aerial-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "aerial-core-study"
+    },
+    {
+      "id": "aerial-recognition-1-6",
+      "unitId": "aerial",
+      "lessonId": "aerial-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "aerial-inversion-briefing"
+    },
+    {
+      "id": "aerial-recognition-1-7",
+      "unitId": "aerial",
+      "lessonId": "aerial-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "aerial-cocoon"
+    },
+    {
+      "id": "aerial-recognition-1-8",
+      "unitId": "aerial",
+      "lessonId": "aerial-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "aerial-safe-exit"
+    },
+    {
+      "id": "pranayama-recognition-1-1",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "dirga-pranayama"
+    },
+    {
+      "id": "pranayama-recognition-1-2",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "sama-vritti"
+    },
+    {
+      "id": "pranayama-recognition-1-3",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "extended-exhale"
+    },
+    {
+      "id": "pranayama-recognition-1-4",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "ujjayi"
+    },
+    {
+      "id": "pranayama-recognition-1-5",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "bhramari"
+    },
+    {
+      "id": "pranayama-recognition-1-6",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "nadi-shodhana"
+    },
+    {
+      "id": "pranayama-recognition-1-7",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "sitali"
+    },
+    {
+      "id": "pranayama-recognition-1-8",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "sitkari"
+    },
+    {
+      "id": "pranayama-recognition-1-9",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "kapalabhati"
+    },
+    {
+      "id": "pranayama-recognition-1-10",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "bhastrika"
+    },
+    {
+      "id": "pranayama-recognition-1-11",
+      "unitId": "pranayama",
+      "lessonId": "pranayama-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "kumbhaka"
+    },
+    {
+      "id": "mantras-recognition-1-1",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "om"
+    },
+    {
+      "id": "mantras-recognition-1-2",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "om-shanti"
+    },
+    {
+      "id": "mantras-recognition-1-3",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "gayatri"
+    },
+    {
+      "id": "mantras-recognition-1-4",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "mahamrityunjaya"
+    },
+    {
+      "id": "mantras-recognition-1-5",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "om-namah-shivaya"
+    },
+    {
+      "id": "mantras-recognition-1-6",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "lokah-samastah-sukhino-bhavantu"
+    },
+    {
+      "id": "mantras-recognition-1-7",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "saha-navavatu"
+    },
+    {
+      "id": "mantras-recognition-1-8",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "asato-ma-sadgamaya"
+    },
+    {
+      "id": "mantras-recognition-2-1",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "purnamadah"
+    },
+    {
+      "id": "mantras-recognition-2-2",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "ganesha-mantra"
+    },
+    {
+      "id": "mantras-recognition-2-3",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "hare-krishna"
+    },
+    {
+      "id": "mantras-recognition-2-4",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "so-hum"
+    },
+    {
+      "id": "mantras-recognition-2-5",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "sat-nam"
+    },
+    {
+      "id": "mantras-recognition-2-6",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "opening-mantra"
+    },
+    {
+      "id": "mantras-recognition-2-7",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "closing-mantra"
+    },
+    {
+      "id": "mantras-recognition-2-8",
+      "unitId": "mantras",
+      "lessonId": "mantras-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "asato-ma-sadgamaya"
+    },
+    {
+      "id": "meditation-recognition-1-1",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "breath-awareness"
+    },
+    {
+      "id": "meditation-recognition-1-2",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "body-scan"
+    },
+    {
+      "id": "meditation-recognition-1-3",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "trataka"
+    },
+    {
+      "id": "meditation-recognition-1-4",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "loving-kindness"
+    },
+    {
+      "id": "meditation-recognition-1-5",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "yoga-nidra"
+    },
+    {
+      "id": "meditation-recognition-1-6",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "mantra-meditation"
+    },
+    {
+      "id": "meditation-recognition-1-7",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "walking-meditation"
+    },
+    {
+      "id": "meditation-recognition-1-8",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "visualization"
+    },
+    {
+      "id": "meditation-recognition-1-9",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "thought-observation"
+    },
+    {
+      "id": "meditation-recognition-1-10",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "guided-5-minutes"
+    },
+    {
+      "id": "meditation-recognition-1-11",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "guided-10-minutes"
+    },
+    {
+      "id": "meditation-recognition-1-12",
+      "unitId": "meditation",
+      "lessonId": "meditation-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "guided-20-minutes"
+    },
+    {
+      "id": "anatomy-recognition-1-1",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "spine"
+    },
+    {
+      "id": "anatomy-recognition-1-2",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "shoulders"
+    },
+    {
+      "id": "anatomy-recognition-1-3",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "hip-joint"
+    },
+    {
+      "id": "anatomy-recognition-1-4",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "knees"
+    },
+    {
+      "id": "anatomy-recognition-1-5",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "ankles-feet"
+    },
+    {
+      "id": "anatomy-recognition-1-6",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "wrists-hands"
+    },
+    {
+      "id": "anatomy-recognition-1-7",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "core"
+    },
+    {
+      "id": "anatomy-recognition-1-8",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "pelvic-floor"
+    },
+    {
+      "id": "anatomy-recognition-2-1",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "pelvic-floor"
+    },
+    {
+      "id": "anatomy-recognition-2-2",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "respiratory-system-diaphragm"
+    },
+    {
+      "id": "anatomy-recognition-2-3",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "nervous-system-and-breath"
+    },
+    {
+      "id": "anatomy-recognition-2-4",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "fascia-connective-tissue"
+    },
+    {
+      "id": "anatomy-recognition-2-5",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "movement-types"
+    },
+    {
+      "id": "anatomy-recognition-2-6",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "anatomy-glossary"
+    },
+    {
+      "id": "anatomy-recognition-2-7",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "core"
+    },
+    {
+      "id": "anatomy-recognition-2-8",
+      "unitId": "anatomy",
+      "lessonId": "anatomy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "pelvic-floor"
+    },
+    {
+      "id": "kriyas-recognition-1-1",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "kriya-foundations"
+    },
+    {
+      "id": "kriyas-recognition-1-2",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "jala-neti"
+    },
+    {
+      "id": "kriyas-recognition-1-3",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "sutra-neti"
+    },
+    {
+      "id": "kriyas-recognition-1-4",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "dhauti"
+    },
+    {
+      "id": "kriyas-recognition-1-5",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "nauli"
+    },
+    {
+      "id": "kriyas-recognition-1-6",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "basti"
+    },
+    {
+      "id": "kriyas-recognition-1-7",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "trataka-kriya"
+    },
+    {
+      "id": "kriyas-recognition-1-8",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "kapalabhati-shatkarma"
+    },
+    {
+      "id": "kriyas-recognition-1-9",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "shankhaprakshalana"
+    },
+    {
+      "id": "kriyas-recognition-1-10",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "danta-dhauti"
+    },
+    {
+      "id": "kriyas-recognition-1-11",
+      "unitId": "kriyas",
+      "lessonId": "kriyas-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "kavala"
+    },
+    {
+      "id": "ayurveda-recognition-1-1",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "vata"
+    },
+    {
+      "id": "ayurveda-recognition-1-2",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "pitta"
+    },
+    {
+      "id": "ayurveda-recognition-1-3",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "kapha"
+    },
+    {
+      "id": "ayurveda-recognition-1-4",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "prakriti"
+    },
+    {
+      "id": "ayurveda-recognition-1-5",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "vikriti"
+    },
+    {
+      "id": "ayurveda-recognition-1-6",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "agni"
+    },
+    {
+      "id": "ayurveda-recognition-1-7",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "ama"
+    },
+    {
+      "id": "ayurveda-recognition-1-8",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "gunas"
+    },
+    {
+      "id": "ayurveda-recognition-2-1",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "gunas"
+    },
+    {
+      "id": "ayurveda-recognition-2-2",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "dinacharya"
+    },
+    {
+      "id": "ayurveda-recognition-2-3",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "food"
+    },
+    {
+      "id": "ayurveda-recognition-2-4",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "seasons"
+    },
+    {
+      "id": "ayurveda-recognition-2-5",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "yoga-ayurveda"
+    },
+    {
+      "id": "ayurveda-recognition-2-6",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "six-tastes"
+    },
+    {
+      "id": "ayurveda-recognition-2-7",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "simple-recipes"
+    },
+    {
+      "id": "ayurveda-recognition-2-8",
+      "unitId": "ayurveda",
+      "lessonId": "ayurveda-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "gunas"
+    },
+    {
+      "id": "philosophy-recognition-1-1",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "practice-and-nonattachment"
+    },
+    {
+      "id": "philosophy-recognition-1-2",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "what-is-yoga"
+    },
+    {
+      "id": "philosophy-recognition-1-3",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "yoga-history-timeline"
+    },
+    {
+      "id": "philosophy-recognition-1-4",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "foundational-yoga-texts"
+    },
+    {
+      "id": "philosophy-recognition-1-5",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "modern-yoga-teachers"
+    },
+    {
+      "id": "philosophy-recognition-1-6",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "six-darshanas"
+    },
+    {
+      "id": "philosophy-recognition-1-7",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "samkhya-purusha-prakriti"
+    },
+    {
+      "id": "philosophy-recognition-1-8",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "advaita-vedanta"
+    },
+    {
+      "id": "philosophy-recognition-1-9",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-1",
+      "type": "multiple-choice",
+      "contentId": "yoga-paths"
+    },
+    {
+      "id": "philosophy-recognition-2-1",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "tantra-and-hatha-yoga"
+    },
+    {
+      "id": "philosophy-recognition-2-2",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "yoga-sutras-introduction"
+    },
+    {
+      "id": "philosophy-recognition-2-3",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "citta-vritti-nirodha"
+    },
+    {
+      "id": "philosophy-recognition-2-4",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "kleshas"
+    },
+    {
+      "id": "philosophy-recognition-2-5",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "eight-limbs-ashtanga"
+    },
+    {
+      "id": "philosophy-recognition-2-6",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "yamas-and-niyamas"
+    },
+    {
+      "id": "philosophy-recognition-2-7",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "limbs-three-to-eight"
+    },
+    {
+      "id": "philosophy-recognition-2-8",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "abhyasa-vairagya-ishvara"
+    },
+    {
+      "id": "philosophy-recognition-2-9",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-2",
+      "type": "multiple-choice",
+      "contentId": "bhagavad-gita"
+    },
+    {
+      "id": "philosophy-recognition-3-1",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "key-yoga-concepts"
+    },
+    {
+      "id": "philosophy-recognition-3-2",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "traditional-yogic-maps"
+    },
+    {
+      "id": "philosophy-recognition-3-3",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "three-bodies-four-states"
+    },
+    {
+      "id": "philosophy-recognition-3-4",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "yoga-teacher-ethics"
+    },
+    {
+      "id": "philosophy-recognition-3-5",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "cultural-respect-in-yoga"
+    },
+    {
+      "id": "philosophy-recognition-3-6",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "yoga-in-daily-life"
+    },
+    {
+      "id": "philosophy-recognition-3-7",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "philosophy-in-class"
+    },
+    {
+      "id": "philosophy-recognition-3-8",
+      "unitId": "philosophy",
+      "lessonId": "philosophy-recognition-3",
+      "type": "multiple-choice",
+      "contentId": "philosophy-sanskrit-glossary"
+    },
+    {
+      "id": "review-fc-sanskrit",
+      "unitId": "hatha",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "tadasana"
+    },
+    {
+      "id": "review-fc-anatomy",
+      "unitId": "anatomy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "hip-joint"
+    },
+    {
+      "id": "review-fc-asana",
+      "unitId": "hatha",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "utthita-trikonasana"
+    },
+    {
+      "id": "review-fc-breath",
+      "unitId": "pranayama",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "sama-vritti"
+    },
+    {
+      "id": "review-fc-ayurveda",
+      "unitId": "ayurveda",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "dinacharya"
+    },
+    {
+      "id": "review-fc-philosophy",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yamas-and-niyamas"
+    },
+    {
+      "id": "review-fc-phil-01",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "six-darshanas"
+    },
+    {
+      "id": "review-fc-phil-02",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "six-darshanas"
+    },
+    {
+      "id": "review-fc-phil-03",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "samkhya-purusha-prakriti"
+    },
+    {
+      "id": "review-fc-phil-04",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "samkhya-purusha-prakriti"
+    },
+    {
+      "id": "review-fc-phil-05",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "samkhya-purusha-prakriti"
+    },
+    {
+      "id": "review-fc-phil-06",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "samkhya-purusha-prakriti"
+    },
+    {
+      "id": "review-fc-phil-07",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "samkhya-purusha-prakriti"
+    },
+    {
+      "id": "review-fc-phil-08",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "advaita-vedanta"
+    },
+    {
+      "id": "review-fc-phil-09",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "advaita-vedanta"
+    },
+    {
+      "id": "review-fc-phil-10",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "advaita-vedanta"
+    },
+    {
+      "id": "review-fc-phil-11",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "bhagavad-gita"
+    },
+    {
+      "id": "review-fc-phil-12",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "bhagavad-gita"
+    },
+    {
+      "id": "review-fc-phil-13",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yoga-paths"
+    },
+    {
+      "id": "review-fc-phil-14",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "key-yoga-concepts"
+    },
+    {
+      "id": "review-fc-phil-15",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "kleshas"
+    },
+    {
+      "id": "review-fc-phil-16",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "kleshas"
+    },
+    {
+      "id": "review-fc-phil-17",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "citta-vritti-nirodha"
+    },
+    {
+      "id": "review-fc-phil-18",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "citta-vritti-nirodha"
+    },
+    {
+      "id": "review-fc-phil-19",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "citta-vritti-nirodha"
+    },
+    {
+      "id": "review-fc-phil-20",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "citta-vritti-nirodha"
+    },
+    {
+      "id": "review-fc-phil-21",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yoga-sutras-introduction"
+    },
+    {
+      "id": "review-fc-phil-22",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "eight-limbs-ashtanga"
+    },
+    {
+      "id": "review-fc-phil-23",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "eight-limbs-ashtanga"
+    },
+    {
+      "id": "review-fc-phil-24",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yamas-and-niyamas"
+    },
+    {
+      "id": "review-fc-phil-25",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yamas-and-niyamas"
+    },
+    {
+      "id": "review-fc-phil-26",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yamas-and-niyamas"
+    },
+    {
+      "id": "review-fc-phil-27",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yamas-and-niyamas"
+    },
+    {
+      "id": "review-fc-phil-28",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yamas-and-niyamas"
+    },
+    {
+      "id": "review-fc-phil-29",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "yamas-and-niyamas"
+    },
+    {
+      "id": "review-fc-phil-30",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "limbs-three-to-eight"
+    },
+    {
+      "id": "review-fc-phil-31",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "limbs-three-to-eight"
+    },
+    {
+      "id": "review-fc-phil-32",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "limbs-three-to-eight"
+    },
+    {
+      "id": "review-fc-phil-33",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "abhyasa-vairagya-ishvara"
+    },
+    {
+      "id": "review-fc-phil-34",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "practice-and-nonattachment"
+    },
+    {
+      "id": "review-fc-phil-35",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "traditional-yogic-maps"
+    },
+    {
+      "id": "review-fc-phil-36",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "traditional-yogic-maps"
+    },
+    {
+      "id": "review-fc-phil-37",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "traditional-yogic-maps"
+    },
+    {
+      "id": "review-fc-phil-38",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "traditional-yogic-maps"
+    },
+    {
+      "id": "review-fc-phil-39",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "three-bodies-four-states"
+    },
+    {
+      "id": "review-fc-phil-40",
+      "unitId": "philosophy",
+      "lessonId": "personal-review",
+      "type": "flashcard",
+      "contentId": "three-bodies-four-states"
+    }
+  ],
+  "fingerprints": {
+    "ashtanga": "d5b7af426b067b84",
+    "hatha": "1322b85daec71172",
+    "yin": "6768e4612d70e2b4",
+    "aerial": "2c2b82bed1657356",
+    "pranayama": "6ef4ae802eaa1f8a",
+    "mantras": "50edbb4c0eee3b33",
+    "meditation": "54a2ad98913b3c18",
+    "anatomy": "ce99b5b5216a02ec",
+    "kriyas": "efaf9170808f57bd",
+    "ayurveda": "e45b354d82cd294a",
+    "philosophy": "867260297eb8412e"
+  },
+  "links": {
+    "tadasana": "/hatha/tadasana/",
+    "utthita-trikonasana": "/hatha/utthita-trikonasana/",
+    "padangusthasana": "/hatha/padangusthasana/",
+    "pada-hastasana": "/hatha/pada-hastasana/",
+    "baddha-konasana": "/hatha/baddha-konasana/",
+    "bhujangasana": "/hatha/bhujangasana/",
+    "sukhasana": "/hatha/sukhasana/",
+    "savasana": "/hatha/savasana/",
+    "urdhva-hastasana": "/hatha/urdhva-hastasana/",
+    "uttanasana": "/hatha/uttanasana/",
+    "ardha-uttanasana": "/hatha/ardha-uttanasana/",
+    "phalahakasana": "/hatha/phalahakasana/",
+    "chaturanga-dandasana": "/hatha/chaturanga-dandasana/",
+    "urdhva-mukha-svanasana": "/hatha/urdhva-mukha-svanasana/",
+    "adho-mukha-svanasana": "/hatha/adho-mukha-svanasana/",
+    "utkatasana": "/hatha/utkatasana/",
+    "virabhadrasana-i": "/hatha/virabhadrasana-i/",
+    "virabhadrasana-ii": "/hatha/virabhadrasana-ii/",
+    "utthita-parsvakonasana": "/hatha/utthita-parsvakonasana/",
+    "prasarita-padottanasana": "/hatha/prasarita-padottanasana/",
+    "parsvottanasana": "/hatha/parsvottanasana/",
+    "dandasana": "/hatha/dandasana/",
+    "paschimottanasana": "/hatha/paschimottanasana/",
+    "ardha-matsyendrasana": "/hatha/ardha-matsyendrasana/",
+    "setu-bandha-sarvangasana": "/hatha/setu-bandha-sarvangasana/",
+    "viparita-karani": "/hatha/viparita-karani/",
+    "butterfly": "/yin/butterfly/",
+    "dragon": "/yin/dragon/",
+    "sphinx": "/yin/sphinx/",
+    "supported-child": "/yin/supported-child/",
+    "reclined-twist": "/yin/reclined-twist/",
+    "caterpillar": "/yin/caterpillar/",
+    "shoelace": "/yin/shoelace/",
+    "banana-pose": "/yin/banana-pose/",
+    "melting-heart": "/yin/melting-heart/",
+    "saddle": "/yin/saddle/",
+    "supported-seat": "/aerial/supported-seat/",
+    "aerial-standing-support": "/aerial/aerial-standing-support/",
+    "aerial-supported-lunge": "/aerial/aerial-supported-lunge/",
+    "aerial-supported-recline": "/aerial/aerial-supported-recline/",
+    "aerial-core-study": "/aerial/aerial-core-study/",
+    "aerial-inversion-briefing": "/aerial/aerial-inversion-briefing/",
+    "aerial-cocoon": "/aerial/aerial-cocoon/",
+    "aerial-safe-exit": "/aerial/aerial-safe-exit/",
+    "dirga-pranayama": "/pranayama/dirga-pranayama/",
+    "sama-vritti": "/pranayama/sama-vritti/",
+    "extended-exhale": "/pranayama/extended-exhale/",
+    "ujjayi": "/pranayama/ujjayi/",
+    "bhramari": "/pranayama/bhramari/",
+    "nadi-shodhana": "/pranayama/nadi-shodhana/",
+    "sitali": "/pranayama/sitali/",
+    "sitkari": "/pranayama/sitkari/",
+    "kapalabhati": "/pranayama/kapalabhati/",
+    "bhastrika": "/pranayama/bhastrika/",
+    "kumbhaka": "/pranayama/kumbhaka/",
+    "om": "/mantras/om/",
+    "om-shanti": "/mantras/om-shanti/",
+    "gayatri": "/mantras/gayatri/",
+    "mahamrityunjaya": "/mantras/mahamrityunjaya/",
+    "om-namah-shivaya": "/mantras/om-namah-shivaya/",
+    "lokah-samastah-sukhino-bhavantu": "/mantras/lokah-samastah-sukhino-bhavantu/",
+    "saha-navavatu": "/mantras/saha-navavatu/",
+    "asato-ma-sadgamaya": "/mantras/asato-ma-sadgamaya/",
+    "purnamadah": "/mantras/purnamadah/",
+    "ganesha-mantra": "/mantras/ganesha-mantra/",
+    "hare-krishna": "/mantras/hare-krishna/",
+    "so-hum": "/mantras/so-hum/",
+    "sat-nam": "/mantras/sat-nam/",
+    "opening-mantra": "/mantras/opening-mantra/",
+    "closing-mantra": "/mantras/closing-mantra/",
+    "spine": "/anatomy/spine/",
+    "shoulders": "/anatomy/shoulders/",
+    "hip-joint": "/anatomy/hip-joint/",
+    "knees": "/anatomy/knees/",
+    "ankles-feet": "/anatomy/ankles-feet/",
+    "wrists-hands": "/anatomy/wrists-hands/",
+    "core": "/anatomy/core/",
+    "pelvic-floor": "/anatomy/pelvic-floor/",
+    "respiratory-system-diaphragm": "/anatomy/respiratory-system-diaphragm/",
+    "nervous-system-and-breath": "/anatomy/nervous-system-and-breath/",
+    "fascia-connective-tissue": "/anatomy/fascia-connective-tissue/",
+    "movement-types": "/anatomy/movement-types/",
+    "anatomy-glossary": "/anatomy/anatomy-glossary/",
+    "kriya-foundations": "/kriyas/kriya-foundations/",
+    "jala-neti": "/kriyas/jala-neti/",
+    "sutra-neti": "/kriyas/sutra-neti/",
+    "dhauti": "/kriyas/dhauti/",
+    "nauli": "/kriyas/nauli/",
+    "basti": "/kriyas/basti/",
+    "trataka-kriya": "/kriyas/trataka-kriya/",
+    "kapalabhati-shatkarma": "/kriyas/kapalabhati-shatkarma/",
+    "shankhaprakshalana": "/kriyas/shankhaprakshalana/",
+    "danta-dhauti": "/kriyas/danta-dhauti/",
+    "kavala": "/kriyas/kavala/",
+    "breath-awareness": "/meditation/breath-awareness/",
+    "body-scan": "/meditation/body-scan/",
+    "trataka": "/meditation/trataka/",
+    "loving-kindness": "/meditation/loving-kindness/",
+    "yoga-nidra": "/meditation/yoga-nidra/",
+    "mantra-meditation": "/meditation/mantra-meditation/",
+    "walking-meditation": "/meditation/walking-meditation/",
+    "visualization": "/meditation/visualization/",
+    "thought-observation": "/meditation/thought-observation/",
+    "guided-5-minutes": "/meditation/guided-5-minutes/",
+    "guided-10-minutes": "/meditation/guided-10-minutes/",
+    "guided-20-minutes": "/meditation/guided-20-minutes/",
+    "vata": "/ayurveda/vata/",
+    "pitta": "/ayurveda/pitta/",
+    "kapha": "/ayurveda/kapha/",
+    "prakriti": "/ayurveda/prakriti/",
+    "vikriti": "/ayurveda/vikriti/",
+    "agni": "/ayurveda/agni/",
+    "ama": "/ayurveda/ama/",
+    "gunas": "/ayurveda/gunas/",
+    "dinacharya": "/ayurveda/dinacharya/",
+    "food": "/ayurveda/food/",
+    "seasons": "/ayurveda/seasons/",
+    "yoga-ayurveda": "/ayurveda/yoga-ayurveda/",
+    "six-tastes": "/ayurveda/six-tastes/",
+    "simple-recipes": "/ayurveda/simple-recipes/",
+    "practice-and-nonattachment": "/philosophy/practice-and-nonattachment/",
+    "what-is-yoga": "/philosophy/what-is-yoga/",
+    "yoga-history-timeline": "/philosophy/yoga-history-timeline/",
+    "foundational-yoga-texts": "/philosophy/foundational-yoga-texts/",
+    "modern-yoga-teachers": "/philosophy/modern-yoga-teachers/",
+    "six-darshanas": "/philosophy/six-darshanas/",
+    "samkhya-purusha-prakriti": "/philosophy/samkhya-purusha-prakriti/",
+    "advaita-vedanta": "/philosophy/advaita-vedanta/",
+    "yoga-paths": "/philosophy/yoga-paths/",
+    "tantra-and-hatha-yoga": "/philosophy/tantra-and-hatha-yoga/",
+    "yoga-sutras-introduction": "/philosophy/yoga-sutras-introduction/",
+    "citta-vritti-nirodha": "/philosophy/citta-vritti-nirodha/",
+    "kleshas": "/philosophy/kleshas/",
+    "eight-limbs-ashtanga": "/philosophy/eight-limbs-ashtanga/",
+    "yamas-and-niyamas": "/philosophy/yamas-and-niyamas/",
+    "limbs-three-to-eight": "/philosophy/limbs-three-to-eight/",
+    "abhyasa-vairagya-ishvara": "/philosophy/abhyasa-vairagya-ishvara/",
+    "bhagavad-gita": "/philosophy/bhagavad-gita/",
+    "key-yoga-concepts": "/philosophy/key-yoga-concepts/",
+    "traditional-yogic-maps": "/philosophy/traditional-yogic-maps/",
+    "three-bodies-four-states": "/philosophy/three-bodies-four-states/",
+    "yoga-teacher-ethics": "/philosophy/yoga-teacher-ethics/",
+    "cultural-respect-in-yoga": "/philosophy/cultural-respect-in-yoga/",
+    "yoga-in-daily-life": "/philosophy/yoga-in-daily-life/",
+    "philosophy-in-class": "/philosophy/philosophy-in-class/",
+    "philosophy-sanskrit-glossary": "/philosophy/philosophy-sanskrit-glossary/"
+  }
+}

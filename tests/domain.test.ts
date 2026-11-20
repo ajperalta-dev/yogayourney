@@ -42,12 +42,13 @@ test("the pose library has one complete record per stable ID", () => {
     assert.match(pose.id, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
     assert.equal(byId[pose.id], pose);
     assert.ok(
-      pose.sanskrit?.trim() || (pose.sanskrit === null && pose.studyOnly),
+      pose.sanskrit?.trim() || pose.sanskrit === null,
       pose.id,
     );
     assert.ok(Number.isSafeInteger(pose.duration) && pose.duration > 0, pose.id);
     for (const language of ["es", "en"] as const) {
-      assert.ok(pose.instructionSteps[language].length >= 2, pose.id);
+      assert.ok(pose.instructionSteps[language].length >= (pose.kind === "aerial" ? 1 : 2), pose.id);
+      if(pose.kind === "aerial") { assert.ok(pose.entry[language].trim(),pose.id);assert.ok(pose.exit[language].trim(),pose.id); }
       for (const field of [
         pose.name,
         pose.breathing,

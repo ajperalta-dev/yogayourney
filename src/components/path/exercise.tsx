@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { byId, sectionFor } from "@/content/catalog";
+import { contentLinks } from "@/lib/path/banks";
 import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { ProgressBar } from "../common";
@@ -16,7 +16,7 @@ function PoseImage({ image }: { image: ExerciseImage }) {
   const [failed, setFailed] = useState(false);
   return <div className="path-exercise-image">{failed ?
     <p role="img" aria-label={image.alt[state.language]}>{t("Imagen no disponible. Usa la descripción:", "Image unavailable. Use the description:")} {image.alt[state.language]}</p> :
-    <Image src={image.src} alt={image.alt[state.language]} width={640} height={480} sizes="(max-width: 600px) 90vw, 400px" onError={() => setFailed(true)} />}</div>;
+            <Image src={image.src} alt={image.alt[state.language]} width={640} height={480} loading="lazy" sizes="(max-width: 600px) 90vw, 400px" onError={() => setFailed(true)} />}</div>;
 }
 
 async function playFeedback(correct: boolean, sound: boolean, vibration: boolean) {
@@ -45,7 +45,7 @@ export interface ExerciseProps {
 
 /** Keep this wrapper mounted across exercises to retain optional effects. */
 export function PathExercise(props: ExerciseProps) {
-  const { state, t } = useLocal();
+  const { t } = useLocal();
   const [sound, setSound] = useState(false), [vibration, setVibration] = useState(false);
   if (!validExercise(props.exercise)) return <div className="panel"><p role="alert">{t("Este ejercicio necesita revisión. Puedes saltarlo.", "This exercise needs review. You can skip it.")}</p><Button type="button" onClick={props.onSkip}>{t("Saltar", "Skip")}</Button></div>;
   return <section className="panel path-exercise">
@@ -53,8 +53,8 @@ export function PathExercise(props: ExerciseProps) {
       <label><input type="checkbox" checked={sound} onChange={e => setSound(e.target.checked)} />{t("Sonido", "Sound")}</label>
       <label><input type="checkbox" checked={vibration} onChange={e => setVibration(e.target.checked)} />{t("Vibración (si está disponible)", "Vibration (if supported)")}</label>
     </fieldset>
-    {byId[props.exercise.contentId]&&<Link className="text-link" href={`/${sectionFor(byId[props.exercise.contentId])}/${props.exercise.contentId}/`} target="_blank" rel="noopener noreferrer">{t("Ver la ficha (otra pestaña)","View entry (new tab)")}</Link>}
-    {props.exercise.type==="flashcard"?<FlashcardBody sound={sound} vibration={vibration} key={`${props.exercise.id}-${props.turn??0}`} {...props}/>:<ExerciseBody key={`${props.exercise.id}-${props.turn ?? 0}-${state.language}`} {...props} sound={sound} vibration={vibration} />}
+    {contentLinks[props.exercise.contentId]&&<Link className="text-link" href={contentLinks[props.exercise.contentId]} target="_blank" rel="noopener noreferrer">{t("Ver la ficha (otra pestaña)","View entry (new tab)")}</Link>}
+    {props.exercise.type==="flashcard"?<FlashcardBody sound={sound} vibration={vibration} key={`${props.exercise.id}-${props.turn??0}`} {...props}/>:<ExerciseBody key={`${props.exercise.id}-${props.turn ?? 0}`} {...props} sound={sound} vibration={vibration} />}
   </section>;
 }
 

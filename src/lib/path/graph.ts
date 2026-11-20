@@ -3,10 +3,10 @@ import type { Exercise, Lesson, PathProgress, Session, Unit } from "./models";
 import { finishLesson, metrics, unlocked } from "./engine";
 import { l } from "../utils";
 
-export function assessment(unit: Unit, exercises: Exercise[], mode: "checkpoint" | "placement"): Lesson | null {
-  const pool = exercises.filter(e => e.unitId === unit.id);
+export function assessment(unit: Unit, exercises: Pick<Exercise,"id"|"unitId"|"lessonId"|"type">[], mode: "checkpoint" | "placement"): Lesson | null {
+  const pool = exercises.filter(e => e.unitId === unit.id && e.type !== "flashcard");
   // Interleave lessons and types; do not inflate small banks by duplicating questions.
-  const selected: Exercise[] = [];
+  const selected: typeof pool = [];
   const pending = [...pool];
   while (pending.length) {
     const previous = selected.at(-1);
