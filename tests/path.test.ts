@@ -15,7 +15,7 @@ test("errors go to the end, progress requires a successful answer", () => {
 });
 test("completion awards XP, tracks streak by calendar date, and unlocks only successors", () => {
  const done = complete(); const p = finishLesson(emptyPath(), done, "2026-11-19");
- assert.equal(p.xp, lesson.exerciseIds.length * 10); assert.equal(p.streak, 1);
+ assert.equal(p.xp, lesson.exerciseIds.length * 10 + 20); assert.equal(p.streak, 1);
  assert.equal(finishLesson(p, done, "2026-11-19").streak, 1);
  assert.equal(finishLesson(p, complete(), "2026-11-20").streak, 2);
  assert.equal(finishLesson(p, complete(), "2026-11-22").streak, 1);

@@ -46,6 +46,6 @@ test("paused sessions survive device backups; corrupt sessions do not erase achi
  const read=parseState(JSON.stringify({...defaultState,path:p}));assert.deepEqual(read.path?.active,active);
  const bad=parseState(JSON.stringify({...defaultState,path:{...p,active:{...active,total:1}}}));
  assert.equal(bad.path?.active,undefined);assert.equal(bad.path?.xp,90);
- assert.equal(streakToday({...p,streak:3,lastActivity:"2026-11-19"},"2026-11-21"),0);
+ assert.equal(streakToday({...p,streak:3,lastActivity:"2026-11-19"},"2026-11-22"),0);
  assert.equal(streakToday({...p,streak:3,lastActivity:"2026-11-19"},"2026-11-20"),3);
 });

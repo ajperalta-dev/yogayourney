@@ -1,3 +1,4 @@
+import { streakReward } from "./game";
 import type { Lesson, PathProgress, Session } from "./models";
 export const emptyPath = (): PathProgress => ({ version: 1, rewardedSessions: [], completed: [], nodes: {}, xp: 0, streak: 0, dailyGoal: 20, dailyXp: 0, lastActivity: null, errors: {}, legacyImported: true });
 export function startLesson(lesson: Lesson): Session {
@@ -17,7 +18,7 @@ export function skipExercise(session: Session): Session {
 }
 export function metrics(session: Session) {
   const accuracy = session.attempts ? session.correct / session.attempts : 0;
-  return { progress: session.mastered.length / session.total, accuracy, xp: session.finished ? Math.round(accuracy * session.total * 10) : 0 };
+  return { progress: session.mastered.length / session.total, accuracy, xp: session.correct * 10 + (session.finished && !session.mistakes.length && !session.reviewOnly ? 20 : 0), bonus: session.finished && !session.mistakes.length && !session.reviewOnly ? 20 : 0 };
 }
 export function unlocked(lessonId: string, lessons: Lesson[], progress: PathProgress): boolean {
   const index = lessons.findIndex(l => l.id === lessonId);
@@ -36,6 +37,6 @@ export function finishLesson(progress: PathProgress, session: Session, date: str
   const nextReview = new Date((today + [1, 2, 4, 7, 14, 30][box]) * 86400000).toISOString().slice(0, 10);
   const errors = { ...progress.errors };
   session.mistakes.forEach(id => { errors[id] = (errors[id] ?? 0) + 1; });
-  const xp = metrics(session).xp;
-  return { ...progress, rewardedSessions: [...progress.rewardedSessions, session.id], completed: [...new Set([...progress.completed, session.lessonId])], nodes: { ...progress.nodes, [session.lessonId]: { box, nextReview, mastery: Math.min(5, Math.max(0, (old?.mastery ?? 0) + (accuracy >= .8 ? 1 : -1))) } }, xp: progress.xp + xp, dailyXp: (last === today ? progress.dailyXp : 0) + xp, streak: last === today ? progress.streak : last === today - 1 ? progress.streak + 1 : 1, lastActivity: date, errors };
+  const xp = Math.max(0, metrics(session).xp - (session.awardedXp ?? 0));
+  return { ...progress, rewardedSessions: [...progress.rewardedSessions, session.id], completed: [...new Set([...progress.completed, session.lessonId])], nodes: { ...progress.nodes, [session.lessonId]: { box, nextReview, mastery: Math.min(5, Math.max(0, (old?.mastery ?? 0) + (accuracy >= .8 ? 1 : -1))) } }, xp: progress.xp + xp, dailyXp: (last === today ? progress.dailyXp : 0) + xp, streak: streakReward(progress,date).streak, lastActivity: date, errors };
 }

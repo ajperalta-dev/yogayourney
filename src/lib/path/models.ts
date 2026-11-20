@@ -30,11 +30,16 @@ export type ExerciseResponse = number | string[] | Record<string, string>;
 export interface Lesson { id: string; unitId: SectionId; name: Localized; minutes: 3 | 4 | 5; exerciseIds: string[]; checkpoint?: boolean; }
 export interface Unit { id: SectionId; name: Localized; lessons: Lesson[]; }
 export interface Session {
+  seconds?: number;
+  awardedSeconds?: number;
+  awardedXp?: number;
+  reviewOnly?: boolean;
   id: string; lessonId: string; queue: string[]; total: number; mastered: string[];
   attempts: number; correct: number; mistakes: string[]; finished: boolean;
 }
 export interface NodeProgress { mastery: number; box: number; nextReview: string; }
 export interface PathProgress {
+  game?: { correctAnswers: number; goal: { type: "minutes" | "lessons"; target: number }; days: Record<string, { seconds: number; lessons: number }>; frozenWeeks: string[]; badges: string[] };
   active?: Session;
   unlockedUnits?: string[];
   version: 1; rewardedSessions: string[]; completed: string[]; nodes: Record<string, NodeProgress>;

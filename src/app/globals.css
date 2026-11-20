@@ -3357,3 +3357,11 @@ select {
 @media (max-width: 600px) { .path-stats { top: 8px; font-size: 13px; } .path-node-title { font-size: 13px; max-width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .path-node { transition: none; } .path-node:hover { transform: none; } }
 
+.path-goal-settings { margin-block: 1rem; padding: 1.25rem; }
+.path-goal-settings summary { cursor: pointer; font-weight: 600; min-height: 44px; }
+.path-goal-settings label { display: grid; gap: .5rem; }
+.path-goal-settings select { padding: .75rem; min-height: 44px; border-radius: var(--radius); color: var(--text); background: var(--surface); border: 1px solid var(--control-line); font: inherit; width: min(100%, 25rem); }
+.path-goal-settings li { padding-block: .4rem; }
+.path-celebration { animation: path-feedback-in 300ms ease-out; }
+.path-celebration .button { margin: .25rem; }
+@media (prefers-reduced-motion: reduce) { .path-celebration { animation: none; } }

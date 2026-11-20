@@ -1,3 +1,4 @@
+import { finishGame, streakReward } from "./game";
 import type { Exercise, Lesson, PathProgress, Session, Unit } from "./models";
 import { finishLesson, metrics, unlocked } from "./engine";
 import { l } from "../utils";
@@ -33,8 +34,9 @@ export function completePathSession(progress: PathProgress, session: Session, le
   const next = finishLesson(progress, session, date);
   const exam = lesson.checkpoint || lesson.id.endsWith("-placement");
   if (exam && metrics(session).accuracy < .8) next.completed = [...progress.completed];
-  if (lesson.id.endsWith("-placement") && metrics(session).accuracy >= .8) next.unlockedUnits = [...new Set([...(progress.unlockedUnits ?? []), lesson.unitId])];
-  return { ...next, active: session };
+  if (!session.reviewOnly && lesson.id.endsWith("-placement") && metrics(session).accuracy >= .8) next.unlockedUnits = [...new Set([...(progress.unlockedUnits ?? []), lesson.unitId])];
+  if (session.reviewOnly) {next.completed=[...progress.completed];next.nodes={...progress.nodes};next.unlockedUnits=progress.unlockedUnits;}
+  return finishGame(progress,{ ...next, active: session },session,date);
 }
 export function localDay(date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
@@ -42,5 +44,5 @@ export function localDay(date = new Date()) {
 export function streakToday(progress: PathProgress, today: string) {
   if (!progress.lastActivity) return 0;
   const gap = (Date.parse(today) - Date.parse(progress.lastActivity)) / 86400000;
-  return gap >= 0 && gap <= 1 ? progress.streak : 0;
+  return gap >= 0 && (gap <= 1 || gap === 2 && streakReward(progress,today).frozen) ? progress.streak : 0;
 }
