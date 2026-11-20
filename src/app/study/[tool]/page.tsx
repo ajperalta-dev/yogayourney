@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import {
   Favorites,
@@ -21,7 +22,7 @@ export default async function Page({
   const { tool } = await params;
   switch (tool) {
     case "path":
-      return <PathScreen />;
+      return <Suspense fallback={<p>…</p>}><PathScreen /></Suspense>;
     case "favorites":
       return (
         <Favorites index={searchIndex.map((i) => ({ ...i, searchText: "" }))} />

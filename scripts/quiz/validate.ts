@@ -11,7 +11,7 @@ for (const bank of banks) {
     if (seen.has(exercise.id)) errors.push(`${exercise.id}: global duplicate`); seen.add(exercise.id);
     let valid = false; try { valid = validExercise(exercise); } catch { /* Already recorded by validateBank. */ }
     if (!valid) continue;
-    const response = "correct" in exercise ? exercise.correct : exercise.type === "matching" ? exercise.matches : exercise.correctOrder.es;
+    const response = "correct" in exercise ? exercise.correct : exercise.type === "matching" ? exercise.matches : "correctOrder" in exercise ? exercise.correctOrder.es : -1;
     if (!gradeExercise(exercise, response, "es")) errors.push(`${exercise.id}: correct key rejected`);
     const en = "correctOrder" in exercise ? exercise.correctOrder.en : response;
     if (!gradeExercise(exercise, en, "en")) errors.push(`${exercise.id}: EN correct key rejected`);

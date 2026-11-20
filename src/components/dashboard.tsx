@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/set-state-in-effect -- Hydrate browser-only storage or local clock after the static HTML has hydrated. */
 "use client";
+import { learningStats } from "@/lib/path/review";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -35,7 +36,8 @@ export function Dashboard({
     setToday(new Date());
   }, []);
   const visited = Object.keys(state.visited).length;
-  const percent = Math.min(100, Math.round((visited / total) * 100));
+  const learning = learningStats(state,total);
+  const percent = learning.percent;
   const last = index.find((i) => i.href === state.lastPath);
   const favorites = state.favorites
     .slice(-3)
@@ -142,7 +144,7 @@ export function Dashboard({
               {visited} / {total}
             </strong>
           </div>
-          <ProgressBar value={percent} label="YTT" />
+          <ProgressBar value={percent} label="YTT" /><p className="small">{learning.xp} XP · {learning.mastered} {t("fichas con dominio completo", "fully mastered entries")}</p><p className="small">{t("El anillo combina exploración y dominio practicado; el XP mide tu actividad.", "The ring combines exploration and practiced mastery; XP measures your activity.")}</p>
           <Link href="/study/progress/" className="text-link">
             {t("Ver mi progreso", "View my progress")}
             <ArrowUpRight size={16} />
@@ -159,15 +161,15 @@ export function Dashboard({
         <div>
           <Flame size={20} />
           <span>
-            <strong>{state.sessions.length}</strong>{" "}
+            <strong>{learning.sessions}</strong>{" "}
             {t("sesiones completadas", "completed sessions")}
           </span>
         </div>
         <div>
           <CheckCircle2 size={20} />
           <span>
-            <strong>{Object.keys(state.cards).length}</strong>{" "}
-            {t("tarjetas repasadas", "cards reviewed")}
+            <strong>{learning.reviewed}</strong>{" "}
+            {t("tarjetas y ejercicios repasados", "cards and exercises reviewed")}
           </span>
         </div>
         <div>

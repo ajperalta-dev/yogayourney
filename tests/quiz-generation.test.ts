@@ -17,7 +17,7 @@ test("Hatha generation is reproducible and snapshot matches current source data"
 });
 test("each stored correct response is accepted in both languages", () => {
  for(const e of buildHatha().exercises) for(const language of ["es","en"] as const) {
-  const response = "correct"in e ? e.correct : e.type==="matching"?e.matches:e.correctOrder[language];
+  const response = "correct"in e ? e.correct : e.type==="matching"?e.matches:"correctOrder"in e?e.correctOrder[language]:-1;
   assert.equal(gradeExercise(e,response,language),true,e.id);
  }
 });

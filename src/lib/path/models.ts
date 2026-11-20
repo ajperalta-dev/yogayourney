@@ -25,7 +25,8 @@ export interface OrderExercise extends ExerciseBase {
   tokensByLanguage?: { es: { id: string; label: Localized }[]; en: { id: string; label: Localized }[] };
   correctOrder: { es: string[]; en: string[] };
 }
-export type Exercise = ChoiceExercise | PairExercise | OrderExercise;
+export interface FlashcardExercise extends ExerciseBase { type: "flashcard"; flashcardId: string; }
+export type Exercise = ChoiceExercise | PairExercise | OrderExercise | FlashcardExercise;
 export type ExerciseResponse = number | string[] | Record<string, string>;
 export interface Lesson { id: string; unitId: SectionId; name: Localized; minutes: 3 | 4 | 5; exerciseIds: string[]; checkpoint?: boolean; }
 export interface Unit { id: SectionId; name: Localized; lessons: Lesson[]; }
@@ -39,6 +40,7 @@ export interface Session {
 }
 export interface NodeProgress { mastery: number; box: number; nextReview: string; }
 export interface PathProgress {
+  reviews?: Record<string, { box: number; due: string; correct: number; wrong: number; last: string; contentId: string; flashcardId?: string }>;
   game?: { correctAnswers: number; goal: { type: "minutes" | "lessons"; target: number }; days: Record<string, { seconds: number; lessons: number }>; frozenWeeks: string[]; badges: string[] };
   active?: Session;
   unlockedUnits?: string[];

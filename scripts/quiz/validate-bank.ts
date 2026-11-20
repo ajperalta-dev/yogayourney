@@ -35,7 +35,7 @@ export function validateBank(bank: QuestionBank): { errors: string[]; distributi
     try { valid = validExercise(exercise); } catch { /* Report malformed localized data by ID. */ }
     const types = ["multiple-choice", "true-false", "fill-blank", "odd-one-out", "teacher-scenario", "image-to-name", "name-to-image", "matching", "sequence-order", "word-order"];
     if (!valid || !types.includes(exercise.type) || ![1,2,3].includes(exercise.difficulty)) { fail(exercise.id, "invalid exercise shape/key"); continue; }
-    const signature = JSON.stringify([exercise.type, exercise.prompt, "options" in exercise ? exercise.options : "tokens" in exercise ? exercise.tokens : exercise.left]);
+    const signature = JSON.stringify([exercise.type, exercise.prompt, "options" in exercise ? exercise.options : "tokens" in exercise ? exercise.tokens : "left" in exercise ? exercise.left : exercise.flashcardId]);
     if (signatures.has(signature)) fail(exercise.id, "duplicate question"); signatures.add(signature);
     const source = bank.sources[exercise.id];
     if (!source || !source.contentIds.includes(exercise.contentId) || source.contentIds.some(id => !byId[id])) fail(exercise.id, "missing/invalid provenance");
@@ -47,7 +47,7 @@ export function validateBank(bank: QuestionBank): { errors: string[]; distributi
       if (exercise.type === "name-to-image" && new Set(exercise.optionImages?.map(i=>i.src)).size !== exercise.options.length) fail(exercise.id, "duplicate image options");
     } else if (exercise.type === "matching") {
       for (const language of ["es", "en"] as const) for (const side of [exercise.left, exercise.right]) if (new Set(side.map(i=>normalize(i.label[language]))).size !== side.length) fail(exercise.id, "ambiguous pairs");
-    } else for (const language of ["es", "en"] as const) {
+    } else if ("correctOrder" in exercise) for (const language of ["es", "en"] as const) {
       const tokens = orderTokens(exercise, language);
       if (new Set(tokens.map(t=>normalize(t.label[language]))).size !== tokens.length) fail(exercise.id, "ambiguous repeated words");
     }

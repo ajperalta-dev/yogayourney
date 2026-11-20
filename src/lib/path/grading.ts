@@ -7,6 +7,7 @@ export const orderTokens = (exercise: OrderExercise, language: Language) => exer
 export function validExercise(exercise: Exercise): boolean {
   const localized = (text: { es: string; en: string }) => !!text.es.trim() && !!text.en.trim();
   if (!localized(exercise.prompt) || !localized(exercise.explanation)) return false;
+  if (exercise.type === "flashcard") return !!exercise.flashcardId;
   if (exercise.type === "matching") {
     const left = exercise.left.map(item => item.id), right = exercise.right.map(item => item.id);
     return left.length >= 2 && left.length === right.length && new Set(left).size === left.length && new Set(right).size === right.length &&

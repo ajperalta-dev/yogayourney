@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { reviewCards } from "@/content/path/review-cards";
+import { makeReview,recordReview,selectReview,syncMastery } from "@/lib/path/review";
 import { awardAnswer, awardTime, badgeNames, dailyGoal, gameState, rank } from "@/lib/path/game";
 import { Check, Flag, LockKeyhole, Play, Star, Trophy, X } from "lucide-react";
 import { pathUnits, pathExercises } from "@/content/path";
@@ -15,7 +18,8 @@ import { useLocal } from "../providers";
 import { SessionExercise } from "./exercise";
 
 const units = [...pathUnits].sort((a,b) => (a.id === "hatha" ? -1 : b.id === "hatha" ? 1 : pathUnits.indexOf(a)-pathUnits.indexOf(b)));
-const exercises = new Map(pathExercises.map(e=>[e.id,e]));
+const reviewPool=[...pathExercises,...reviewCards];
+const exercises = new Map(reviewPool.map(e=>[e.id,e]));
 const allLessons = units.flatMap(unit=>[...unit.lessons, assessment(unit,pathExercises,"checkpoint"),assessment(unit,pathExercises,"placement")].filter((l):l is Lesson=>!!l));
 const offset = (i:number) => [0, 68, 90, 0, -90, -68][i%6];
 
@@ -47,9 +51,13 @@ export function PathScreen() {
   const [showMap,setShowMap]=useState(false);
   const daily=dailyGoal(progress,today), goal=daily.percent, game=gameState(progress), currentRank=rank(progress.xp);
   const session=progress.active;
-  const lesson=allLessons.find(l=>l.id===session?.lessonId);
+  const search=useSearchParams();
+  const cardId=search.get("card"), flashcardMode=search.get("mode")==="flashcards";
+  const cardExercises=cardId?reviewPool.filter(e=>e.contentId===cardId):[];
+  const personalized:Lesson|undefined=session?.lessonId==="personal-review"&&session.reviewOnly?{id:"personal-review",unitId:exercises.get([...session.queue,...session.mastered][0])?.unitId??"hatha" as const,name:{es:"Práctica personalizada",en:"Personal practice"},minutes:4 as const,exerciseIds:[...session.queue,...session.mastered]}:undefined;
+  const lesson=personalized??allLessons.find(l=>l.id===session?.lessonId);
   const activeUnit=units.find(u=>u.id===lesson?.unitId);
-  const validSession=!!session && !!lesson && [...session.queue,...session.mastered].every(id=>lesson.exerciseIds.includes(id)) && (session.reviewOnly || session.total===lesson.exerciseIds.length);
+  const validSession=!!session && !!lesson && [...session.queue,...session.mastered].every(id=>exercises.has(id)&&lesson.exerciseIds.includes(id)) && (session.reviewOnly || session.total===lesson.exerciseIds.length);
 
   function start(lesson:Lesson) {
     const unit=units.find(u=>u.id===lesson.unitId)!;
@@ -66,8 +74,12 @@ export function PathScreen() {
       const previous=s.path??emptyPath();
       if(previous.active?.id!==next.id || previous.active.attempts>next.attempts) return s;
       const timed={...next,seconds:previous.active.seconds??0,awardedSeconds:previous.active.awardedSeconds??0};
-      const awarded=awardAnswer(previous,timed);
-      return {...s,path:timed.finished?completePathSession(awarded.progress,awarded.session,lesson,localDay()):{...awarded.progress,active:awarded.session}};
+      const reviewed=recordReview(previous,previous.active,timed,exercises.get(previous.active.queue[0])!,localDay());
+      const awarded=awardAnswer(reviewed,timed);
+      const p=syncMastery(timed.finished?completePathSession(awarded.progress,awarded.session,lesson,localDay()):{...awarded.progress,active:awarded.session},units);
+      const ex=exercises.get(previous.active.queue[0]);
+      const cards=ex?.type==="flashcard"&&timed.attempts>previous.active.attempts?{...s.cards,[ex.flashcardId]:{reviewedAt:new Date().toISOString(),known:timed.correct>previous.active.correct}}:s.cards;
+      return {...s,cards,path:p};
     });
   }
   const activeId=session?.id, activeFinished=session?.finished;
@@ -78,6 +90,7 @@ export function PathScreen() {
     return ()=>clearInterval(id);
   },[activeId,activeFinished,showMap,update]);
   function reviewErrors(){if(!session||!lesson)return;const ids=[...new Set(session.mistakes)];if(!ids.length)return;const active:Session={id:crypto.randomUUID(),lessonId:lesson.id,queue:ids,total:ids.length,mastered:[],attempts:0,correct:0,mistakes:[],finished:false,reviewOnly:true,seconds:0};update(s=>({...s,path:{...(s.path??emptyPath()),active}}));}
+  function startReview(pool=selectReview(flashcardMode?reviewCards:reviewPool,state,today)) {const run=makeReview(pool);if(!run)return;update(s=>({...s,path:{...(s.path??emptyPath()),active:run.session}}));setShowMap(false);}
   function leave() {update(s=>({...s,path:{...(s.path??emptyPath()),active:undefined}}));}
 
   if (!ready) return <p role="status">{t("Preparando tu camino…","Preparing your path…")}</p>;
@@ -94,11 +107,15 @@ export function PathScreen() {
       {[5,10,15,20].map(n=><option key={`m${n}`} value={`minutes:${n}`}>{n} {t("minutos","minutes")}</option>)}{[1,2,3,4].map(n=><option key={`l${n}`} value={`lessons:${n}`}>{n} {t("lecciones","lessons")}</option>)}</select></label>
       <ul>{Object.entries(badgeNames).map(([id,name])=><li key={id}>{game.badges.includes(id)?"✓ ":"○ "}{name[state.language]} · {game.badges.includes(id)?t("Obtenido","Earned"):t("Por descubrir","To discover")}</li>)}</ul>
     </details>
+    <div className="panel path-review-actions"><Button onClick={()=>startReview()}>{t("Practicar · 10 ejercicios","Practice · 10 exercises")}</Button><Button variant="outline" disabled={!selectReview(reviewPool,state,today,true).length} onClick={()=>startReview(selectReview(reviewPool,state,today,true))}>{t("Repasar errores","Review mistakes")}</Button><Button variant="ghost" onClick={()=>startReview(selectReview(reviewCards,state,today))}>{t("Repasar flashcards","Review flashcards")}</Button>
+      <p>{t("Primero los errores y repasos vencidos, después nuevas preguntas. Comenzar reemplaza una sesión pausada.","Errors and due reviews first, then new questions. Starting replaces a paused session.")}</p>
+      {cardId&&<><p>{cardExercises.length?t("Ejercicios de la ficha seleccionada.","Exercises for the selected entry."):t("Esta ficha todavía no tiene ejercicios asociados.","This entry has no linked exercises yet.")}</p><Button disabled={!cardExercises.length} onClick={()=>startReview(cardExercises.slice(0,10))}>{t("Practicar esta ficha","Practice this entry")}</Button></>}
+    </div>
     <SectionHeader eyebrow={t("ESTUDIO / CAMINO","STUDY / PATH")} title={t("Tu camino, paso a paso","Your path, step by step")} description={t("Hatha es un buen comienzo. Elegí una unidad y avanzá a tu ritmo; tu actividad se guarda en este dispositivo.","Hatha is a good place to start. Choose a unit and move at your own pace; activity is saved on this device.")}/>
     {error && <p role="alert">{t("No pudimos guardar la última actualización. Evitá cerrar la página hasta poder exportar tus datos desde Progreso.","We could not save the latest update. Keep this page open until you can export your data from Progress.")}</p>}
     {session && !validSession && <div className="panel"><p role="status">{t("El banco cambió desde tu última lección. Podés volver al camino; tus logros se conservan.","The bank changed since your last lesson. Return to the path; your achievements are preserved.")}</p><Button onClick={leave}>{t("Volver al camino","Back to path")}</Button></div>}
     {validSession && session && lesson && activeUnit && !showMap ? <section aria-label={lesson.name[state.language]} className="path-active">
-      <h2>{activeUnit.name[state.language]} · {lesson.name[state.language]}</h2>
+      <h2>{personalized?lesson.name[state.language]:`${activeUnit.name[state.language]} · ${lesson.name[state.language]}`}</h2>
       {session.finished ? <div className="panel path-session-summary path-celebration" role="status">
         <h3>{lesson.checkpoint||lesson.id.endsWith("-placement")?metrics(session).accuracy>=.8?t("¡Prueba superada!","Test passed!"):t("Un paso más de aprendizaje","Another step in learning"):t("¡Lección completada!","Lesson complete!")}</h3>
         <p>{Math.round(metrics(session).accuracy*100)} % {t("de precisión","accuracy")} · +{metrics(session).xp} XP</p>

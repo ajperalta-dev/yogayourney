@@ -3365,3 +3365,6 @@ select {
 .path-celebration { animation: path-feedback-in 300ms ease-out; }
 .path-celebration .button { margin: .25rem; }
 @media (prefers-reduced-motion: reduce) { .path-celebration { animation: none; } }
+.path-review-actions { margin-block: 1rem; padding: 1.25rem; }
+.path-review-actions .button { margin: .25rem; white-space: normal; }
+.path-review-actions p { margin-block: .75rem; }

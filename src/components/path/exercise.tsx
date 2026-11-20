@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { byId, sectionFor } from "@/content/catalog";
 import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { ProgressBar } from "../common";
@@ -51,8 +53,19 @@ export function PathExercise(props: ExerciseProps) {
       <label><input type="checkbox" checked={sound} onChange={e => setSound(e.target.checked)} />{t("Sonido", "Sound")}</label>
       <label><input type="checkbox" checked={vibration} onChange={e => setVibration(e.target.checked)} />{t("Vibración (si está disponible)", "Vibration (if supported)")}</label>
     </fieldset>
-    <ExerciseBody key={`${props.exercise.id}-${props.turn ?? 0}-${state.language}`} {...props} sound={sound} vibration={vibration} />
+    {byId[props.exercise.contentId]&&<Link className="text-link" href={`/${sectionFor(byId[props.exercise.contentId])}/${props.exercise.contentId}/`} target="_blank" rel="noopener noreferrer">{t("Ver la ficha (otra pestaña)","View entry (new tab)")}</Link>}
+    {props.exercise.type==="flashcard"?<FlashcardBody sound={sound} vibration={vibration} key={`${props.exercise.id}-${props.turn??0}`} {...props}/>:<ExerciseBody key={`${props.exercise.id}-${props.turn ?? 0}-${state.language}`} {...props} sound={sound} vibration={vibration} />}
   </section>;
+}
+
+function FlashcardBody({exercise,onContinue,onSkip,sound,vibration}:ExerciseProps&{sound:boolean;vibration:boolean}){
+ const heading=useRef<HTMLHeadingElement>(null),back=useRef<HTMLParagraphElement>(null),feedback=useRef<HTMLParagraphElement>(null);
+ useEffect(()=>{heading.current?.focus();},[]);
+ function assess(value:boolean){setKnown(value);void playFeedback(value,sound,vibration);requestAnimationFrame(()=>feedback.current?.focus());}
+ const {state,t}=useLocal();const [revealed,reveal]=useState(false),[known,setKnown]=useState<boolean|null>(null);const sent=useRef(false);
+ return <div className="path-exercise-body"><h2 ref={heading} tabIndex={-1}>{exercise.prompt[state.language]}</h2><p>{t("Autoevaluación: intentá recordar antes de comprobar.","Self-assessment: try to recall before checking.")}</p>
+ {!revealed?<Button onClick={()=>{reveal(true);requestAnimationFrame(()=>back.current?.focus());}}>{t("Comprobar","Check")}</Button>:<><p ref={back} tabIndex={-1} role="status">{exercise.explanation[state.language]}</p>{known===null?<div className="path-exercise-actions"><Button onClick={()=>assess(true)}>{t("La sabía","I knew it")}</Button><Button variant="outline" onClick={()=>assess(false)}>{t("Todavía no","Not yet")}</Button></div>:<><p ref={feedback} tabIndex={-1} role="status">{known?t("¡Bien! Continuá cuando quieras.","Well done! Continue when ready."):t("Volverá a la cola para practicarla.","It will return to the queue for practice.")}</p><Button onClick={()=>{if(!sent.current){sent.current=true;onContinue(known);}}}>{t("Continuar","Continue")}</Button></>}</>}
+ {known===null&&<Button variant="ghost" onClick={()=>{if(!sent.current){sent.current=true;onSkip();}}}>{t("Saltar","Skip")}</Button>}</div>;
 }
 
 function ExerciseBody({ exercise, onContinue, onSkip, sound, vibration }: ExerciseProps & { sound: boolean; vibration: boolean }) {

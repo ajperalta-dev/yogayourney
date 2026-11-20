@@ -1,4 +1,5 @@
 "use client";
+import { learningStats } from "@/lib/path/review";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -45,7 +46,8 @@ export function AppShell({
   const [menu, setMenu] = useState(false);
   const [query, setQuery] = useState("");
   const visited = Object.keys(state.visited).length;
-  const percent = Math.min(100, Math.round((visited / total) * 100));
+  const learning = learningStats(state,total);
+  const percent = learning.percent;
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main">

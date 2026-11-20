@@ -1,4 +1,9 @@
 "use client";
+import { reviewCards } from "@/content/path/review-cards";
+import { emptyPath } from "@/lib/path/engine";
+import { localDay } from "@/lib/path/graph";
+import { recordLegacyCard } from "@/lib/path/review";
+import { learningStats } from "@/lib/path/review";
 import Link from "next/link";
 import { useState, useRef } from "react";
 import {
@@ -100,6 +105,7 @@ export function Flashcards() {
   function review(known: boolean) {
     update((s) => ({
       ...s,
+      path: recordLegacyCard(s.path??emptyPath(),reviewCards.find(e=>e.flashcardId===card.id)!,known,localDay()),
       cards: {
         ...s.cards,
         [card.id]: { reviewedAt: new Date().toISOString(), known },
@@ -111,6 +117,7 @@ export function Flashcards() {
   }
   return (
     <>
+      <Link className="button button-outline" href="/study/path/?mode=flashcards">{t("Repasar flashcards en Camino", "Review flashcards in Path")}</Link>
       <SectionHeader
         eyebrow="STUDY / FLASHCARDS"
         title={t("Una idea cada vez", "One idea at a time")}
@@ -377,7 +384,8 @@ export function Progress({ total }: { total: number }) {
   const [pending, setPending] = useState<PersonalState | null>(null);
   const upload = useRef<HTMLInputElement>(null);
   const visited = Object.keys(state.visited).length;
-  const percent = Math.min(100, Math.round((visited / total) * 100));
+  const learning = learningStats(state,total);
+  const percent = learning.percent;
   function backup() {
     const blob = new Blob([JSON.stringify(state, null, 2)], {
       type: "application/json",
@@ -411,16 +419,17 @@ export function Progress({ total }: { total: number }) {
         </div>
         <ProgressBar value={percent} label="YTT" />
       </div>
+      <p>{learning.xp} XP · {learning.mastered} {t("fichas con dominio completo", "fully mastered entries")}</p>
       <div className="metrics-grid">
         {[
           [
-            state.sessions.length,
+            learning.sessions,
             t("Sesiones completadas", "Completed sessions"),
           ],
           [state.quizzes.length, t("Quizzes terminados", "Completed quizzes")],
           [
-            Object.keys(state.cards).length,
-            t("Tarjetas repasadas", "Cards reviewed"),
+            learning.reviewed,
+            t("Tarjetas y ejercicios repasados", "Cards and exercises reviewed"),
           ],
           [state.favorites.length, t("Favoritos", "Favorites")],
         ].map(([value, label]) => (

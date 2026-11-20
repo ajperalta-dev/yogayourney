@@ -54,6 +54,7 @@ export function Detail({
         <ArrowLeft size={15} />
         {t("Volver a la biblioteca", "Back to the library")}
       </Link>
+      <Link className="button button-outline" href={`/study/path/?card=${item.id}`}>{t("Practicar esta ficha", "Practice this entry")}</Link>
       <div className="detail-heading">
         <div>
           <div className="eyebrow">
